@@ -1,31 +1,33 @@
 # Auverme
 
-Site statique grand public généré avec [Hugo](https://gohugo.io/).
+Site statique grand public généré avec [Astro](https://astro.build/).
 
 ## Prérequis
 
-| Outil | Version minimale |
-|-------|-----------------|
-| Hugo  | 0.120+          |
-| Git   | 2.x             |
+| Outil  | Version minimale |
+|--------|-----------------|
+| Node.js | 18+            |
+| npm    | 9+              |
+| Git    | 2.x             |
 
 ## Lancer le site en local
 
 ```bash
 git clone https://github.com/ojauze/auverme.git
 cd auverme
-hugo server -D
+npm install
+npm run dev
 ```
 
-Le site est accessible sur http://localhost:1313.
+Le site est accessible sur http://localhost:4321.
 
 ## Construire le site
 
 ```bash
-hugo build
+npm run build
 ```
 
-Les fichiers statiques sont générés dans le dossier `public/`.
+Les fichiers statiques sont générés dans le dossier `dist/`.
 
 ## Déploiement
 
@@ -33,13 +35,16 @@ Le site est déployé automatiquement via **GitHub Pages** à chaque push sur la
 
 ## Ajouter du contenu
 
-Les articles et pages se trouvent dans le dossier `content/`. Pour créer un nouvel article :
+Les articles et pages se trouvent dans le dossier `src/content/`. Pour créer un nouvel article, ajoutez un fichier Markdown dans `src/content/posts/` :
 
-```bash
-hugo new posts/mon-article.md
+```md
+---
+title: "Mon article"
+date: 2026-05-25
+---
+
+Contenu de l'article...
 ```
-
-Éditez ensuite le fichier créé en Markdown.
 
 ## Licence
 
