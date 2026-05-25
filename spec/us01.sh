@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Spec: US-01 — Comprendre le projet
 
-README="$(dirname "$0")/../README.md"
+README="${README:-$(dirname "$0")/../README.md}"
 PASS=0; FAIL=0
 
 check() {
