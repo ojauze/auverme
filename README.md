@@ -1,6 +1,8 @@
 # Auverme
 
-Site statique grand public généré avec [Astro](https://astro.build/).
+Site professionnel d'une **orthopédagogue**, conçu pour accompagner les parents, enfants et enseignants
+face aux difficultés d'apprentissage.
+Généré avec [Astro](https://astro.build/).
 
 ## Prérequis
 
