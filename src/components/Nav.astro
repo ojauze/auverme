@@ -1,0 +1,171 @@
+---
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { label: "Accueil",    href: "/" },
+  { label: "Actualités", href: "/actualites" },
+  { label: "Articles",   href: "/articles" },
+  { label: "À propos",   href: "/a-propos" },
+  { label: "Contact",    href: "/contact" },
+];
+---
+
+<nav class="nav">
+  <a href="/" class="nav-logo">Auverme</a>
+
+  <ul class="nav-links">
+    {links.map(link => (
+      <li>
+        <a
+          href={link.href}
+          class:list={["nav-link", { active: currentPath === link.href }]}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <ul>
+    {links.map(link => (
+      <li>
+        <a
+          href={link.href}
+          class:list={["mobile-link", { active: currentPath === link.href }]}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script>
+  const hamburger = document.getElementById("hamburger")!;
+  const mobileMenu = document.getElementById("mobile-menu")!;
+
+  hamburger.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("open");
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+    mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+  });
+
+  mobileMenu.querySelectorAll(".mobile-link").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      hamburger.setAttribute("aria-expanded", "false");
+      mobileMenu.setAttribute("aria-hidden", "true");
+    });
+  });
+</script>
+
+<style>
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #111;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 0.95rem;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #111;
+    border-bottom-color: #111;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #111;
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 99;
+    padding: 5rem 2rem 2rem;
+  }
+
+  .mobile-menu.open {
+    display: block;
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .mobile-link {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #4b5563;
+  }
+
+  .mobile-link.active {
+    color: #111;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+</style>
