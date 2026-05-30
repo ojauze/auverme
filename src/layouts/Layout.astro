@@ -1,5 +1,6 @@
 ---
 import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import { siteConfig } from "../data/config";
 
@@ -50,9 +51,7 @@ const fullTitle = title === siteConfig.shortName
     <main>
       <slot />
     </main>
-    <footer>
-      <p>&copy; {new Date().getFullYear()} {siteConfig.shortName} — Orthopédagogie à {siteConfig.contact.city}</p>
-    </footer>
+    <Footer />
   </body>
 </html>
 
@@ -66,13 +65,5 @@ const fullTitle = title === siteConfig.shortName
     margin: 0 auto;
     padding: 2rem 1.5rem;
     padding-top: calc(var(--header-height) + 2rem);
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: var(--color-warm-500);
-    font-size: 0.875rem;
-    border-top: 1px solid var(--color-warm-200);
   }
 </style>
