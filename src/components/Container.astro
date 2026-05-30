@@ -1,0 +1,33 @@
+---
+interface Props {
+  /** Largeur max : 'sm' = 640px, 'md' = 768px, 'lg' = 1024px (défaut), 'xl' = 1280px, 'full' = sans limite */
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  class?: string;
+}
+
+const { size = 'lg', class: className } = Astro.props;
+---
+
+<div class:list={["container", `container--${size}`, className]}>
+  <slot />
+</div>
+
+<style>
+  .container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .container--sm   { max-width: 640px; }
+  .container--md   { max-width: 768px; }
+  .container--lg   { max-width: 1024px; }
+  .container--xl   { max-width: 1280px; }
+  .container--full { max-width: none; }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-inline: 2rem;
+    }
+  }
+</style>

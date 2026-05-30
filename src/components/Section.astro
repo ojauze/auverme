@@ -1,0 +1,83 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  /** 'default' = fond brand-50, 'alt' = fond warm-100, 'dark' = fond warm-900 */
+  bg?: 'default' | 'alt' | 'dark';
+  /** Espace vertical : 'sm' | 'md' (défaut) | 'lg' */
+  spacing?: 'sm' | 'md' | 'lg';
+  id?: string;
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  bg = 'default',
+  spacing = 'md',
+  id,
+  class: className,
+} = Astro.props;
+---
+
+<section
+  class:list={["section", `section--${bg}`, `section--${spacing}`, className]}
+  id={id}
+>
+  {(title || subtitle) && (
+    <header class="section-header">
+      {title && <h2 class="section-title">{title}</h2>}
+      {subtitle && <p class="section-subtitle">{subtitle}</p>}
+    </header>
+  )}
+  <slot />
+</section>
+
+<style>
+  .section {
+    width: 100%;
+  }
+
+  /* Spacing */
+  .section--sm { padding-block: 2.5rem; }
+  .section--md { padding-block: 4rem; }
+  .section--lg { padding-block: 6rem; }
+
+  /* Backgrounds */
+  .section--default { background: var(--color-brand-50, #fdf8f0); }
+  .section--alt     { background: var(--color-warm-100, #f5f5f3); }
+  .section--dark    {
+    background: var(--color-warm-900, #1a1a16);
+    color: var(--color-warm-100, #f5f5f3);
+  }
+
+  /* Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display, 'Fredoka', sans-serif);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+    color: inherit;
+  }
+
+  .section--dark .section-title {
+    color: var(--color-brand-200, #f5ddb0);
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-warm-600, #5f5f56);
+    max-width: 52ch;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  .section--dark .section-subtitle {
+    color: var(--color-warm-400, #a8a89e);
+  }
+</style>
