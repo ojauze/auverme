@@ -1,5 +1,6 @@
 ---
 import Nav from "../components/Nav.astro";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -28,18 +29,7 @@ const { title } = Astro.props;
   </body>
 </html>
 
-<style is:global>
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-    color: #111;
-    background: #f9fafb;
-  }
-
+<style>
   main {
     max-width: 860px;
     margin: 0 auto;
@@ -49,8 +39,8 @@ const { title } = Astro.props;
   footer {
     text-align: center;
     padding: 2rem;
-    color: #6b7280;
+    color: var(--color-warm-500);
     font-size: 0.875rem;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--color-warm-200);
   }
 </style>
