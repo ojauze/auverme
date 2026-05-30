@@ -10,15 +10,15 @@ export const siteConfig = {
   shortName: "Auverme",
   url: "https://auverme-orthopedagogie.fr",
   description:
-    "Orthopédagogue à Bordeaux et en visio. Accompagnement personnalisé pour enfants, adolescents et adultes en difficulté d'apprentissage.",
+    "Orthopédagogue à Royat et en visio. Accompagnement personnalisé pour enfants, adolescents et adultes en difficulté d'apprentissage.",
   locale: "fr-FR",
   author: "Auverme",
 
   contact: {
     email: "contact@auverme-orthopedagogie.fr",
     phone: "",          // à renseigner
-    city: "Bordeaux",
-    region: "Nouvelle-Aquitaine",
+    city: "Royat",
+    region: "Auvergne-Rhône-Alpes",
     country: "France",
     visio: true,
     formspreeEndpoint: "https://formspree.io/f/auverme", // remplacer par le vrai endpoint
