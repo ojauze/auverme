@@ -15,13 +15,18 @@ export const siteConfig = {
   author: "Auverme",
 
   contact: {
-    email: "contact@auverme-orthopedagogie.fr",
+    email: "contact.auverme@gmail.com",
     phone: "",          // à renseigner
     city: "Royat",
     region: "Auvergne-Rhône-Alpes",
     country: "France",
     visio: true,
-    formspreeEndpoint: "https://formspree.io/f/auverme", // remplacer par le vrai endpoint
+    /**
+     * Clé Web3Forms — obtenir en 30 secondes sur https://web3forms.com
+     * Entrez votre adresse Gmail → cliquez "Create Access Key" → copiez la clé ici.
+     * Les messages du formulaire de contact seront envoyés directement dans votre Gmail.
+     */
+    web3formsKey: "f35544e2-ad3a-4eb4-b483-1b1ba9fec173",
   },
 
   seo: {
