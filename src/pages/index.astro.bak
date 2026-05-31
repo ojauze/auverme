@@ -1,0 +1,498 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Button from "../components/Button.astro";
+import { siteConfig } from "../data/config";
+
+// ── Données de la page ───────────────────────────────────────────────
+
+const stats = [
+  { value: "3",    label: "modes : cabinet, sur place & visio",   icon: "💻" },
+  { value: "50%",  label: "crédit d'impôt applicable", icon: "🌿" },
+];
+
+const services = [
+  {
+    title: "Bilan orthopédagogique",
+    description: "Évaluation complète des compétences et des difficultés d'apprentissage pour établir un profil précis et un plan d'accompagnement personnalisé.",
+    icon: "🔍",
+  },
+  {
+    title: "Accompagnement scolaire",
+    description: "Séances individuelles axées sur le développement des stratégies d'apprentissage, la mémorisation et l'organisation pour redonner confiance.",
+    icon: "📚",
+  },
+  {
+    title: "Dyslexie & dys",
+    description: "Prise en charge spécialisée des troubles dys (dyslexie, dysorthographie, dyscalculie, dyspraxie) à tous les âges.",
+    icon: "✏️",
+  },
+  {
+    title: "Haut potentiel (HPI)",
+    description: "Accompagnement adapté aux enfants et adultes à haut potentiel intellectuel, souvent en décalage avec les apprentissages classiques.",
+    icon: "⭐",
+  },
+  {
+    title: "Soutien aux adultes",
+    description: "Reprise d'études, reconversion professionnelle ou simple désir de progresser : l'orthopédagogie ne s'arrête pas à l'enfance.",
+    icon: "🌱",
+  },
+  {
+    title: "Séances en visioconférence",
+    description: "Consultation à distance depuis toute la France, sur des créneaux adaptés à votre emploi du temps.",
+    icon: "🖥️",
+  },
+];
+
+const faqs = [
+  {
+    question: "Qu'est-ce qu'un·e orthopédagogue ?",
+    answer: "L'orthopédagogie est une spécialité de l'éducation qui étudie et traite les difficultés d'apprentissage. L'orthopédagogue évalue les compétences de la personne, identifie les obstacles et propose des stratégies personnalisées pour favoriser la réussite.",
+  },
+  {
+    question: "À qui s'adresse l'orthopédagogie ?",
+    answer: "Aux enfants, adolescents et adultes présentant des difficultés scolaires ou d'apprentissage, qu'elles soient liées à des troubles dys, un haut potentiel, une anxiété scolaire, ou simplement un besoin de méthodes adaptées.",
+  },
+  {
+    question: "Quelle est la différence avec un orthophoniste ?",
+    answer: "L'orthophoniste traite les troubles du langage oral et écrit (rééducation). L'orthopédagogue, lui, travaille sur les stratégies d'apprentissage et la méthodologie — les deux approches sont souvent complémentaires.",
+  },
+  {
+    question: "Les séances sont-elles remboursées ?",
+    answer: `Les séances d'orthopédagogie ne sont pas remboursées par l'Assurance Maladie. En revanche, elles peuvent ouvrir droit à un crédit d'impôt de ${siteConfig.taxDeduction} dans le cadre des services à la personne (CESU). Renseignez-vous auprès de votre centre des impôts.`,
+  },
+  {
+    question: "Comment se déroule un premier rendez-vous ?",
+    answer: "Le premier rendez-vous est un entretien d'une heure pour faire connaissance, recueillir l'histoire scolaire et définir ensemble les objectifs. Il n'y a pas de « test » lors de cette première séance — c'est avant tout un échange.",
+  },
+];
+---
+
+<Layout
+  title="Orthopédagogie à Royat & en visio"
+  description={siteConfig.description}
+>
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════ -->
+  <div class="hero">
+    <Container size="lg">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Orthopédagogie · Royat &amp; visio</p>
+        <h1 class="hero-title">
+          Retrouver le plaisir<br />
+          <span class="hero-title--accent">d'apprendre</span>
+        </h1>
+        <p class="hero-subtitle">
+          Accompagnement personnalisé pour enfants, adolescents et adultes
+          en difficulté d'apprentissage. Bilan, suivi, stratégies — au cabinet
+          à Royat ou en séance visio.
+        </p>
+        <div class="hero-actions">
+          <Button href="/contact" variant="primary" size="lg">
+            Prendre rendez-vous
+          </Button>
+          <Button href="/a-propos" variant="outline" size="lg">
+            En savoir plus
+          </Button>
+        </div>
+      </div>
+    </Container>
+    <div class="hero-blob" aria-hidden="true"></div>
+  </div>
+
+  <!-- ══ STATS ═════════════════════════════════════════════════════ -->
+  <Section bg="alt" spacing="md">
+    <Container size="xl">
+      <ul class="stats-grid" role="list">
+        {stats.map(stat => (
+          <li class="stat-card">
+            <span class="stat-icon" aria-hidden="true">{stat.icon}</span>
+            <strong class="stat-value">{stat.value}</strong>
+            <span class="stat-label">{stat.label}</span>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </Section>
+
+  <!-- ══ SERVICES ══════════════════════════════════════════════════ -->
+  <Section
+    title="Comment puis-je vous aider ?"
+    subtitle="Chaque accompagnement est unique, construit autour de vos besoins spécifiques."
+    bg="default"
+    spacing="lg"
+    id="services"
+  >
+    <Container size="xl">
+      <ul class="services-grid" role="list">
+        {services.map(service => (
+          <li class="service-card">
+            <span class="service-icon" aria-hidden="true">{service.icon}</span>
+            <h3 class="service-title">{service.title}</h3>
+            <p class="service-desc">{service.description}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="services-cta">
+        <Button href="/articles" variant="outline">
+          Voir tous les services →
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ══ APROPOS TEASER ═════════════════════════════════════════════ -->
+  <Section bg="alt" spacing="lg">
+    <Container size="md">
+      <div class="about-teaser">
+        <div class="about-avatar" aria-hidden="true">🌿</div>
+        <blockquote class="about-quote">
+          <p>
+            « Mon rôle est de comprendre comment vous apprenez — et de vous
+            donner les outils pour apprendre à votre façon. »
+          </p>
+          <footer>
+            <strong>{siteConfig.shortName}</strong>
+            <span>, Orthopédagogue</span>
+          </footer>
+        </blockquote>
+        <Button href="/a-propos" variant="ghost">
+          Mon parcours →
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ══ FAQ ═══════════════════════════════════════════════════════ -->
+  <Section
+    title="Questions fréquentes"
+    subtitle="Tout ce que vous avez toujours voulu savoir sur l'orthopédagogie."
+    bg="default"
+    spacing="lg"
+    id="faq"
+  >
+    <Container size="md">
+      <dl class="faq-list">
+        {faqs.map((item, i) => (
+          <div class="faq-item">
+            <dt class="faq-question">
+              <button
+                class="faq-toggle"
+                aria-expanded="false"
+                aria-controls={`faq-${i}`}
+                id={`faq-btn-${i}`}
+              >
+                {item.question}
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+            </dt>
+            <dd class="faq-answer" id={`faq-${i}`} aria-labelledby={`faq-btn-${i}`} hidden>
+              <p>{item.answer}</p>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </Container>
+  </Section>
+
+  <!-- ══ CTA FINAL ══════════════════════════════════════════════════ -->
+  <Section bg="dark" spacing="lg">
+    <Container size="sm">
+      <div class="final-cta">
+        <h2 class="final-cta-title">Prêt·e à commencer ?</h2>
+        <p class="final-cta-subtitle">
+          Premier entretien sans engagement, réponse sous {siteConfig.responseDelay}.
+        </p>
+        <Button href="/contact" variant="primary" size="lg">
+          Prendre rendez-vous
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+</Layout>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll(".faq-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      const answerId = btn.getAttribute("aria-controls");
+      const answer = document.getElementById(answerId);
+      const icon = btn.querySelector(".faq-icon");
+
+      btn.setAttribute("aria-expanded", String(!expanded));
+      if (expanded) {
+        answer.hidden = true;
+        icon.textContent = "+";
+      } else {
+        answer.hidden = false;
+        icon.textContent = "−";
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-brand-50) 0%, var(--color-brand-100) 100%);
+    padding-block: 5rem 4rem;
+    margin-top: calc(-1 * (var(--header-height, 4rem) + 2rem));
+    padding-top: calc(var(--header-height, 4rem) + 5rem);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-brand-600);
+    margin: 0 0 1.25rem;
+    padding: 0.3rem 0.9rem;
+    background: rgba(212, 133, 58, 0.12);
+    border-radius: 9999px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display, 'Fredoka', sans-serif);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--color-warm-900);
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-title--accent { color: var(--color-brand-500); }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-warm-700);
+    margin: 0 0 2.5rem;
+    max-width: 52ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .hero-blob {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 520px;
+    height: 520px;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    background: radial-gradient(circle, rgba(212,133,58,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── Stats ────────────────────────────────────────────────────── */
+  .stats-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: #fff;
+    border-radius: var(--radius-card, 1rem);
+    box-shadow: var(--shadow-card);
+    gap: 0.35rem;
+  }
+
+  .stat-icon  { font-size: 1.75rem; }
+
+  .stat-value {
+    font-family: var(--font-display, 'Fredoka', sans-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-brand-600);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    color: var(--color-warm-600);
+    line-height: 1.4;
+  }
+
+  /* ── Services ─────────────────────────────────────────────────── */
+  .services-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    padding: 1.75rem;
+    background: #fff;
+    border-radius: var(--radius-card, 1rem);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-title {
+    font-family: var(--font-display, 'Fredoka', sans-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: var(--color-warm-900);
+  }
+
+  .service-desc {
+    font-size: 0.9rem;
+    color: var(--color-warm-600);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .services-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  /* ── À propos teaser ──────────────────────────────────────────── */
+  .about-teaser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .about-avatar { font-size: 4rem; line-height: 1; }
+
+  .about-quote {
+    margin: 0;
+    border-left: 3px solid var(--color-brand-300);
+    padding-left: 1.25rem;
+    text-align: left;
+  }
+
+  .about-quote p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-warm-700);
+    line-height: 1.7;
+    margin: 0 0 0.5rem;
+  }
+
+  .about-quote footer {
+    font-size: 0.875rem;
+    color: var(--color-warm-500);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────────── */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .faq-item {
+    background: #fff;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .faq-question { margin: 0; }
+
+  .faq-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-warm-900);
+    text-align: left;
+    transition: background 0.15s;
+  }
+
+  .faq-toggle:hover { background: var(--color-brand-50); }
+
+  .faq-icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-brand-500);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.1rem;
+    margin: 0;
+  }
+
+  .faq-answer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-warm-700);
+    line-height: 1.7;
+  }
+
+  /* ── CTA Final ────────────────────────────────────────────────── */
+  .final-cta {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .final-cta-title {
+    font-family: var(--font-display, 'Fredoka', sans-serif);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--color-brand-200);
+    margin: 0;
+  }
+
+  .final-cta-subtitle {
+    font-size: 1rem;
+    color: var(--color-warm-400);
+    margin: 0;
+  }
+</style>
