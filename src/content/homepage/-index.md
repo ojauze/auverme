@@ -3,7 +3,7 @@
 banner:
   title: "Orthopédagogie à Royat & en visioconférence"
   content: "J'accompagne enfants, adolescents et adultes qui rencontrent des difficultés d'apprentissage. Troubles dys, haut potentiel, décrochage scolaire — trouvons ensemble les bonnes clés."
-  image: "/images/logo.png"
+  image: ""
   button:
     enable: true
     label: "Prendre rendez-vous"
