@@ -1,47 +1,160 @@
 ---
-import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
+import CallToAction from "@/partials/CallToAction.astro";
 import { getListPage } from "@/lib/contentParser.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import { render } from "astro:content";
 
-const aboutIndex = await getListPage("about", "-index");
-const { Content } = await render(aboutIndex);
-const { title, description, meta_title, image } = aboutIndex.data;
+const call_to_action = await getListPage("ctaSection", "call-to-action");
 
-if (aboutIndex.data.draft) {
-  return Astro.redirect("/404");
-}
+const valeurs = [
+  {
+    icon: "🤝",
+    title: "Une relation de confiance",
+    text: "Chaque personne est unique. Je prends le temps d'écouter, de comprendre et de construire un lien solide avant de proposer quoi que ce soit.",
+  },
+  {
+    icon: "🔬",
+    title: "Une approche fondée sur les preuves",
+    text: "Mes pratiques s'appuient sur les recherches actuelles en sciences cognitives et en orthopédagogie pour garantir un accompagnement efficace.",
+  },
+  {
+    icon: "🌱",
+    title: "Le progrès plutôt que la performance",
+    text: "Mon objectif n'est pas d'obtenir de bonnes notes mais de redonner goût à l'apprentissage et de développer une autonomie durable.",
+  },
+  {
+    icon: "🔓",
+    title: "L'accessibilité",
+    text: "Séances au cabinet à Royat ou en visioconférence depuis toute la France. Créneaux le soir et le samedi sur demande.",
+  },
+];
+
+const formations = [
+  { year: "2018", label: "Professeure de Mathématiques en collège" },
+  { year: "2018", label: "Participation à un groupe de travail sur les neurosciences" },
+  { year: "2026", label: "Certificat en Orthopédagogie — Formation spécialisée" },
+];
+
+const engagements = [
+  "Membre de l'Association des Orthopédagogues de France",
+  "Formation continue annuelle aux nouvelles recherches",
+  "Travail en réseau avec orthophonistes, psychologues et enseignants",
+  "Supervision clinique régulière pour garantir la qualité de la pratique",
+];
 ---
 
 <Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
+  title="À propos"
+  meta_title="À propos — Auverme Orthopédagogie"
+  description="Découvrez le parcours et la philosophie d'Auverme, orthopédagogue à Royat et en visioconférence."
 >
+
+  <!-- ══ INTRO ══════════════════════════════════════════════════════ -->
+  <section class="section pt-14">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-8 md:col-10">
+          <p class="mb-3 text-sm font-bold uppercase tracking-widest text-primary">
+            À propos
+          </p>
+          <h1 class="mb-6">Bonjour, je suis Auverme</h1>
+          <p class="mb-4 text-lg text-text dark:text-darkmode-text">
+            Orthopédagogue, j'accompagne enfants, adolescents et adultes qui
+            rencontrent des difficultés d'apprentissage. Mon cabinet est à
+            Royat, mais je reçois aussi en visioconférence depuis toute la
+            France.
+          </p>
+          <p class="text-text-light dark:text-darkmode-text-light">
+            J'ai choisi ce métier parce que j'ai toujours été fascinée par la
+            façon dont chaque cerveau apprend différemment. Il n'existe pas de
+            « mauvais élève » — il existe des personnes à qui personne n'a
+            encore trouvé la bonne clé.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VALEURS ═══════════════════════════════════════════════════ -->
+  <section class="section-sm bg-gradient">
+    <div class="container">
+      <div class="row justify-center mb-10">
+        <div class="text-center lg:col-6">
+          <h2 class="mb-3">Mon approche</h2>
+          <p class="text-text-light dark:text-darkmode-text-light">
+            Ce qui guide chaque séance, chaque bilan, chaque accompagnement.
+          </p>
+        </div>
+      </div>
+      <div class="row gy-4">
+        {valeurs.map((v) => (
+          <div class="md:col-6">
+            <div class="rounded-xl bg-body p-8 shadow-sm dark:bg-darkmode-body h-full">
+              <span class="mb-4 block text-4xl" aria-hidden="true">{v.icon}</span>
+              <h3 class="h5 mb-3">{v.title}</h3>
+              <p class="text-text-light dark:text-darkmode-text-light text-sm leading-relaxed">
+                {v.text}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PARCOURS ═══════════════════════════════════════════════════ -->
   <section class="section-sm">
     <div class="container">
       <div class="row justify-center">
-        <div class="md:col-10 lg:col-8">
-          {
-            image && (
-              <ImageMod
-                class="mx-auto mb-6 rounded"
-                src={image}
-                width={1200}
-                height={600}
-                alt={title}
-                format="webp"
-              />
-            )
-          }
-          <h2 set:html={markdownify(title)} class="h3 mb-6" />
-          <div class="content">
-            <Content />
+        <div class="lg:col-7 md:col-9">
+          <h2 class="mb-2">Formation & parcours</h2>
+          <p class="mb-10 text-text-light dark:text-darkmode-text-light">
+            Un socle académique solide, enrichi par une pratique de terrain continue.
+          </p>
+          <ol class="space-y-0">
+            {formations.map((f, i) => (
+              <li class="flex gap-6 pb-8 relative">
+                {/* vertical line */}
+                {i < formations.length - 1 && (
+                  <div class="absolute left-[2.25rem] top-10 bottom-0 w-px bg-border dark:bg-darkmode-border" />
+                )}
+                <div class="flex-shrink-0 w-18 text-right">
+                  <span class="text-sm font-bold text-primary">{f.year}</span>
+                </div>
+                <div class="relative flex-shrink-0 mt-0.5">
+                  <div class="w-4 h-4 rounded-full bg-primary ring-2 ring-body dark:ring-darkmode-body ring-offset-2" />
+                </div>
+                <p class="text-text dark:text-darkmode-text pt-0 leading-relaxed">
+                  {f.label}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ENGAGEMENTS ════════════════════════════════════════════════ -->
+  <section class="section-sm bg-gradient">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-7 md:col-9">
+          <div class="rounded-xl bg-body p-8 shadow-sm dark:bg-darkmode-body">
+            <h3 class="h4 mb-6">Engagements professionnels</h3>
+            <ul class="space-y-3">
+              {engagements.map((e) => (
+                <li class="flex items-start gap-3 text-text dark:text-darkmode-text">
+                  <span class="mt-1 text-primary font-bold">✓</span>
+                  <span>{e}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <CallToAction call_to_action={call_to_action} />
+
 </Base>

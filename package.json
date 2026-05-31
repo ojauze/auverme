@@ -1,8 +1,8 @@
 {
-  "name": "astroplate",
-  "version": "6.1.0",
-  "description": "Astro and Tailwindcss boilerplate",
-  "author": "zeon.studio",
+  "name": "auverme",
+  "version": "1.0.0",
+  "description": "Site Auverme Orthopédagogie",
+  "author": "Auverme",
   "license": "MIT",
   "packageManager": "yarn@1.22.22",
   "type": "module",

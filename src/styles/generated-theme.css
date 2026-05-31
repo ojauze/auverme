@@ -6,24 +6,24 @@
 
 @theme {
   /* === Colors === */
-  --color-primary: #d4853a;
-  --color-body: #fdf8f0;
-  --color-border: #f5ddb0;
-  --color-light: #faefd8;
-  --color-dark: #1a1a16;
-  --color-text: #5f5f56;
-  --color-text-dark: #1a1a16;
-  --color-text-light: #7a7a70;
+  --color-primary: #121212;
+  --color-body: #fff;
+  --color-border: #eaeaea;
+  --color-light: #f6f6f6;
+  --color-dark: #040404;
+  --color-text: #444444;
+  --color-text-dark: #040404;
+  --color-text-light: #717171;
 
   /* === Darkmode Colors === */
-  --color-darkmode-primary: #e3a34e;
-  --color-darkmode-body: #1a1a16;
-  --color-darkmode-border: #3a3a30;
-  --color-darkmode-light: #252520;
-  --color-darkmode-dark: #fdf8f0;
-  --color-darkmode-text: #b5b09a;
-  --color-darkmode-text-dark: #fdf8f0;
-  --color-darkmode-text-light: #7a7a70;
+  --color-darkmode-primary: #fff;
+  --color-darkmode-body: #1c1c1c;
+  --color-darkmode-border: #3E3E3E;
+  --color-darkmode-light: #222222;
+  --color-darkmode-dark: #fff;
+  --color-darkmode-text: #B4AFB6;
+  --color-darkmode-text-dark: #fff;
+  --color-darkmode-text-light: #B4AFB6;
 
   /* === Font Families === */
   --font-primary: Nunito, sans-serif;
