@@ -1,7 +1,14 @@
 ---
 // Page standalone — aucun Layout, aucune dépendance externe supplémentaire.
-// OVHcloud redirigera temporairement auverme-orthopedagogie.fr → /construction
-import { siteConfig } from "../data/config";
+// Redirection temporaire via index.astro → /construction
+const siteConfig = {
+  name: "Auverme Orthopédagogie",
+  shortName: "Auverme",
+  contact: {
+    city: "Royat",
+    email: "contact.auverme@gmail.com",
+  },
+};
 ---
 
 <!doctype html>
