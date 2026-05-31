@@ -1,5 +1,5 @@
 ---
-title: Auver'me
+title: "Auver'me"
 email: contact.auverme@gmail.com
 image: "/images/logo.png"
 description: Orthopédagogue à Royat et en visioconférence. Accompagnement des troubles dys, haut potentiel, difficultés d'apprentissage.
