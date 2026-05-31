@@ -1,0 +1,28 @@
+{
+  "file": "src/content/homepage/-index.md",
+  "name": "homepage",
+  "fileType": "md",
+  "fmType": "yaml",
+  "template": [
+    {
+      "name": "banner",
+      "label": "Bannière",
+      "type": "Object",
+      "fields": [
+        { "name": "title",   "label": "Titre",       "type": "string", "value": "" },
+        { "name": "content", "label": "Accroche",    "type": "string", "value": "" },
+        { "name": "image",   "label": "Image",       "type": "media",  "value": "" },
+        {
+          "name": "button",
+          "label": "Bouton",
+          "type": "Object",
+          "fields": [
+            { "name": "enable", "label": "Actif",  "type": "boolean", "value": true },
+            { "name": "label",  "label": "Texte",  "type": "string",  "value": "" },
+            { "name": "link",   "label": "Lien",   "type": "string",  "value": "" }
+          ]
+        }
+      ]
+    }
+  ]
+}

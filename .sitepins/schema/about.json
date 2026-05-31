@@ -1,0 +1,13 @@
+{
+  "file": "src/content/about/-index.md",
+  "name": "about",
+  "fileType": "md",
+  "fmType": "yaml",
+  "template": [
+    { "name": "title",       "label": "Titre",       "type": "string",  "value": "" },
+    { "name": "meta_title",  "label": "Meta titre",  "type": "string",  "value": "" },
+    { "name": "description", "label": "Description", "type": "string",  "value": "" },
+    { "name": "image",       "label": "Image",       "type": "media",   "value": "" },
+    { "name": "draft",       "label": "Brouillon",   "type": "boolean", "value": false }
+  ]
+}
