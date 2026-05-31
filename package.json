@@ -21,8 +21,11 @@
   "dependencies": {
     "@astrojs/check": "0.9.8",
     "@astrojs/mdx": "5.0.3",
+    "@astrojs/node": "^10.1.2",
     "@astrojs/react": "5.0.3",
     "@astrojs/sitemap": "3.7.2",
+    "@keystatic/astro": "^5.1.0",
+    "@keystatic/core": "^0.5.50",
     "@schedule-x/calendar": "^4.6.0",
     "@schedule-x/react": "^4.1.0",
     "@schedule-x/theme-default": "^4.6.0",
