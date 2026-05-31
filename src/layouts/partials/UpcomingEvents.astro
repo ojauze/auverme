@@ -1,0 +1,94 @@
+---
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const allEvents = await getCollection("events", ({ data }) => !data.draft);
+const upcoming = allEvents
+  .filter((e) => e.data.date >= today)
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
+  .slice(0, 3);
+
+const CATEGORY_COLORS: Record<string, string> = {
+  Atelier:    "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
+  Formation:  "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  Conférence: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+  Permanence: "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300",
+};
+const DEFAULT_COLOR = "bg-light text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark";
+---
+
+{upcoming.length > 0 && (
+  <section class="section-sm">
+    <div class="container">
+      <!-- Header -->
+      <div class="row justify-center mb-10">
+        <div class="text-center lg:col-6">
+          <h2 class="mb-3">Prochains événements</h2>
+          <p class="text-text-light dark:text-darkmode-text-light">
+            Ateliers, conférences et permanences à venir.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="row gy-4 justify-center">
+        {upcoming.map((event) => {
+          const colorClass = CATEGORY_COLORS[event.data.category ?? ""] ?? DEFAULT_COLOR;
+          return (
+            <div class="md:col-6 lg:col-4">
+              <div class="h-full rounded-xl border border-border bg-body p-6 shadow-sm dark:border-darkmode-border dark:bg-darkmode-body flex flex-col gap-3">
+                <!-- Category badge -->
+                {event.data.category && (
+                  <span class={`inline-block self-start rounded-full px-3 py-0.5 text-xs font-semibold ${colorClass}`}>
+                    {event.data.category}
+                  </span>
+                )}
+                <!-- Date -->
+                <p class="text-sm font-bold text-primary">
+                  {format(event.data.date, "EEEE d MMMM yyyy", { locale: fr })}
+                  {event.data.time && <span class="font-normal text-text-light dark:text-darkmode-text-light"> · {event.data.time}</span>}
+                </p>
+                <!-- Title -->
+                <h3 class="h5 leading-snug">{event.data.title}</h3>
+                <!-- Location -->
+                {event.data.location && (
+                  <p class="text-sm text-text-light dark:text-darkmode-text-light">
+                    📍 {event.data.location}
+                  </p>
+                )}
+                <!-- Description -->
+                {event.data.description && (
+                  <p class="text-sm text-text dark:text-darkmode-text line-clamp-2 flex-1">
+                    {event.data.description}
+                  </p>
+                )}
+                <!-- CTA -->
+                {event.data.link && (
+                  <a
+                    href={event.data.link}
+                    class="btn btn-outline-primary btn-sm self-start mt-auto"
+                  >
+                    En savoir plus
+                  </a>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Link to full page -->
+      <div class="row mt-10">
+        <div class="text-center">
+          <a href="/evenements" class="btn btn-primary">
+            Voir tous les événements
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+)}

@@ -153,6 +153,34 @@ export default config({
 
   // ── Collections ────────────────────────────────────────────────────────
   collections: {
+    // ── Événements ───────────────────────────────────────────────────────
+    events: collection({
+      label: "Événements",
+      slugField: "title",
+      path: "src/content/events/*",
+      format: { frontmatter: "yaml" },
+      schema: {
+        title: fields.slug({ name: { label: "Titre" } }),
+        date: fields.date({ label: "Date de début" }),
+        end_date: fields.date({ label: "Date de fin (optionnel)" }),
+        time: fields.text({ label: "Horaires (ex: 14h00 – 16h30)" }),
+        location: fields.text({ label: "Lieu" }),
+        category: fields.select({
+          label: "Catégorie",
+          options: [
+            { label: "Atelier",    value: "Atelier" },
+            { label: "Formation",  value: "Formation" },
+            { label: "Conférence", value: "Conférence" },
+            { label: "Permanence", value: "Permanence" },
+          ],
+          defaultValue: "Atelier",
+        }),
+        description: fields.text({ label: "Description courte", multiline: true }),
+        link: fields.text({ label: "Lien inscription / info (optionnel)" }),
+        draft: fields.checkbox({ label: "Brouillon", defaultValue: false }),
+      },
+    }),
+
     // ── Blog ─────────────────────────────────────────────────────────────
     blog: collection({
       label: "Articles",
