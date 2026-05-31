@@ -1,6 +1,6 @@
 ---
 title: "Mes services"
-meta_title: "Services — Auverme Orthopédagogie"
+meta_title: "Services — Auver'me Orthopédagogie"
 description: "Bilan orthopédagogique, accompagnement en apprentissage, troubles dys, haut potentiel. Séances à Royat (63) ou en visioconférence."
 draft: false
 intro: "Bilan, accompagnement, troubles dys, haut potentiel — à Royat ou en visioconférence."

@@ -1,7 +1,7 @@
 ---
-title: "Bonjour, je suis Auverme"
-meta_title: "À propos — Auverme Orthopédagogie"
-description: "Découvrez le parcours et la philosophie d'Auverme, orthopédagogue à Royat et en visioconférence."
+title: "Bonjour, je suis Auver'me"
+meta_title: "À propos — Auver'me Orthopédagogie"
+description: "Découvrez le parcours et la philosophie d'Auver'me, orthopédagogue à Royat et en visioconférence."
 image: "/images/logo.png"
 draft: false
 intro:

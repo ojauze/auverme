@@ -1,11 +1,11 @@
 ---
 title: "Crédit d'impôt et orthopédagogie : ce que vous devez savoir"
-meta_title: "Crédit d'impôt orthopédagogie CESU 50% — Auverme"
+meta_title: "Crédit d'impôt orthopédagogie CESU 50% — Auver'me"
 description: "Les séances d'orthopédagogie peuvent ouvrir droit à un crédit d'impôt de 50 % via le dispositif CESU. Mode d'emploi."
 date: 2026-01-20T09:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Pratique"]
-author: "Auverme"
+author: "Auver'me"
 tags: ["pratique", "tarifs", "crédit impôt", "CESU"]
 draft: false
 ---

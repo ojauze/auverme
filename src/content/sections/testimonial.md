@@ -1,7 +1,7 @@
 ---
 enable: false
 title: "Ce que disent les familles"
-description: "Ils ont fait confiance à Auverme Orthopédagogie pour accompagner leurs enfants."
+description: "Ils ont fait confiance à Auver'me Orthopédagogie pour accompagner leurs enfants."
 
 testimonials:
   - name: "Marie L."

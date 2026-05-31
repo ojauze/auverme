@@ -1,8 +1,8 @@
 {
   "name": "auverme",
   "version": "1.0.0",
-  "description": "Site Auverme Orthopédagogie",
-  "author": "Auverme",
+  "description": "Site Auver'me Orthopédagogie",
+  "author": "Auver'me",
   "license": "MIT",
   "packageManager": "yarn@1.22.22",
   "type": "module",

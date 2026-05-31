@@ -1,7 +1,7 @@
 import { collection, config, fields, singleton } from "@keystatic/core";
 
 /**
- * Keystatic CMS configuration — Auverme Orthopédagogie
+ * Keystatic CMS configuration — Auver'me Orthopédagogie
  *
  * storage: 'local' → files are saved directly to disk, no auth needed.
  * The admin UI is available at /keystatic when running `npm run dev`.
@@ -13,7 +13,7 @@ import { collection, config, fields, singleton } from "@keystatic/core";
 export default config({
   storage: { kind: "local" },
   ui: {
-    brand: { name: "Auverme Orthopédagogie" },
+    brand: { name: "Auver'me Orthopédagogie" },
   },
 
   // ── Singleton pages ────────────────────────────────────────────────────
@@ -200,7 +200,7 @@ export default config({
             itemLabel: (props) => (props as any).value || "Catégorie",
           }
         ),
-        author: fields.text({ label: "Auteure", defaultValue: "Auverme" }),
+        author: fields.text({ label: "Auteure", defaultValue: "Auver'me" }),
         tags: fields.array(
           fields.text({ label: "Tag" }),
           {

@@ -1,11 +1,11 @@
 ---
 title: "Haut potentiel et échec scolaire : comprendre le paradoxe"
-meta_title: "HPI et échec scolaire — Auverme Orthopédagogie"
+meta_title: "HPI et échec scolaire — Auver'me Orthopédagogie"
 description: "Un enfant HPI (haut potentiel intellectuel) peut se retrouver en grande difficulté scolaire. Pourquoi, et comment y remédier ?"
 date: 2025-11-03T09:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Haut potentiel"]
-author: "Auverme"
+author: "Auver'me"
 tags: ["HPI", "haut potentiel", "scolaire", "enfants"]
 draft: false
 ---

@@ -1,11 +1,11 @@
 ---
 title: "Comprendre les troubles dys : dyslexie, dysorthographie et dyscalculie"
-meta_title: "Troubles dys : dyslexie, dysorthographie, dyscalculie — Auverme Orthopédagogie"
+meta_title: "Troubles dys : dyslexie, dysorthographie, dyscalculie — Auver'me Orthopédagogie"
 description: "Les troubles dys touchent environ 10 % de la population. Voici comment les identifier, les distinguer et y répondre efficacement."
 date: 2025-09-15T09:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Troubles dys"]
-author: "Auverme"
+author: "Auver'me"
 tags: ["dys", "dyslexie", "orthopédagogie", "enfants"]
 draft: false
 ---

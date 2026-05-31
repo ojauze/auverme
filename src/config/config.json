@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Auverme Orthopédagogie",
+    "title": "Auver'me Orthopédagogie",
     "base_url": "https://auverme-orthopedagogie.fr",
     "base_path": "/",
     "trailing_slash": false,
@@ -9,7 +9,7 @@
     "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "220",
     "logo_height": "220",
-    "logo_text": "Auverme Orthopédagogie"
+    "logo_text": "Auver'me Orthopédagogie"
   },
 
   "settings": {
@@ -31,7 +31,7 @@
   "params": {
     "contact_form_action": "https://api.web3forms.com/submit",
     "web3forms_key": "f35544e2-ad3a-4eb4-b483-1b1ba9fec173",
-    "copyright": "Auverme Orthopédagogie — Royat"
+    "copyright": "Auver'me Orthopédagogie — Royat"
   },
 
   "navigation_button": {
@@ -52,7 +52,7 @@
   },
 
   "metadata": {
-    "meta_author": "Auverme Orthopédagogie",
+    "meta_author": "Auver'me Orthopédagogie",
     "meta_image": "/images/og-image.png",
     "meta_description": "Orthopédagogue à Royat et en visioconférence. Accompagnement des troubles dys, haut potentiel, difficultés d'apprentissage — enfants, adolescents, adultes."
   },
