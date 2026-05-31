@@ -13,6 +13,10 @@
       "url": "/services"
     },
     {
+      "name": "Événements",
+      "url": "/evenements"
+    },
+    {
       "name": "Blog",
       "url": "/blog"
     },
@@ -29,6 +33,10 @@
     {
       "name": "Services",
       "url": "/services"
+    },
+    {
+      "name": "Événements",
+      "url": "/evenements"
     },
     {
       "name": "Blog",
