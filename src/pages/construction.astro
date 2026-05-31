@@ -1,0 +1,235 @@
+---
+// Page standalone — aucun Layout, aucune dépendance externe supplémentaire.
+// OVHcloud redirigera temporairement auverme-orthopedagogie.fr → /construction
+import { siteConfig } from "../data/config";
+---
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site en cours de construction — {siteConfig.name}</title>
+  <meta name="description" content={`Le site d'${siteConfig.shortName}, orthopédagogue à ${siteConfig.contact.city}, est en cours de construction. Pour prendre rendez-vous, contactez-nous directement.`} />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!--
+    Les polices Nunito + Fredoka sont déjà définies dans global.css via
+    @import Google Fonts. On les réimporte ici (page standalone sans Layout).
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=Fredoka:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+
+  <!-- Blob décoratif — pur CSS, zéro image externe -->
+  <div class="blob blob--top"    aria-hidden="true"></div>
+  <div class="blob blob--bottom" aria-hidden="true"></div>
+
+  <main class="stage">
+    <div class="card">
+
+      <!-- Logo -->
+      <p class="logo">{siteConfig.shortName}</p>
+
+      <!-- Accroche -->
+      <h1 class="headline">Site en cours de construction</h1>
+      <p class="tagline">
+        Orthopédagogie à {siteConfig.contact.city} &amp; en visioconférence.<br />
+        Le site arrive bientôt — merci de votre patience.
+      </p>
+
+      <!-- Séparateur décoratif -->
+      <div class="divider" aria-hidden="true">
+        <span>🌿</span>
+      </div>
+
+      <!-- CTA contact -->
+      <p class="contact-label">Pour prendre rendez-vous dès maintenant :</p>
+      <a
+        href={`mailto:${siteConfig.contact.email}`}
+        class="cta-email"
+        aria-label={`Écrire à ${siteConfig.contact.email}`}
+      >
+        {siteConfig.contact.email}
+      </a>
+
+    </div>
+  </main>
+
+</body>
+</html>
+
+<style>
+  /* ── Tokens (répliqués depuis global.css pour page standalone) ── */
+  :root {
+    --color-brand-50:  #fdf8f0;
+    --color-brand-100: #faefd8;
+    --color-brand-200: #f5ddb0;
+    --color-brand-300: #edc47f;
+    --color-brand-400: #e3a34e;
+    --color-brand-500: #d4853a;
+    --color-brand-600: #b8692b;
+    --color-brand-700: #944f20;
+    --color-warm-500:  #7a7a70;
+    --color-warm-600:  #5f5f56;
+    --color-warm-700:  #4a4a42;
+    --color-warm-900:  #1a1a16;
+    --font-sans:    'Nunito', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Fredoka', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* ── Reset minimal ───────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-brand-50);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── Blobs décoratifs ────────────────────────────────────────── */
+  .blob {
+    position: fixed;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.55;
+  }
+
+  .blob--top {
+    width: 480px;
+    height: 480px;
+    top: -160px;
+    right: -120px;
+    background: radial-gradient(circle at 40% 40%,
+      var(--color-brand-200) 0%,
+      var(--color-brand-100) 55%,
+      transparent 75%
+    );
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+
+  .blob--bottom {
+    width: 360px;
+    height: 360px;
+    bottom: -120px;
+    left: -100px;
+    background: radial-gradient(circle at 60% 60%,
+      var(--color-brand-100) 0%,
+      transparent 70%
+    );
+    animation: drift 22s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes drift {
+    from { transform: translate(0, 0) rotate(0deg) scale(1); }
+    to   { transform: translate(30px, 20px) rotate(8deg) scale(1.06); }
+  }
+
+  /* ── Carte centrale ──────────────────────────────────────────── */
+  .stage {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Logo ────────────────────────────────────────────────────── */
+  .logo {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 8vw, 3.75rem);
+    font-weight: 600;
+    color: var(--color-brand-600);
+    margin: 0 0 1.5rem;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
+  /* ── Titre ───────────────────────────────────────────────────── */
+  .headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 4vw, 1.625rem);
+    font-weight: 500;
+    color: var(--color-warm-900);
+    margin: 0 0 0.875rem;
+    line-height: 1.2;
+  }
+
+  /* ── Tagline ─────────────────────────────────────────────────── */
+  .tagline {
+    font-size: 1rem;
+    color: var(--color-warm-600);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── Séparateur ──────────────────────────────────────────────── */
+  .divider {
+    margin: 2rem 0 1.5rem;
+    font-size: 1.5rem;
+    opacity: 0.7;
+  }
+
+  /* ── Contact ─────────────────────────────────────────────────── */
+  .contact-label {
+    font-size: 0.875rem;
+    color: var(--color-warm-500);
+    margin: 0 0 0.625rem;
+  }
+
+  .cta-email {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-brand-600);
+    text-decoration: none;
+    padding: 0.55rem 1.5rem;
+    border: 2px solid var(--color-brand-300);
+    border-radius: 9999px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .cta-email:hover {
+    background: var(--color-brand-500);
+    color: #fff;
+    border-color: var(--color-brand-500);
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .blob--top    { width: 280px; height: 280px; }
+    .blob--bottom { width: 220px; height: 220px; }
+  }
+</style>
