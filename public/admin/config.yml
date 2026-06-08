@@ -1,0 +1,206 @@
+local_backend: true
+
+backend:
+  name: github
+  repo: auverme/auverme
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  # ─── Articles de blog ────────────────────────────────────────────────────
+  - name: blog
+    label: Articles de blog
+    folder: src/content/blog
+    create: true
+    delete: true
+    extension: md
+    fields:
+      - { name: title, label: Titre, widget: string }
+      - { name: meta_title, label: "Titre SEO (optionnel)", widget: string, required: false }
+      - { name: description, label: Description, widget: text, required: false }
+      - { name: date, label: Date de publication, widget: datetime, required: false }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: author, label: Auteur, widget: string, default: "Auver'me" }
+      - name: categories
+        label: Catégories
+        widget: list
+        default: ["others"]
+      - name: tags
+        label: Tags
+        widget: list
+        default: ["others"]
+      - { name: draft, label: Brouillon, widget: boolean, default: false }
+      - { name: body, label: Contenu, widget: markdown }
+
+  # ─── Événements ──────────────────────────────────────────────────────────
+  - name: events
+    label: Événements
+    folder: src/content/events
+    create: true
+    delete: true
+    extension: md
+    fields:
+      - { name: title, label: Titre, widget: string }
+      - { name: date, label: Date de début, widget: datetime }
+      - { name: end_date, label: "Date de fin (optionnel)", widget: datetime, required: false }
+      - { name: time, label: "Horaires (ex: 14h00 – 16h30)", widget: string, required: false }
+      - { name: location, label: Lieu, widget: string, required: false }
+      - name: category
+        label: Catégorie
+        widget: select
+        required: false
+        options:
+          - { label: Atelier, value: Atelier }
+          - { label: Conférence, value: Conférence }
+          - { label: Formation, value: Formation }
+          - { label: Permanence, value: Permanence }
+          - { label: Autre, value: Autre }
+      - { name: description, label: Description courte, widget: text, required: false }
+      - { name: link, label: "Lien (ex: /contact)", widget: string, required: false }
+      - { name: draft, label: Brouillon, widget: boolean, default: false }
+      - { name: body, label: "Détails (optionnel)", widget: markdown, required: false }
+
+  # ─── Pages principales ───────────────────────────────────────────────────
+  - name: pages
+    label: Pages
+    files:
+      - name: homepage
+        label: "Page d'accueil"
+        file: src/content/homepage/-index.md
+        fields:
+          - name: banner
+            label: Bandeau principal
+            widget: object
+            fields:
+              - { name: title, label: Titre, widget: string }
+              - { name: content, label: Texte d'accroche, widget: text }
+              - { name: image, label: Image, widget: image, required: false }
+              - name: button
+                label: Bouton
+                widget: object
+                fields:
+                  - { name: enable, label: Actif, widget: boolean }
+                  - { name: label, label: Texte du bouton, widget: string }
+                  - { name: link, label: Lien, widget: string }
+          - name: features
+            label: Services mis en avant
+            widget: list
+            fields:
+              - { name: title, label: Titre, widget: string }
+              - { name: image, label: Image, widget: image }
+              - { name: content, label: Description, widget: text }
+              - name: bulletpoints
+                label: Points clés
+                widget: list
+              - name: button
+                label: Bouton
+                widget: object
+                fields:
+                  - { name: enable, label: Actif, widget: boolean }
+                  - { name: label, label: Texte du bouton, widget: string }
+                  - { name: link, label: Lien, widget: string }
+
+      - name: about
+        label: À propos
+        file: src/content/about/-index.md
+        fields:
+          - { name: title, label: Titre, widget: string }
+          - { name: meta_title, label: "Titre SEO", widget: string, required: false }
+          - { name: description, label: "Description SEO", widget: text, required: false }
+          - { name: image, label: Photo, widget: image, required: false }
+          - { name: draft, label: Brouillon, widget: boolean, default: false }
+          - name: intro
+            label: Introduction
+            widget: object
+            required: false
+            fields:
+              - { name: p1, label: Paragraphe 1, widget: text }
+              - { name: p2, label: Paragraphe 2, widget: text }
+          - name: valeurs
+            label: Valeurs
+            widget: list
+            required: false
+            fields:
+              - { name: icon, label: "Icône (emoji)", widget: string }
+              - { name: title, label: Titre, widget: string }
+              - { name: text, label: Texte, widget: text }
+          - name: formations
+            label: Parcours / Formations
+            widget: list
+            required: false
+            fields:
+              - { name: year, label: Année, widget: string }
+              - { name: label, label: Intitulé, widget: string }
+          - name: engagements
+            label: Engagements
+            widget: list
+            required: false
+
+      - name: services
+        label: Services
+        file: src/content/services/-index.md
+        fields:
+          - { name: title, label: Titre, widget: string }
+          - { name: meta_title, label: "Titre SEO", widget: string, required: false }
+          - { name: description, label: "Description SEO", widget: text, required: false }
+          - { name: draft, label: Brouillon, widget: boolean, default: false }
+          - { name: intro, label: Introduction courte, widget: string, required: false }
+          - name: services
+            label: Liste des services
+            widget: list
+            required: false
+            fields:
+              - { name: icon, label: "Icône (emoji)", widget: string }
+              - { name: title, label: Titre, widget: string }
+              - { name: description, label: Description, widget: text }
+              - { name: duree, label: Durée, widget: string }
+              - { name: pour, label: "Pour qui", widget: string }
+              - { name: resultat, label: Résultat attendu, widget: string }
+
+      - name: contact
+        label: Page Contact
+        file: src/content/contact/-index.md
+        fields:
+          - { name: title, label: Titre, widget: string }
+          - { name: meta_title, label: "Titre SEO", widget: string, required: false }
+          - { name: description, label: "Description SEO", widget: text, required: false }
+          - { name: image, label: Image, widget: image, required: false }
+          - { name: draft, label: Brouillon, widget: boolean, default: false }
+
+  # ─── Sections réutilisables ───────────────────────────────────────────────
+  - name: sections
+    label: Sections
+    files:
+      - name: cta
+        label: "Appel à l'action"
+        file: src/content/sections/call-to-action.md
+        fields:
+          - { name: enable, label: Afficher cette section, widget: boolean }
+          - { name: title, label: Titre, widget: string }
+          - { name: description, label: Description, widget: text }
+          - { name: image, label: Image, widget: image, required: false }
+          - name: button
+            label: Bouton
+            widget: object
+            fields:
+              - { name: enable, label: Actif, widget: boolean }
+              - { name: label, label: Texte du bouton, widget: string }
+              - { name: link, label: Lien, widget: string }
+
+      - name: testimonials
+        label: Témoignages
+        file: src/content/sections/testimonial.md
+        fields:
+          - { name: enable, label: Afficher les témoignages, widget: boolean }
+          - { name: title, label: Titre, widget: string }
+          - { name: description, label: Description, widget: text }
+          - name: testimonials
+            label: Témoignages
+            widget: list
+            fields:
+              - { name: name, label: Nom, widget: string }
+              - { name: avatar, label: Photo, widget: image }
+              - { name: designation, label: "Description (ex: Mère d'un enfant dyslexique)", widget: string }
+              - { name: content, label: Témoignage, widget: text }
