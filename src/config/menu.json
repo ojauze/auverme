@@ -17,10 +17,6 @@
       "url": "/evenements"
     },
     {
-      "name": "Blog",
-      "url": "/blog"
-    },
-    {
       "name": "Contact",
       "url": "/contact"
     }
@@ -37,10 +33,6 @@
     {
       "name": "Événements",
       "url": "/evenements"
-    },
-    {
-      "name": "Blog",
-      "url": "/blog"
     },
     {
       "name": "Contact",
