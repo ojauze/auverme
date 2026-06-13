@@ -8,8 +8,6 @@ import Testimonial from "@/partials/Testimonial.astro";
 import UpcomingEvents from "@/partials/UpcomingEvents.astro";
 import { FaCheck } from "react-icons/fa";
 
-// Redirect temporaire vers la page en construction — à retirer au lancement
-return Astro.redirect("/construction", 302);
 
 const homepage = await getListPage("homepage", "-index");
 const call_to_action = await getListPage("ctaSection", "call-to-action");
