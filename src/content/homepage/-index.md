@@ -2,10 +2,10 @@
 banner:
   title: Orthopédagogie à Royat
   content: |-
-    L’orhopédagogie pour Comprendre, Accompagner et Réussir
-    En présentiel ou à distance
-
-    Difficultés d’apprentissage, manque de motivation, communication compliquée ou organisation inefficace… Je vous accompagne, avec ou sans troubles du neurodéveloppement (TND), à mobiliser vos ressources et retrouver confiance, clarté et efficacité.
+    L’orhopédagogie pour Comprendre, Accompagner et Réussir<br/>
+    En présentiel ou à distance<br/>
+    Difficultés d’apprentissage, manque de motivation, communication compliquée ou organisation inefficace… <br/>
+    Je vous accompagne, avec ou sans troubles du neurodéveloppement (TND), à mobiliser vos ressources et retrouver confiance, clarté et efficacité.<br/>
     Particuliers, couples, familles ou professionnels : avançons ensemble vers un quotidien plus serein et des relations apaisées.
   image: ''
   button:

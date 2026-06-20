@@ -5,11 +5,8 @@ description: Découvrez le parcours et la philosophie d'Auver'me, orthopédagogu
 image: /images/logo.png
 draft: false
 intro:
-  p1: |-
-    J’accompagne chacun vers ses propres ressources pour dépasser ses difficultés d’apprentissage,  de motivation avec ou sans troubles du neurodéveloppement (TND), grâce à une approche individualisée, concrète et bienveillante.
-
-    J’aide également les familles, les couples et les professionnels en entreprise à retrouver une communication fluide et une organisation efficace, pour un quotidien plus serein et des relations apaisées.
-  p2: J'ai choisi ce métier parce que j'ai toujours été fascinée par la façon dont chaque cerveau apprend différemment. Il n'existe pas de « mauvais élève » — il existe des personnes à qui personne n'a encore trouvé la bonne clé.
+  p1: J’accompagne chacun vers ses propres ressources pour dépasser ses difficultés d’apprentissage,  de motivation avec ou sans troubles du neurodéveloppement (TND), grâce à une approche individualisée, concrète et bienveillante.
+  p2: J’aide également les familles, les couples et les professionnels en entreprise à retrouver une communication fluide et une organisation efficace, pour un quotidien plus serein et des relations apaisées.
 valeurs:
   - icon: 🤝
     title: Une relation de confiance
