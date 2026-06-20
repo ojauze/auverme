@@ -1,0 +1,243 @@
+---
+import Base from "@/layouts/Base.astro";
+import CallToAction from "@/partials/CallToAction.astro";
+import EventsCalendar from "@/components/EventsCalendar";
+import { getListPage } from "@/lib/contentParser.astro";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+import type { CalendarEvent } from "@/components/EventsCalendar";
+
+const call_to_action = await getListPage("ctaSection", "call-to-action");
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+// --- Événements ---
+const allEvents = await getCollection("events", ({ data }) => !data.draft);
+const sortedEvents = allEvents.sort(
+  (a, b) => a.data.date.getTime() - b.data.date.getTime()
+);
+const upcomingEvents = sortedEvents.filter((e) => e.data.date >= today);
+const pastEvents     = sortedEvents.filter((e) => e.data.date < today).reverse();
+
+// --- Posts Instagram ---
+const allInstagram = await getCollection("instagram", ({ data }) => !data.draft);
+const sortedInstagram = allInstagram.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+// Calendar (événements uniquement)
+const calendarEvents: CalendarEvent[] = allEvents.map((e) => ({
+  id:          e.id,
+  title:       e.data.title,
+  start:       format(e.data.date, "yyyy-MM-dd"),
+  end:         format(e.data.end_date ?? e.data.date, "yyyy-MM-dd"),
+  description: e.data.description,
+  location:    e.data.location,
+  category:    e.data.category,
+}));
+
+const defaultDate =
+  upcomingEvents.length > 0
+    ? format(upcomingEvents[0].data.date, "yyyy-MM-dd")
+    : format(today, "yyyy-MM-dd");
+
+const CATEGORY_COLORS: Record<string, string> = {
+  Atelier:    "bg-amber-100 text-amber-800",
+  Formation:  "bg-blue-100 text-blue-800",
+  Conférence: "bg-green-100 text-green-800",
+  Permanence: "bg-violet-100 text-violet-800",
+};
+---
+
+<Base
+  title="Actualités"
+  meta_title="Actualités — Auver'me Orthopédagogie"
+  description="News, ateliers, conférences et permanences organisés par Auver'me, orthopédagogue à Royat."
+>
+  <!-- Page header -->
+  <section class="section pt-14">
+    <div class="container">
+      <div class="row justify-center text-center">
+        <div class="lg:col-7 md:col-9">
+          <p class="mb-3 text-sm font-bold uppercase tracking-widest text-primary">
+            Agenda & News
+          </p>
+          <h1 class="mb-4">Actualités</h1>
+          <p class="text-text-light dark:text-darkmode-text-light">
+            News, ateliers, conférences et permanences — à Royat ou en visioconférence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendrier interactif (événements) -->
+  <section class="section-sm">
+    <div class="container">
+      <EventsCalendar
+        events={calendarEvents}
+        defaultDate={defaultDate}
+        client:load
+      />
+    </div>
+  </section>
+
+  <!-- Événements à venir -->
+  {upcomingEvents.length > 0 && (
+    <section class="section-sm bg-gradient">
+      <div class="container">
+        <div class="row justify-center">
+          <div class="lg:col-8 md:col-10">
+            <h2 class="mb-10">Événements à venir</h2>
+            <ol class="space-y-0">
+              {upcomingEvents.map((event, i) => (
+                <li class="flex gap-6 pb-8 relative">
+                  {i < upcomingEvents.length - 1 && (
+                    <div class="absolute left-[2.25rem] top-10 bottom-0 w-px bg-border dark:bg-darkmode-border" />
+                  )}
+                  <div class="flex-shrink-0 w-18 text-right">
+                    <span class="text-sm font-bold text-primary">
+                      {format(event.data.date, "dd/MM")}
+                    </span>
+                    <br />
+                    <span class="text-xs text-text-light dark:text-darkmode-text-light">
+                      {format(event.data.date, "yyyy")}
+                    </span>
+                  </div>
+                  <div class="relative flex-shrink-0 mt-0.5">
+                    <div class="w-4 h-4 rounded-full bg-primary ring-2 ring-body dark:ring-darkmode-body ring-offset-2" />
+                  </div>
+                  <div class="flex-1">
+                    {event.data.category && (
+                      <span class={`text-xs font-semibold rounded-full px-2 py-0.5 ${CATEGORY_COLORS[event.data.category] ?? "bg-light text-text-dark"}`}>
+                        {event.data.category}
+                      </span>
+                    )}
+                    <h3 class="h5 mt-1 mb-1">{event.data.title}</h3>
+                    {(event.data.location || event.data.time) && (
+                      <p class="text-sm text-text-light dark:text-darkmode-text-light mb-1">
+                        {event.data.time && <span>{event.data.time}</span>}
+                        {event.data.time && event.data.location && <span> · </span>}
+                        {event.data.location && <span>📍 {event.data.location}</span>}
+                      </p>
+                    )}
+                    {event.data.description && (
+                      <p class="text-sm text-text dark:text-darkmode-text">
+                        {event.data.description}
+                      </p>
+                    )}
+                    {event.data.link && (
+                      <a href={event.data.link} class="btn btn-outline-primary btn-sm mt-3 inline-block">
+                        En savoir plus
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Posts Instagram -->
+  {sortedInstagram.length > 0 && (
+    <section class="section-sm">
+      <div class="container">
+        <div class="row justify-center mb-8">
+          <div class="lg:col-8 md:col-10">
+            <h2 class="mb-8 flex items-center gap-3">
+              <span class="inline-block rounded-full px-3 py-0.5 text-sm font-semibold bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300">
+                Instagram
+              </span>
+              Derniers posts
+            </h2>
+            <div class="row gy-4">
+              {sortedInstagram.map((post) => (
+                <div class="md:col-6 lg:col-4">
+                  <a
+                    href={post.data.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group block rounded-xl border border-border bg-body shadow-sm dark:border-darkmode-border dark:bg-darkmode-body overflow-hidden hover:shadow-md transition-shadow"
+                    aria-label={post.data.title}
+                  >
+                    {post.data.image ? (
+                      <div class="aspect-square overflow-hidden bg-light dark:bg-darkmode-light">
+                        <img
+                          src={post.data.image}
+                          alt={post.data.title}
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : (
+                      <div class="aspect-square bg-pink-50 dark:bg-pink-900/10 flex items-center justify-center text-4xl">
+                        📸
+                      </div>
+                    )}
+                    <div class="p-4">
+                      <p class="text-xs text-text-light dark:text-darkmode-text-light mb-1">
+                        {format(post.data.date, "d MMMM yyyy", { locale: fr })}
+                      </p>
+                      <p class="font-medium text-text dark:text-darkmode-text line-clamp-2 text-sm">
+                        {post.data.title}
+                      </p>
+                      {post.data.description && (
+                        <p class="text-xs text-text-light dark:text-darkmode-text-light mt-1 line-clamp-2">
+                          {post.data.description}
+                        </p>
+                      )}
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Événements passés -->
+  {pastEvents.length > 0 && (
+    <section class="section-sm">
+      <div class="container">
+        <div class="row justify-center">
+          <div class="lg:col-8 md:col-10">
+            <h2 class="mb-8 text-text-light dark:text-darkmode-text-light">Événements passés</h2>
+            <ul class="space-y-4">
+              {pastEvents.map((event) => (
+                <li class="flex items-start gap-4 opacity-60">
+                  <span class="flex-shrink-0 text-sm font-semibold text-text-light dark:text-darkmode-text-light w-14 text-right pt-0.5">
+                    {format(event.data.date, "dd/MM/yy")}
+                  </span>
+                  <div>
+                    {event.data.category && (
+                      <span class="text-xs text-text-light dark:text-darkmode-text-light uppercase tracking-wide">
+                        {event.data.category} · {" "}
+                      </span>
+                    )}
+                    <span class="font-medium text-text dark:text-darkmode-text">
+                      {event.data.title}
+                    </span>
+                    {event.data.location && (
+                      <span class="text-xs text-text-light dark:text-darkmode-text-light ml-2">
+                        📍 {event.data.location}
+                      </span>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CallToAction call_to_action={call_to_action} />
+</Base>

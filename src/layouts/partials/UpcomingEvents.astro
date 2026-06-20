@@ -6,11 +6,45 @@ import { fr } from "date-fns/locale";
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 
+// --- Événements à venir ---
 const allEvents = await getCollection("events", ({ data }) => !data.draft);
-const upcoming = allEvents
+const upcomingEvents = allEvents
   .filter((e) => e.data.date >= today)
-  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
-  .slice(0, 3);
+  .map((e) => ({
+    type: "event" as const,
+    date: e.data.date,
+    title: e.data.title,
+    category: e.data.category,
+    time: e.data.time,
+    location: e.data.location,
+    description: e.data.description,
+    image: undefined as string | undefined,
+    link: e.data.link,
+  }));
+
+// --- Posts Instagram (récents) ---
+const allInstagram = await getCollection("instagram", ({ data }) => !data.draft);
+const recentInstagram = allInstagram.map((p) => ({
+  type: "instagram" as const,
+  date: p.data.date,
+  title: p.data.title,
+  category: undefined as string | undefined,
+  time: undefined as string | undefined,
+  location: undefined as string | undefined,
+  description: p.data.description,
+  image: p.data.image,
+  link: p.data.link,
+}));
+
+// --- Fusion : événements à venir (triés ASC) puis posts récents (triés DESC) ---
+// Priorité aux événements à venir ; les posts Instagram comblent les slots restants.
+const sortedEvents = upcomingEvents.sort(
+  (a, b) => a.date.getTime() - b.date.getTime()
+);
+const sortedInstagram = recentInstagram.sort(
+  (a, b) => b.date.getTime() - a.date.getTime()
+);
+const items = [...sortedEvents, ...sortedInstagram].slice(0, 3);
 
 const CATEGORY_COLORS: Record<string, string> = {
   Atelier:    "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
@@ -18,10 +52,11 @@ const CATEGORY_COLORS: Record<string, string> = {
   Conférence: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
   Permanence: "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300",
 };
-const DEFAULT_COLOR = "bg-light text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark";
+const INSTAGRAM_COLOR = "bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300";
+const DEFAULT_COLOR   = "bg-light text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark";
 ---
 
-{upcoming.length > 0 && (
+{items.length > 0 && (
   <section class="section-sm">
     <div class="container">
       <!-- Header -->
@@ -36,56 +71,83 @@ const DEFAULT_COLOR = "bg-light text-text-dark dark:bg-darkmode-light dark:text-
 
       <!-- Cards -->
       <div class="row gy-4 justify-center">
-        {upcoming.map((event) => {
-          const colorClass = CATEGORY_COLORS[event.data.category ?? ""] ?? DEFAULT_COLOR;
-          return (
-            <div class="md:col-6 lg:col-4">
-              <div class="h-full rounded-xl border border-border bg-body p-6 shadow-sm dark:border-darkmode-border dark:bg-darkmode-body flex flex-col gap-3">
-                <!-- Category badge -->
-                {event.data.category && (
-                  <span class={`inline-block self-start rounded-full px-3 py-0.5 text-xs font-semibold ${colorClass}`}>
-                    {event.data.category}
-                  </span>
-                )}
-                <!-- Date -->
+        {items.map((item) => (
+          <div class="md:col-6 lg:col-4">
+            <div class="h-full rounded-xl border border-border bg-body shadow-sm dark:border-darkmode-border dark:bg-darkmode-body flex flex-col overflow-hidden">
+
+              {/* Image Instagram en en-tête */}
+              {item.type === "instagram" && item.image && (
+                <div class="aspect-square overflow-hidden bg-light dark:bg-darkmode-light">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+
+              <div class="p-6 flex flex-col gap-3 flex-1">
+                {/* Badge */}
+                <span class={`inline-block self-start rounded-full px-3 py-0.5 text-xs font-semibold ${
+                  item.type === "instagram"
+                    ? INSTAGRAM_COLOR
+                    : (CATEGORY_COLORS[item.category ?? ""] ?? DEFAULT_COLOR)
+                }`}>
+                  {item.type === "instagram" ? "Instagram" : item.category}
+                </span>
+
+                {/* Date */}
                 <p class="text-sm font-bold text-primary">
-                  {format(event.data.date, "EEEE d MMMM yyyy", { locale: fr })}
-                  {event.data.time && <span class="font-normal text-text-light dark:text-darkmode-text-light"> · {event.data.time}</span>}
+                  {format(item.date, "EEEE d MMMM yyyy", { locale: fr })}
+                  {item.time && (
+                    <span class="font-normal text-text-light dark:text-darkmode-text-light">
+                      {" · "}{item.time}
+                    </span>
+                  )}
                 </p>
-                <!-- Title -->
-                <h3 class="h5 leading-snug">{event.data.title}</h3>
-                <!-- Location -->
-                {event.data.location && (
+
+                {/* Titre */}
+                <h3 class="h5 leading-snug">{item.title}</h3>
+
+                {/* Lieu (événements) */}
+                {item.location && (
                   <p class="text-sm text-text-light dark:text-darkmode-text-light">
-                    📍 {event.data.location}
+                    📍 {item.location}
                   </p>
                 )}
-                <!-- Description -->
-                {event.data.description && (
+
+                {/* Description */}
+                {item.description && (
                   <p class="text-sm text-text dark:text-darkmode-text line-clamp-2 flex-1">
-                    {event.data.description}
+                    {item.description}
                   </p>
                 )}
-                <!-- CTA -->
-                {event.data.link && (
+
+                {/* CTA */}
+                {item.link && (
                   <a
-                    href={event.data.link}
+                    href={item.link}
                     class="btn btn-outline-primary btn-sm self-start mt-auto"
+                    {...(item.type === "instagram"
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                   >
-                    En savoir plus
+                    {item.type === "instagram" ? "Voir sur Instagram" : "En savoir plus"}
                   </a>
                 )}
               </div>
+
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
-      <!-- Link to full page -->
+      <!-- Lien vers la page complète -->
       <div class="row mt-10">
         <div class="text-center">
-          <a href="/evenements" class="btn btn-primary">
-            Voir tous les événements
+          <a href="/actualites" class="btn btn-primary">
+            Voir toutes les actualités
           </a>
         </div>
       </div>
