@@ -195,6 +195,60 @@ const testimonialSectionCollection = defineCollection({
   }),
 });
 
+// instagram collection — récupère les posts via l'API Instagram Graph au build
+// Token requis : INSTAGRAM_ACCESS_TOKEN dans .env.local (dev) ou GitHub Secret (CI)
+// Sans token → collection vide, le build ne casse pas.
+const instagramCollection = defineCollection({
+  loader: async () => {
+    const token = import.meta.env.INSTAGRAM_ACCESS_TOKEN;
+    if (!token) {
+      console.warn("[instagram] INSTAGRAM_ACCESS_TOKEN absent — collection vide.");
+      return [];
+    }
+    try {
+      const res = await fetch(
+        `https://graph.instagram.com/me/media?fields=id,caption,media_url,permalink,timestamp,media_type&limit=12&access_token=${token}`
+      );
+      if (!res.ok) {
+        console.error(`[instagram] API error ${res.status} — collection vide.`);
+        return [];
+      }
+      const { data } = (await res.json()) as {
+        data: {
+          id: string;
+          caption?: string;
+          media_url: string;
+          permalink: string;
+          timestamp: string;
+          media_type: string;
+        }[];
+      };
+      return data
+        .filter((p) => p.media_type !== "VIDEO") // vidéos sans thumbnail fiable
+        .map((p) => ({
+          id:          p.id,
+          title:       p.caption?.split("\n")[0]?.slice(0, 80) ?? "Post Instagram",
+          date:        new Date(p.timestamp),
+          image:       p.media_url,
+          link:        p.permalink,
+          description: p.caption ?? undefined,
+          draft:       false,
+        }));
+    } catch (err) {
+      console.error("[instagram] Erreur réseau —", err, "— collection vide.");
+      return [];
+    }
+  },
+  schema: z.object({
+    title:       z.string(),
+    date:        z.coerce.date(),
+    image:       z.string().optional(),
+    link:        z.string(),
+    description: z.string().optional(),
+    draft:       z.boolean().default(false),
+  }),
+});
+
 // events collection schema
 const eventsCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx,mdoc}", base: "src/content/events" }),
@@ -221,6 +275,7 @@ export const collections = {
   about: aboutCollection,
   services: servicesCollection,
   events: eventsCollection,
+  instagram: instagramCollection,
   contact: contactCollection,
 
   // sections
