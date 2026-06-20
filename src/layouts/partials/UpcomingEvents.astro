@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { getInstagramPosts } from "@/lib/instagram";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
@@ -23,17 +24,17 @@ const upcomingEvents = allEvents
   }));
 
 // --- Posts Instagram (récents) ---
-const allInstagram = await getCollection("instagram", ({ data }) => !data.draft);
+const allInstagram = await getInstagramPosts();
 const recentInstagram = allInstagram.map((p) => ({
   type: "instagram" as const,
-  date: p.data.date,
-  title: p.data.title,
+  date: p.date,
+  title: p.title,
   category: undefined as string | undefined,
   time: undefined as string | undefined,
   location: undefined as string | undefined,
-  description: p.data.description,
-  image: p.data.image,
-  link: p.data.link,
+  description: p.description,
+  image: p.image,
+  link: p.link,
 }));
 
 // --- Fusion : événements à venir (triés ASC) puis posts récents (triés DESC) ---

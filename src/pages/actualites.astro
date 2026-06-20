@@ -4,6 +4,7 @@ import CallToAction from "@/partials/CallToAction.astro";
 import EventsCalendar from "@/components/EventsCalendar";
 import { getListPage } from "@/lib/contentParser.astro";
 import { getCollection } from "astro:content";
+import { getInstagramPosts } from "@/lib/instagram";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import type { CalendarEvent } from "@/components/EventsCalendar";
@@ -22,9 +23,9 @@ const upcomingEvents = sortedEvents.filter((e) => e.data.date >= today);
 const pastEvents     = sortedEvents.filter((e) => e.data.date < today).reverse();
 
 // --- Posts Instagram ---
-const allInstagram = await getCollection("instagram", ({ data }) => !data.draft);
-const sortedInstagram = allInstagram.sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+const allInstagram = await getInstagramPosts();
+const sortedInstagram = [...allInstagram].sort(
+  (a, b) => b.date.getTime() - a.date.getTime()
 );
 
 // Calendar (événements uniquement)
@@ -159,17 +160,17 @@ const CATEGORY_COLORS: Record<string, string> = {
               {sortedInstagram.map((post) => (
                 <div class="md:col-6 lg:col-4">
                   <a
-                    href={post.data.link}
+                    href={post.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="group block rounded-xl border border-border bg-body shadow-sm dark:border-darkmode-border dark:bg-darkmode-body overflow-hidden hover:shadow-md transition-shadow"
-                    aria-label={post.data.title}
+                    aria-label={post.title}
                   >
-                    {post.data.image ? (
+                    {post.image ? (
                       <div class="aspect-square overflow-hidden bg-light dark:bg-darkmode-light">
                         <img
-                          src={post.data.image}
-                          alt={post.data.title}
+                          src={post.image}
+                          alt={post.title}
                           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                         />
@@ -181,14 +182,14 @@ const CATEGORY_COLORS: Record<string, string> = {
                     )}
                     <div class="p-4">
                       <p class="text-xs text-text-light dark:text-darkmode-text-light mb-1">
-                        {format(post.data.date, "d MMMM yyyy", { locale: fr })}
+                        {format(post.date, "d MMMM yyyy", { locale: fr })}
                       </p>
                       <p class="font-medium text-text dark:text-darkmode-text line-clamp-2 text-sm">
-                        {post.data.title}
+                        {post.title}
                       </p>
-                      {post.data.description && (
+                      {post.description && (
                         <p class="text-xs text-text-light dark:text-darkmode-text-light mt-1 line-clamp-2">
-                          {post.data.description}
+                          {post.description}
                         </p>
                       )}
                     </div>
