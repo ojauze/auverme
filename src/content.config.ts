@@ -57,6 +57,19 @@ const pagesCollection = defineCollection({
   }),
 });
 
+// Instagram manual posts collection schema
+const instagramCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/instagram" }),
+  schema: z.object({
+    title: z.string().optional(),
+    date: z.coerce.date(),
+    image: z.string().optional(),
+    link: z.string().optional(),
+    description: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 // about collection schema
 const aboutCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
@@ -204,6 +217,7 @@ export const collections = {
   blog: blogCollection,
   authors: authorsCollection,
   pages: pagesCollection,
+  instagram: instagramCollection,
   about: aboutCollection,
   events: eventsCollection,
   contact: contactCollection,
