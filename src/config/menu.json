@@ -9,12 +9,16 @@
       "url": "/about"
     },
     {
-      "name": "Services",
-      "url": "/services"
-    },
-    {
       "name": "Actualités",
       "url": "/actualites"
+    },
+    {
+      "name": "Témoignages",
+      "url": "/temoignages"
+    },
+    {
+      "name": "Partenariats",
+      "url": "/partenariats"
     },
     {
       "name": "Contact",
@@ -27,12 +31,16 @@
       "url": "/about"
     },
     {
-      "name": "Services",
-      "url": "/services"
-    },
-    {
       "name": "Actualités",
       "url": "/actualites"
+    },
+    {
+      "name": "Témoignages",
+      "url": "/temoignages"
+    },
+    {
+      "name": "Partenariats",
+      "url": "/partenariats"
     },
     {
       "name": "Contact",

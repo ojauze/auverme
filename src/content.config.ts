@@ -90,27 +90,12 @@ const aboutCollection = defineCollection({
       )
       .optional(),
     engagements: z.array(z.string()).optional(),
-  }),
-});
-
-// services collection schema
-const servicesCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/services" }),
-  schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string().optional(),
-    draft: z.boolean(),
-    intro: z.string().optional(),
-    services: z
+    sections: z
       .array(
         z.object({
-          icon: z.string(),
           title: z.string(),
-          description: z.string(),
-          duree: z.string(),
-          pour: z.string(),
-          resultat: z.string(),
+          image: z.string(),
+          text: z.string(),
         }),
       )
       .optional(),
@@ -219,7 +204,6 @@ export const collections = {
   authors: authorsCollection,
   pages: pagesCollection,
   about: aboutCollection,
-  services: servicesCollection,
   events: eventsCollection,
   contact: contactCollection,
 
