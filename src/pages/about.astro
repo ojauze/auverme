@@ -1,123 +1,51 @@
 ---
 import Base from "@/layouts/Base.astro";
+import ImageMod from "@/components/ImageMod.astro";
 import CallToAction from "@/partials/CallToAction.astro";
+import { markdownify } from "@/lib/utils/textConverter";
 import { getListPage } from "@/lib/contentParser.astro";
 
 const about = await getListPage("about", "-index");
 const call_to_action = await getListPage("ctaSection", "call-to-action");
 
-const { title, meta_title, description, intro, valeurs = [], formations = [], engagements = [] } =
-  about.data;
+const { title, meta_title, description, sections = [] } = about.data;
 ---
 
 <Base {title} {meta_title} {description}>
 
-  <!-- ══ INTRO ══════════════════════════════════════════════════════ -->
-  <section class="section pt-14">
-    <div class="container">
-      <div class="row justify-center">
-        <div class="lg:col-8 md:col-10">
-          <p class="mb-3 text-sm font-bold uppercase tracking-widest text-primary">
-            À propos
-          </p>
-          <h1 class="mb-6">{title}</h1>
-          {intro?.p1 && (
-            <p class="mb-4 text-lg text-text dark:text-darkmode-text">{intro.p1}</p>
-          )}
-          {intro?.p2 && (
-            <p class="text-text-light dark:text-darkmode-text-light">{intro.p2}</p>
-          )}
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- 5 sections alternées -->
+  {sections.map((s, i) => {
+    const imageLeft = i % 2 === 0;
+    return (
+      <section class={`section-sm ${i % 2 !== 0 ? "bg-gradient" : ""}`}>
+        <div class="container">
+          <div class="row items-center gy-8">
 
-  <!-- ══ VALEURS ═══════════════════════════════════════════════════ -->
-  {valeurs.length > 0 && (
-    <section class="section-sm bg-gradient">
-      <div class="container">
-        <div class="row justify-center mb-10">
-          <div class="text-center lg:col-6">
-            <h2 class="mb-3">Mon approche</h2>
-            <p class="text-text-light dark:text-darkmode-text-light">
-              Ce qui guide chaque séance, chaque bilan, chaque accompagnement.
-            </p>
-          </div>
-        </div>
-        <div class="row gy-4">
-          {valeurs.map((v) => (
-            <div class="md:col-6">
-              <div class="rounded-xl bg-body p-8 shadow-sm dark:bg-darkmode-body h-full">
-                <span class="mb-4 block text-4xl" aria-hidden="true">{v.icon}</span>
-                <h3 class="h5 mb-3">{v.title}</h3>
-                <p class="text-text-light dark:text-darkmode-text-light text-sm leading-relaxed">
-                  {v.text}
-                </p>
-              </div>
+            {/* Image */}
+            <div class={`md:col-4 ${!imageLeft ? "md:order-2" : ""}`}>
+              <ImageMod
+                src={s.image}
+                alt={s.title}
+                width={480}
+                height={560}
+                format="webp"
+                class="w-full rounded-2xl object-cover shadow-sm"
+              />
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
 
-  <!-- ══ PARCOURS ═══════════════════════════════════════════════════ -->
-  {formations.length > 0 && (
-    <section class="section-sm">
-      <div class="container">
-        <div class="row justify-center">
-          <div class="lg:col-7 md:col-9">
-            <h2 class="mb-2">Formation & parcours</h2>
-            <p class="mb-10 text-text-light dark:text-darkmode-text-light">
-              Un socle académique solide, enrichi par une pratique de terrain continue.
-            </p>
-            <ol class="space-y-0">
-              {formations.map((f, i) => (
-                <li class="flex gap-6 pb-8 relative">
-                  {/* vertical line */}
-                  {i < formations.length - 1 && (
-                    <div class="absolute left-[2.25rem] top-10 bottom-0 w-px bg-border dark:bg-darkmode-border" />
-                  )}
-                  <div class="flex-shrink-0 w-18 text-right">
-                    <span class="text-sm font-bold text-primary">{f.year}</span>
-                  </div>
-                  <div class="relative flex-shrink-0 mt-0.5">
-                    <div class="w-4 h-4 rounded-full bg-primary ring-2 ring-body dark:ring-darkmode-body ring-offset-2" />
-                  </div>
-                  <p class="text-text dark:text-darkmode-text pt-0 leading-relaxed">
-                    {f.label}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- ══ ENGAGEMENTS ════════════════════════════════════════════════ -->
-  {engagements.length > 0 && (
-    <section class="section-sm bg-gradient">
-      <div class="container">
-        <div class="row justify-center">
-          <div class="lg:col-7 md:col-9">
-            <div class="rounded-xl bg-body p-8 shadow-sm dark:bg-darkmode-body">
-              <h3 class="h4 mb-6">Engagements professionnels</h3>
-              <ul class="space-y-3">
-                {engagements.map((e) => (
-                  <li class="flex items-start gap-3 text-text dark:text-darkmode-text">
-                    <span class="mt-1 text-primary font-bold">✓</span>
-                    <span>{e}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Texte */}
+            <div class={`md:col-8 ${!imageLeft ? "md:order-1" : ""}`}>
+              <h2 class="mb-5">{s.title}</h2>
+              <div class="prose prose-p:text-text dark:prose-p:text-darkmode-text prose-p:leading-relaxed max-w-none"
+                set:html={markdownify(s.text, true)}
+              />
             </div>
+
           </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    );
+  })}
 
   <CallToAction call_to_action={call_to_action} />
 

@@ -1,39 +1,51 @@
 ---
-title: Bonjour, je suis Auver'me
+title: A propos
 meta_title: À propos — Auver'me Orthopédagogie
-description: Découvrez le parcours et la philosophie d'Auver'me, orthopédagogue à Royat et en visioconférence.
-image: /images/logo.png
+description: Découvrez le parcours et la philosophie d'Auver'me, orthopédagogue en visioconférence.
 draft: false
-intro:
-  p1: J’accompagne chacun vers ses propres ressources pour dépasser ses difficultés d’apprentissage,  de motivation avec ou sans troubles du neurodéveloppement (TND), grâce à une approche individualisée, concrète et bienveillante.
-  p2: J’aide également les familles, les couples et les professionnels en entreprise à retrouver une communication fluide et une organisation efficace, pour un quotidien plus serein et des relations apaisées.
-valeurs:
-  - icon: 🤝
-    title: Une relation de confiance
-    text: Chaque personne est unique. Je prends le temps d'écouter, de comprendre et de construire un lien solide avant de proposer quoi que ce soit.
-  - icon: 🔬
-    title: Une approche fondée sur les preuves
-    text: Mes pratiques s'appuient sur les recherches actuelles en sciences cognitives et en orthopédagogie pour garantir un accompagnement efficace.
-  - icon: 🌱
-    title: Le progrès plutôt que la performance
-    text: Mon objectif n'est pas d'obtenir de bonnes notes mais de redonner goût à l'apprentissage et de développer une autonomie durable.
-  - icon: 🔓
-    title: L'accessibilité
-    text: Séances au cabinet à Royat ou en visioconférence depuis toute la France.
-formations:
-  - year: '2002'
-    label: Diplomée Ingénieure en Information (ISIMA)
-  - year: '2003'
-    label: Ingénieure d'Etude au Rectorat de Clermont-Ferrand
-  - year: '2016'
-    label: Professeure de Mathématiques en collège
-  - year: '2019'
-    label: Participation à un groupe de travail sur les neurosciences
-  - year: '2026'
-    label: Certificat en Orthopédagogie — Formation spécialisée
-engagements:
-  - Membre de l'Association des Orthopédagogues de France
-  - Formation continue annuelle aux nouvelles recherches
-  - Travail en réseau avec orthophonistes, psychologues et enseignants
-  - Supervision régulière pour garantir la qualité de la pratique
+sections:
+  - title: "Apprendre autrement, accompagner autrement"
+    image: /images/anne-jauze.jpg
+    text: |-
+      Je suis Anne Jauze, enseignante en mathématiques, ingénieure de formation et orthopédagogue.
+      
+      Depuis toujours, je suis passionnée par la compréhension des mécanismes d'apprentissage et par les moyens d'aider chacun à développer son potentiel. Au fil de mon parcours, j'ai constaté qu'au-delà des connaissances à acquérir, de nombreuses personnes rencontrent des difficultés liées à leur façon d'apprendre, de s'organiser, de mémoriser ou encore de gérer leur attention.
+
+      C'est cette conviction qui m'a conduite vers l'orthopédagogie.
+
+  - title: "Une approche au croisement des sciences, de l'éducation et de l'humain"
+    image: /images/image-placeholder.png
+    text: |-
+      Mon parcours d'ingénieure m'a apporté une approche analytique et structurée de la résolution de problèmes. Mon expérience de professeur de mathématiques m'a permis d'accompagner des centaines d'élèves aux profils variés et de mieux comprendre les obstacles auxquels ils peuvent être confrontés au quotidien.
+
+      L'orthopédagogie représente pour moi la rencontre de ces deux univers : comprendre le fonctionnement de chacun pour construire des solutions concrètes, efficaces et adaptées.
+
+  - title: "Une conviction : chacun peut apprendre"
+    image: /images/image-placeholder.png
+    text: |-
+      Je crois profondément que les difficultés ne définissent pas une personne.
+
+      Qu'elles soient liées à un trouble du neurodéveloppement (TDAH, troubles DYS, TSA...), à un manque de confiance, à une période de vie difficile ou à un changement professionnel, elles peuvent être comprises et accompagnées.
+
+      Mon rôle n'est pas seulement d'aider à contourner les obstacles, mais aussi de permettre à chacun de mieux comprendre son fonctionnement, de retrouver confiance en ses capacités et de devenir acteur de ses apprentissages.
+
+  - title: "J'accompagne..."
+    image: /images/image-placeholder.png
+    text: |-
+      * les enfants et adolescents confrontés à des difficultés scolaires ;
+      * les parents qui souhaitent mieux comprendre et soutenir leur enfant ;
+      * les étudiants et adultes en formation ou en reconversion professionnelle ;
+      * les professionnels qui souhaitent développer leurs compétences d'apprentissage ;
+      * les seniors désireux de stimuler et préserver leurs fonctions cognitives.
+
+
+  - title: "Ma démarche"
+    image: /images/image-placeholder.png
+    text: |-
+      Je privilégie une approche bienveillante, personnalisée et fondée sur les connaissances issues des sciences cognitives.
+
+      Chaque accompagnement est unique. Ensemble, nous identifions les ressources déjà présentes, les leviers à développer et les stratégies les plus adaptées à vos objectifs.
+      
+      Parce qu'apprendre est une aventure qui dure toute la vie, je vous accompagne avec respect, écoute et confiance sur ce chemin.
+
 ---
