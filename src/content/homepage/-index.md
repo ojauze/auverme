@@ -2,25 +2,24 @@
 banner:
   title: Orthopédagogie à Royat
   content: |-
-    L’orhopédagogie pour Comprendre, Accompagner et Réussir<br/>
-    En présentiel ou à distance<br/>
-    Difficultés d’apprentissage, manque de motivation, communication compliquée ou organisation inefficace… <br/>
-    Je vous accompagne, avec ou sans troubles du neurodéveloppement (TND), à mobiliser vos ressources et retrouver confiance, clarté et efficacité.<br/>
-    Particuliers, couples, familles ou professionnels : avançons ensemble vers un quotidien plus serein et des relations apaisées.
+    <b>L’orthopédagogie pour Comprendre, Accompagner et Réussir<b/><br/>
+    Difficultés d'apprentissage, manque de motivation, perte de confiance, organisation inefficace, transitions de vie ou de carrière, besoin de stimuler ses capacités cognitives... <br/>
+    L'orthopédagogie accompagne chacun dans le développement de ses stratégies d'apprentissage, de ses capacités d'adaptation et de son autonomie, à tout âge de la vie.<br/>
   image: ''
   button:
     enable: true
     label: Prendre rendez-vous
     link: /contact
 features:
-  - title: Accompagnement en apprentissage
+  - title: Une approche personnalisée pour tous les âges
     image: /images/image-placeholder.png
-    content: Un suivi régulier pour développer des stratégies efficaces, travailler la mémorisation, l'organisation et regagner confiance en soi. Entièrement adapté à chaque profil.
+    content: Parce qu'il n'y a pas d'âge pour apprendre, s'adapter et progresser, je vous accompagne vers plus de clarté, d'efficacité et d'épanouissement, dans votre vie personnelle, scolaire ou professionnelle.
     bulletpoints:
-      - Séances de 60 min — fréquence hebdomadaire recommandée
-      - Pour le primaire, collège, lycée, études supérieures
-      - Progression mesurable et autonomie renforcée
-      - Séances au cabinet à Royat ou en visioconférence
+      - "Enfants et adolescents: Pour surmonter les difficultés scolaires, développer des méthodes de travail efficaces, renforcer la confiance en soi et retrouver le plaisir d'apprendre."
+      - 'Parents et familles: Pour mieux comprendre les besoins de leur enfant, apaiser les tensions liées à la scolarité et construire des stratégies adaptées au quotidien.'
+      - 'Adultes en formation, reconversion ou milieu professionnel: Pour optimiser ses apprentissages, développer son organisation, gérer sa charge cognitive, réussir une formation, préparer un examen ou accompagner un changement professionnel.'
+      - "Seniors: Pour entretenir les fonctions cognitives, stimuler la mémoire, l'attention et les fonctions exécutives, préserver l'autonomie intellectuelle et continuer à apprendre avec confiance et plaisir."
+      - 'Personnes avec ou sans Trouble du Neurodéveloppement (TND): TDAH, troubles DYS, TSA, haut potentiel ou simple difficulté passagère : chaque accompagnement est construit à partir des besoins, des forces et des objectifs de la personne.'
     button:
       enable: true
       label: Prendre rendez-vous

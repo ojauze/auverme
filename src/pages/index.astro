@@ -1,5 +1,6 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
+import Logo from "@/layouts/components/Logo.astro";
 import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { markdownify } from "@/lib/utils/textConverter";
@@ -22,10 +23,23 @@ const { banner, features } = homepage.data;
     <div class="container">
       <div class="row justify-center">
         <div class="lg:col-7 md:col-9 mb-8 text-center">
-          <h1
-            set:html={markdownify(banner.title)}
-            class="mb-4 text-h3 lg:text-h1"
-          />
+          <div class="flex justify-center mb-6">
+            <Logo />
+          </div>
+          <!-- Badge modalités — Proposition C -->
+          <div class="flex justify-center mb-6">
+            <div class="inline-flex items-center gap-5 rounded-[14px] bg-dark dark:bg-darkmode-dark px-7 py-3.5 text-white dark:text-text-dark">
+              <span class="flex items-center gap-2 text-sm font-semibold">
+                <svg class="w-4 h-4 opacity-85 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                En présentiel
+              </span>
+              <div class="w-px h-5 bg-white/25 dark:bg-black/25 flex-shrink-0"></div>
+              <span class="flex items-center gap-2 text-sm font-semibold">
+                <svg class="w-4 h-4 opacity-85 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                À distance
+              </span>
+            </div>
+          </div>
           <p set:html={markdownify(banner.content)} class="mb-8" />
           {
             banner.button.enable && (
@@ -67,7 +81,7 @@ const { banner, features } = homepage.data;
         <div class="container">
           <div class="row items-center justify-between">
             <div
-              class={`mb:md-0 mb-6 md:col-5 ${index % 2 !== 0 && "md:order-2"}`}
+              class={`mb:md-0 mb-6 ${index === 0 ? "md:col-4" : "md:col-5"} ${index % 2 !== 0 && "md:order-2"}`}
             >
               <ImageMod
                 src={feature.image}
@@ -77,7 +91,7 @@ const { banner, features } = homepage.data;
                 format="webp"
               />
             </div>
-            <div class={`md:col-7 lg:col-6 ${index % 2 !== 0 && "md:order-1"}`}>
+            <div class={`${index === 0 ? "md:col-8" : "md:col-7 lg:col-6"} ${index % 2 !== 0 && "md:order-1"}`}>
               <h2 set:html={markdownify(feature.title)} class="mb-4" />
               <p set:html={markdownify(feature.content)} class="mb-8 text-lg" />
               <ul>
@@ -170,7 +184,7 @@ const { banner, features } = homepage.data;
                 <p class="text-4xl font-bold text-primary">55 €</p>
               </div>
             </div>
-            <p class="text-sm text-text-light dark:text-darkmode-text-light mt-auto">Sans engagement · À l'unité</p>
+            <p class="text-sm text-text-light dark:text-darkmode-text-light mt-auto">Sans engagement</p>
           </div>
         </div>
 

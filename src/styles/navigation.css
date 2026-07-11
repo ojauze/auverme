@@ -4,7 +4,7 @@
 
 /* navbar items */
 .navbar {
-  @apply relative flex flex-wrap items-center justify-between;
+  @apply relative flex flex-wrap items-center justify-center;
 }
 
 .navbar-brand {
