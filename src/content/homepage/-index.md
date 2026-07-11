@@ -12,7 +12,7 @@ banner:
     link: /contact
 features:
   - title: Une approche personnalisée pour tous les âges
-    image: /images/image-placeholder.png
+    image: /images/anne-jauze.jpg
     content: Parce qu'il n'y a pas d'âge pour apprendre, s'adapter et progresser, je vous accompagne vers plus de clarté, d'efficacité et d'épanouissement, dans votre vie personnelle, scolaire ou professionnelle.
     bulletpoints:
       - "Enfants et adolescents: Pour surmonter les difficultés scolaires, développer des méthodes de travail efficaces, renforcer la confiance en soi et retrouver le plaisir d'apprendre."

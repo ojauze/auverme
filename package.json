@@ -7,7 +7,7 @@
   "packageManager": "yarn@1.22.22",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"node scripts/jsonGenerator.js && astro dev\" \"decap-server\"",
+    "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"node scripts/jsonGenerator.js && astro dev\"",
     "build": "node scripts/themeGenerator.js && node scripts/jsonGenerator.js && astro build && node scripts/llmsGenerator.js",
     "preview": "astro preview",
     "check": "astro check",
@@ -47,7 +47,6 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "concurrently": "^9.2.1",
-    "decap-server": "^3.7.0",
     "eslint": "^10.2.0",
     "glob": "^13.0.6",
     "node-html-parser": "^7.1.0",

@@ -5,7 +5,7 @@ description: Découvrez le parcours et la philosophie d'Auver'me, orthopédagogu
 draft: false
 sections:
   - title: "Apprendre autrement, accompagner autrement"
-    image: /images/anne-jauze.jpg
+    image: /images/accompagnement.jpg
     text: |-
       Je suis Anne Jauze, enseignante en mathématiques, ingénieure de formation et orthopédagogue.
       
@@ -14,14 +14,14 @@ sections:
       C'est cette conviction qui m'a conduite vers l'orthopédagogie.
 
   - title: "Une approche au croisement des sciences, de l'éducation et de l'humain"
-    image: /images/image-placeholder.png
+    image: /images/science.jpg
     text: |-
       Mon parcours d'ingénieure m'a apporté une approche analytique et structurée de la résolution de problèmes. Mon expérience de professeur de mathématiques m'a permis d'accompagner des centaines d'élèves aux profils variés et de mieux comprendre les obstacles auxquels ils peuvent être confrontés au quotidien.
 
       L'orthopédagogie représente pour moi la rencontre de ces deux univers : comprendre le fonctionnement de chacun pour construire des solutions concrètes, efficaces et adaptées.
 
   - title: "Une conviction : chacun peut apprendre"
-    image: /images/image-placeholder.png
+    image: /images/conviction.jpg
     text: |-
       Je crois profondément que les difficultés ne définissent pas une personne.
 
@@ -30,7 +30,7 @@ sections:
       Mon rôle n'est pas seulement d'aider à contourner les obstacles, mais aussi de permettre à chacun de mieux comprendre son fonctionnement, de retrouver confiance en ses capacités et de devenir acteur de ses apprentissages.
 
   - title: "J'accompagne..."
-    image: /images/image-placeholder.png
+    image: /images/jaccompagne.jpg
     text: |-
       * les enfants et adolescents confrontés à des difficultés scolaires ;
       * les parents qui souhaitent mieux comprendre et soutenir leur enfant ;
@@ -40,7 +40,7 @@ sections:
 
 
   - title: "Ma démarche"
-    image: /images/image-placeholder.png
+    image: /images/demarche.jpg
     text: |-
       Je privilégie une approche bienveillante, personnalisée et fondée sur les connaissances issues des sciences cognitives.
 
