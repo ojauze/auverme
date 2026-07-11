@@ -1,0 +1,168 @@
+---
+import Base from "@/layouts/Base.astro";
+import CallToAction from "@/partials/CallToAction.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+
+const call_to_action = await getListPage("ctaSection", "call-to-action");
+
+const partenariats = [
+  {
+    id: "ctg",
+    eyebrow: "Expérimentation",
+    title: "en orthopédagogie",
+    intro:
+      "Très heureuse d'avoir contribué à une expérimentation menée sur le temps périscolaire d'une école primaire dans le cadre de la <strong>Convention Territoriale Globale (CTG) Chamalières–Orcines–Royat.</strong>",
+    points: [
+      {
+        icon: "book",
+        color: "primary",
+        label: "Développer des stratégies d'apprentissage",
+      },
+      {
+        icon: "leaf",
+        color: "green",
+        label: "Renforcer l'autonomie",
+      },
+      {
+        icon: "star",
+        color: "orange",
+        label: "Soutenir la réussite des enfants",
+      },
+    ],
+    quote:
+      "Une belle aventure collective au service des apprentissages, de l'autonomie et de la réussite des enfants.",
+    image: "/images/partenariat-ctg.jpg",
+    imageAlt: "Enfants travaillant avec des cartes de formes colorées",
+    logos: [
+      { src: "/images/logo-ctg.png", alt: "Convention Territoriale Globale Chamalières–Orcines–Royat" },
+      { src: "/images/logo-caf.png", alt: "Allocations Familiales" },
+    ],
+  },
+];
+
+const icons: Record<string, string> = {
+  book: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>`,
+  leaf: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5"><path d="M17 8C8 10 5.9 16.17 3.82 19.11M17 8c0 0-2 3-4 5m4-5c0 0 4-1 5-5-3 0-5 0-5 0M3.82 19.11C5 17 7 14 9 13m-5.18 6.11C2 22 2 22 2 22l2-3"/></svg>`,
+  star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+};
+
+const iconBg: Record<string, string> = {
+  primary: "bg-primary/10 text-primary",
+  green: "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400",
+  orange: "bg-orange-50 text-[#F4A240] dark:bg-orange-900/20 dark:text-orange-400",
+};
+---
+
+<Base
+  title="Partenariats — Auver'me Orthopédagogie"
+  meta_title="Partenariats — Auver'me Orthopédagogie"
+  description="Découvrez les partenariats et expérimentations menés par Auver'me Orthopédagogie avec des acteurs locaux de l'éducation."
+>
+
+  <!-- En-tête -->
+  <section class="section pt-14">
+    <div class="container">
+      <div class="row justify-center text-center">
+        <div class="lg:col-8 md:col-10">
+          <h1 class="mb-4">Partenariats</h1>
+          <p class="text-text-light dark:text-darkmode-text-light text-lg max-w-2xl mx-auto">
+            Des actions concrètes menées en collaboration avec des acteurs locaux de l'éducation et du social.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partenariats -->
+  {partenariats.map((p, i) => (
+    <section class={`section-sm ${i % 2 !== 0 ? "bg-gradient" : ""}`}>
+      <div class="container">
+        <div class="row items-center gy-10">
+
+          <!-- Texte (gauche) -->
+          <div class="lg:col-6">
+            <!-- Titre -->
+            <p class="mb-1 text-sm font-bold uppercase tracking-widest text-primary">{p.eyebrow}</p>
+            <h2 class="mb-2 font-bold">{p.title}</h2>
+            <div class="mb-6 w-10 h-0.5 bg-primary"></div>
+
+            <!-- Intro -->
+            <p class="mb-8 text-text dark:text-darkmode-text leading-relaxed" set:html={p.intro} />
+
+            <!-- Points -->
+            <ul class="flex flex-col gap-4 mb-8">
+              {p.points.map((pt) => (
+                <li class="flex items-center gap-4">
+                  <span class={`flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center ${iconBg[pt.color]}`} set:html={icons[pt.icon]} />
+                  <span class={`font-semibold ${pt.color === "primary" ? "text-primary" : pt.color === "green" ? "text-emerald-600 dark:text-emerald-400" : "text-[#F4A240]"}`}>
+                    {pt.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- Citation sombre -->
+            <div class="rounded-xl bg-dark dark:bg-darkmode-dark p-5 flex gap-4 items-start">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-white/50" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+              <p class="text-white text-sm leading-relaxed">{p.quote}</p>
+            </div>
+          </div>
+
+          <!-- Image + logos (droite) -->
+          <div class="lg:col-6 flex flex-col gap-6">
+            <!-- Photo -->
+            <div class="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img
+                src={p.image}
+                alt={p.imageAlt}
+                class="w-full h-full object-cover"
+                onerror="this.closest('.rounded-2xl').classList.add('bg-light','dark:bg-darkmode-light','flex','items-center','justify-center'); this.style.display='none'; this.insertAdjacentHTML('afterend','<p class=\'text-text-light text-sm p-8 text-center\'>Photo à venir</p>')"
+              />
+            </div>
+
+            <!-- Logos partenaires -->
+            <div class="flex flex-wrap items-center justify-center gap-6">
+              <!-- Logo Auver'me -->
+              <div class="rounded-xl bg-body dark:bg-darkmode-body border border-border dark:border-darkmode-border px-5 py-3 flex items-center justify-center">
+                <img src="/images/logo.png" alt="Auver'me Orthopédagogie" class="h-20 w-auto" />
+              </div>
+              <!-- Logos partenaires -->
+              {p.logos.map((logo) => (
+                <div class="rounded-xl bg-body dark:bg-darkmode-body border border-border dark:border-darkmode-border px-5 py-3 flex items-center justify-center min-w-[100px] min-h-[56px]">
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    class="h-20 w-auto"
+                    onerror={`this.style.display='none'; this.insertAdjacentHTML('afterend','<span class=\\"text-xs text-text-light dark:text-darkmode-text-light text-center leading-tight\\">${logo.alt}</span>')`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Vous souhaitez collaborer ? -->
+  <section class="section-sm bg-gradient">
+    <div class="container">
+      <div class="row justify-center text-center">
+        <div class="lg:col-7 md:col-9">
+          <p class="mb-3 text-sm font-bold uppercase tracking-widest text-primary">Vous êtes un acteur de l'éducation ?</p>
+          <h2 class="mb-4">Travaillons ensemble</h2>
+          <p class="mb-8 text-text-light dark:text-darkmode-text-light">
+            Je suis ouverte à de nouvelles collaborations : établissements scolaires, associations, collectivités, professionnels de santé. Contactez-moi pour discuter d'un projet commun.
+          </p>
+          <a href="/contact" class="btn btn-primary">Proposer un partenariat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction call_to_action={call_to_action} />
+
+</Base>
