@@ -19,7 +19,7 @@ const upcomingEvents = allEvents
     time: e.data.time,
     location: e.data.location,
     description: e.data.description,
-    image: undefined as string | undefined,
+    image: e.data.image as string | undefined,
     link: e.data.link,
   }));
 
@@ -76,9 +76,9 @@ const DEFAULT_COLOR   = "bg-light text-text-dark dark:bg-darkmode-light dark:tex
           <div class="md:col-6 lg:col-4">
             <div class="h-full rounded-xl border border-border bg-body shadow-sm dark:border-darkmode-border dark:bg-darkmode-body flex flex-col overflow-hidden">
 
-              {/* Image Instagram en en-tête */}
-              {item.type === "instagram" && item.image && (
-                <div class="aspect-square overflow-hidden bg-light dark:bg-darkmode-light">
+              {/* Image en en-tête (événement ou Instagram) */}
+              {item.image && (
+                <div class={`overflow-hidden bg-light dark:bg-darkmode-light ${item.type === "instagram" ? "aspect-square" : "aspect-video"}`}>
                   <img
                     src={item.image}
                     alt={item.title}

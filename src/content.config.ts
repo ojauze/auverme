@@ -191,6 +191,7 @@ const eventsCollection = defineCollection({
     location:    z.string().optional(),
     category:    z.string().optional(),
     description: z.string().optional(),
+    image:       z.string().optional(),
     link:        z.string().optional(),
     draft:       z.boolean().default(false),
   }),

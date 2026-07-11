@@ -114,6 +114,16 @@ const CATEGORY_COLORS: Record<string, string> = {
                       </span>
                     )}
                     <h3 class="h5 mt-1 mb-1">{event.data.title}</h3>
+                    {event.data.image && (
+                      <div class="mt-2 mb-2 rounded-xl overflow-hidden aspect-video max-w-sm">
+                        <img
+                          src={event.data.image}
+                          alt={event.data.title}
+                          class="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                     {(event.data.location || event.data.time) && (
                       <p class="text-sm text-text-light dark:text-darkmode-text-light mb-1">
                         {event.data.time && <span>{event.data.time}</span>}
