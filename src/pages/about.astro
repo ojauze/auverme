@@ -13,7 +13,21 @@ const { title, meta_title, description, sections = [] } = about.data;
 
 <Base {title} {meta_title} {description}>
 
-  <!-- 5 sections alternées -->
+  <!-- H1 SEO -->
+  <section class="section pt-14 pb-0">
+    <div class="container">
+      <div class="row justify-center text-center">
+        <div class="lg:col-8 md:col-10">
+          <h1 class="mb-4">Anne Jauze — Orthopédagogue à Royat et en visioconférence</h1>
+          <p class="text-text-light dark:text-darkmode-text-light text-lg max-w-2xl mx-auto">
+            Enseignante, ingénieure de formation et orthopédagogue — une approche au croisement des sciences cognitives et de l'humain.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections alternées -->
   {sections.map((s, i) => {
     const imageLeft = i % 2 === 0;
     return (

@@ -1,7 +1,7 @@
 ---
 title: A propos
-meta_title: À propos — Auver'me Orthopédagogie
-description: Découvrez le parcours et la philosophie d'Auver'me, orthopédagogue en visioconférence.
+meta_title: À propos — Anne Jauze, Orthopédagogue à Royat | Auver'me
+description: "Anne Jauze, orthopédagogue à Royat (Clermont-Ferrand). Parcours, valeurs et approche — troubles dys, haut potentiel, TDAH, enfants et adultes."
 draft: false
 sections:
   - title: "Apprendre autrement, accompagner autrement"

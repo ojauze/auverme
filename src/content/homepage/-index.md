@@ -1,6 +1,6 @@
 ---
 banner:
-  title: L’orthopédagogie pour comprendre, accompagner et réussir
+  title: "Orthopédagogue à Royat — comprendre, accompagner et réussir"
   description: "L’orthopédagogie accompagne chacun dans le développement de ses stratégies d’apprentissage, de ses capacités d’adaptation et de son autonomie, à tout âge de la vie."
   modalities:
     - "🏠 En présentiel"

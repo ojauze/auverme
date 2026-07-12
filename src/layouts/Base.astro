@@ -30,6 +30,7 @@ const schema = {
   "name": "Auver'me Orthopédagogie",
   "url": config.site.base_url,
   "description": config.metadata.meta_description,
+  "telephone": "+33672274017",
   "email": "contact.auverme@gmail.com",
   "address": {
     "@type": "PostalAddress",
@@ -38,6 +39,20 @@ const schema = {
     "addressRegion": "Puy-de-Dôme",
     "addressCountry": "FR"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.7705,
+    "longitude": 3.0557
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  ],
+  "priceRange": "45€–55€",
   "areaServed": [
     { "@type": "City", "name": "Royat" },
     { "@type": "City", "name": "Clermont-Ferrand" },
