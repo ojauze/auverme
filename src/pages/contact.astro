@@ -111,38 +111,44 @@ if (contactIndex.data.draft) {
 </Base>
 
 <script>
-  const form = document.getElementById("contact-form") as HTMLFormElement;
-  const btn = document.getElementById("submit-btn") as HTMLButtonElement;
-  const result = document.getElementById("form-result") as HTMLDivElement;
+  function initContactForm() {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const btn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+    const result = document.getElementById("form-result") as HTMLDivElement | null;
+    if (!form || !btn || !result) return;
 
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    btn.disabled = true;
-    btn.textContent = "Envoi en cours…";
-    result.classList.add("hidden");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = "Envoi en cours…";
+      result.classList.add("hidden");
 
-    const data = new FormData(form);
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: data,
-      });
-      const json = await res.json();
-      if (json.success) {
-        result.textContent = "Message envoyé ! Je vous répondrai sous 48h.";
-        result.className = "mb-4 rounded-lg p-4 text-sm bg-green-50 text-green-700 border border-green-200";
+      const data = new FormData(form);
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: data,
+        });
+        const json = await res.json();
+        if (json.success) {
+          result.textContent = "Message envoyé ! Je vous répondrai sous 48h.";
+          result.className = "mb-4 rounded-lg p-4 text-sm bg-green-50 text-green-700 border border-green-200";
+          result.classList.remove("hidden");
+          form.reset();
+        } else {
+          throw new Error(json.message);
+        }
+      } catch {
+        result.textContent = "Une erreur est survenue. Veuillez réessayer ou m'écrire directement à contact.auverme@gmail.com";
+        result.className = "mb-4 rounded-lg p-4 text-sm bg-red-50 text-red-700 border border-red-200";
         result.classList.remove("hidden");
-        form.reset();
-      } else {
-        throw new Error(json.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Envoyer le message";
       }
-    } catch {
-      result.textContent = "Une erreur est survenue. Veuillez réessayer ou m'écrire directement à contact.auverme@gmail.com";
-      result.className = "mb-4 rounded-lg p-4 text-sm bg-red-50 text-red-700 border border-red-200";
-      result.classList.remove("hidden");
-    } finally {
-      btn.disabled = false;
-      btn.textContent = "Envoyer le message";
-    }
-  });
+    });
+  }
+
+  // Astro ClientRouter (View Transitions) : ré-initialiser après chaque navigation
+  document.addEventListener("astro:page-load", initContactForm);
 </script>
