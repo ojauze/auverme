@@ -5,3 +5,6 @@ dist/
 # Local environment — contains Keystatic password, never commit
 .env.local
 .env.*.local
+
+# Claude Code session files
+.claude/
