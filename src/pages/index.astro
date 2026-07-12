@@ -30,39 +30,39 @@ const { banner, features } = homepage.data;
           </div>
 
           <!-- Badge modalités — pill clair -->
-          <div class="flex justify-center mb-8">
-            <div class="inline-flex items-center gap-4 rounded-full border border-border dark:border-darkmode-border bg-body dark:bg-darkmode-body px-6 py-2.5 shadow-sm">
-              <span class="text-sm font-medium text-text dark:text-darkmode-text">🏠 En présentiel</span>
-              <div class="w-px h-4 bg-border dark:bg-darkmode-border flex-shrink-0"></div>
-              <span class="text-sm font-medium text-text dark:text-darkmode-text">💻 À distance</span>
+          {banner.modalities.length > 0 && (
+            <div class="flex justify-center mb-8">
+              <div class="inline-flex items-center gap-4 rounded-full border border-border dark:border-darkmode-border bg-body dark:bg-darkmode-body px-6 py-2.5 shadow-sm">
+                {banner.modalities.map((m, i) => (
+                  <>
+                    {i > 0 && <div class="w-px h-4 bg-border dark:bg-darkmode-border flex-shrink-0"></div>}
+                    <span class="text-sm font-medium text-text dark:text-darkmode-text">{m}</span>
+                  </>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <!-- Titre principal -->
-          <h1 class="mb-8">
-            L'orthopédagogie pour comprendre,<br class="hidden sm:block" /> accompagner et réussir
-          </h1>
+          <h1 class="mb-8">{banner.title}</h1>
 
           <!-- Chips thématiques -->
-          <div class="flex flex-wrap justify-center gap-3 mb-8">
-            {[
-              "Difficultés d'apprentissage",
-              "Manque de motivation",
-              "Perte de confiance",
-              "Organisation inefficace",
-              "Transitions de vie ou de carrière",
-              "Stimulation cognitive",
-            ].map((tag) => (
-              <span class="rounded-full border border-border dark:border-darkmode-border bg-body dark:bg-darkmode-body px-4 py-2 text-sm text-text dark:text-darkmode-text shadow-sm">
-                {tag}
-              </span>
-            ))}
-          </div>
+          {banner.chips.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+              {banner.chips.map((tag) => (
+                <span class="rounded-full border border-border dark:border-darkmode-border bg-body dark:bg-darkmode-body px-4 py-2 text-sm text-text dark:text-darkmode-text shadow-sm">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
 
           <!-- Description -->
-          <p class="mb-8 text-lg text-text-light dark:text-darkmode-text-light max-w-2xl mx-auto leading-relaxed">
-            L'orthopédagogie accompagne chacun dans le développement de ses stratégies d'apprentissage, de ses capacités d'adaptation et de son autonomie, à tout âge de la vie.
-          </p>
+          {banner.description && (
+            <p class="mb-8 text-lg text-text-light dark:text-darkmode-text-light max-w-2xl mx-auto leading-relaxed">
+              {banner.description}
+            </p>
+          )}
 
           <!-- CTA -->
           {banner.button.enable && (

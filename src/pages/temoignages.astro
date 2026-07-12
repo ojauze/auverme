@@ -2,32 +2,13 @@
 import Base from "@/layouts/Base.astro";
 import CallToAction from "@/partials/CallToAction.astro";
 import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getCollection } from "astro:content";
 
 const call_to_action = await getListPage("ctaSection", "call-to-action");
 
-const testimonials = [
-  {
-    color: "primary",
-    quote:
-      "Anne a permis à ma fille de prendre conscience de son potentiel, de renforcer sa **confiance en elle** et de mieux **s'organiser** dans son travail scolaire. Nous avons constaté l'impact concret de cet accompagnement. Un grand merci !",
-    attribution: "Parent d'une élève de 5e accompagnée dans ses apprentissages",
-    type: "famille",
-  },
-  {
-    color: "secondary",
-    quote:
-      "Anne a encouragé notre fille dans la **curiosité** et l'envie d'apprendre plutôt que dans l'obligation d'apprendre. Elle l'a aidée à repérer ses **forces** et ses **ressources** afin de les développer.",
-    attribution: "Parent d'une élève de 6e accompagnée dans ses apprentissages",
-    type: "famille",
-  },
-  {
-    color: "dark",
-    quote:
-      "Les échanges que nous avons eus m'ont ouvert de **nouvelles perspectives** de réflexion. Tu as semé une graine. Merci encore pour tout ce que tu as fait pour lui.",
-    attribution: "Professionnelle de l'accompagnement scolaire (Dispositif Relais)",
-    type: "pro",
-  },
-];
+const allTemoignages = await getCollection("temoignages", ({ data }) => !data.draft);
+const testimonials = allTemoignages.sort((a, b) => a.data.order - b.data.order);
 
 const audiences = [
   {
@@ -56,6 +37,21 @@ const audiences = [
     sub: "de l'éducation",
   },
 ];
+
+const circleClass = (color: string) =>
+  color === "primary"  ? "bg-primary text-white"
+  : color === "secondary" ? "bg-[#F4A240] text-white"
+  : "bg-dark dark:bg-darkmode-dark text-white";
+
+const borderClass = (color: string) =>
+  color === "primary"  ? "border-primary/20"
+  : color === "secondary" ? "border-[#F4A240]/20"
+  : "border-dark/10 dark:border-white/10";
+
+const highlightClass = (color: string) =>
+  color === "primary"  ? "text-primary font-semibold"
+  : color === "secondary" ? "text-[#F4A240] font-semibold"
+  : "font-bold";
 ---
 
 <Base
@@ -86,67 +82,39 @@ const audiences = [
         <!-- Colonne témoignages (2/3) -->
         <div class="lg:col-8">
           <div class="flex flex-col gap-6">
-            {testimonials.map((t) => {
-              const circleClass =
-                t.color === "primary"
-                  ? "bg-primary text-white"
-                  : t.color === "secondary"
-                  ? "bg-[#F4A240] text-white"
-                  : "bg-dark dark:bg-darkmode-dark text-white";
-
-              const borderClass =
-                t.color === "primary"
-                  ? "border-primary/20"
-                  : t.color === "secondary"
-                  ? "border-[#F4A240]/20"
-                  : "border-dark/10 dark:border-white/10";
-
-              const words = t.quote.split(/(\*\*[^*]+\*\*)/g);
-
-              return (
-                <div class={`flex gap-5 rounded-2xl border bg-body dark:bg-darkmode-body p-6 shadow-sm ${borderClass}`}>
-                  <!-- Cercle guillemets -->
-                  <div class="flex-shrink-0">
-                    <div class={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold leading-none ${circleClass}`}>
-                      "
-                    </div>
-                  </div>
-                  <!-- Contenu -->
-                  <div class="flex-1">
-                    <p class="text-text dark:text-darkmode-text leading-relaxed mb-4">
-                      {words.map((part) => {
-                        if (part.startsWith("**") && part.endsWith("**")) {
-                          const highlight =
-                            t.color === "primary"
-                              ? "text-primary font-semibold"
-                              : t.color === "secondary"
-                              ? "text-[#F4A240] font-semibold"
-                              : "font-bold";
-                          return <span class={highlight}>{part.slice(2, -2)}</span>;
-                        }
-                        return part;
-                      })}
-                    </p>
-                    <div class="flex items-center gap-3 pt-3 border-t border-border dark:border-darkmode-border">
-                      {t.type === "famille" ? (
-                        <svg class="w-5 h-5 flex-shrink-0 text-text-light dark:text-darkmode-text-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-                          <circle cx="9" cy="7" r="4"/>
-                          <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-                          <path d="M16 3.13a4 4 0 010 7.75"/>
-                        </svg>
-                      ) : (
-                        <svg class="w-5 h-5 flex-shrink-0 text-text-light dark:text-darkmode-text-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                          <rect x="2" y="7" width="20" height="14" rx="2"/>
-                          <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
-                        </svg>
-                      )}
-                      <p class="text-sm font-medium text-text-light dark:text-darkmode-text-light">{t.attribution}</p>
-                    </div>
+            {testimonials.map((t) => (
+              <div class={`flex gap-5 rounded-2xl border bg-body dark:bg-darkmode-body p-6 shadow-sm ${borderClass(t.data.color)}`}>
+                <!-- Cercle guillemets -->
+                <div class="flex-shrink-0">
+                  <div class={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold leading-none ${circleClass(t.data.color)}`}>
+                    "
                   </div>
                 </div>
-              );
-            })}
+                <!-- Contenu -->
+                <div class="flex-1">
+                  <div
+                    class={`prose prose-p:text-text dark:prose-p:text-darkmode-text prose-p:leading-relaxed prose-strong:${highlightClass(t.data.color)} max-w-none mb-4`}
+                    set:html={markdownify(t.data.quote)}
+                  />
+                  <div class="flex items-center gap-3 pt-3 border-t border-border dark:border-darkmode-border">
+                    {t.data.type === "famille" ? (
+                      <svg class="w-5 h-5 flex-shrink-0 text-text-light dark:text-darkmode-text-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 010 7.75"/>
+                      </svg>
+                    ) : (
+                      <svg class="w-5 h-5 flex-shrink-0 text-text-light dark:text-darkmode-text-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                        <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+                      </svg>
+                    )}
+                    <p class="text-sm font-medium text-text-light dark:text-darkmode-text-light">{t.data.attribution}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

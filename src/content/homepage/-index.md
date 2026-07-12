@@ -1,11 +1,18 @@
 ---
 banner:
-  title: Orthopédagogie à Royat
-  content: |-
-    <b>L’orthopédagogie pour Comprendre, Accompagner et Réussir<b/><br/>
-    Difficultés d'apprentissage, manque de motivation, perte de confiance, organisation inefficace, transitions de vie ou de carrière, besoin de stimuler ses capacités cognitives... <br/>
-    L'orthopédagogie accompagne chacun dans le développement de ses stratégies d'apprentissage, de ses capacités d'adaptation et de son autonomie, à tout âge de la vie.<br/>
-  image: ''
+  title: L’orthopédagogie pour comprendre, accompagner et réussir
+  description: "L’orthopédagogie accompagne chacun dans le développement de ses stratégies d’apprentissage, de ses capacités d’adaptation et de son autonomie, à tout âge de la vie."
+  modalities:
+    - "🏠 En présentiel"
+    - "💻 À distance"
+  chips:
+    - "Difficultés d’apprentissage"
+    - "Manque de motivation"
+    - "Perte de confiance"
+    - "Organisation inefficace"
+    - "Transitions de vie ou de carrière"
+    - "Stimulation cognitive"
+  image: ‘’
   button:
     enable: true
     label: Prendre rendez-vous

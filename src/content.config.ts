@@ -57,6 +57,42 @@ const pagesCollection = defineCollection({
   }),
 });
 
+// Testimonials collection schema
+const temoignagesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/temoignages" }),
+  schema: z.object({
+    quote:       z.string(),
+    attribution: z.string(),
+    color:       z.enum(["primary", "secondary", "dark"]),
+    type:        z.enum(["famille", "pro"]),
+    order:       z.number().default(99),
+    draft:       z.boolean().default(false),
+  }),
+});
+
+// Partenariats collection schema
+const partenariatsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/partenariats" }),
+  schema: z.object({
+    title:    z.string(),
+    eyebrow:  z.string().optional(),
+    order:    z.number().default(99),
+    image:    z.string().optional(),
+    imageAlt: z.string().optional(),
+    quote:    z.string().optional(),
+    points: z.array(z.object({
+      icon:  z.string(),
+      color: z.string(),
+      label: z.string(),
+    })).default(() => []),
+    logos: z.array(z.object({
+      src: z.string(),
+      alt: z.string(),
+    })).default(() => []),
+    draft: z.boolean().default(false),
+  }),
+});
+
 // Instagram manual posts collection schema
 const instagramCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/instagram" }),
@@ -129,7 +165,10 @@ const homepageCollection = defineCollection({
   schema: z.object({
     banner: z.object({
       title: z.string(),
-      content: z.string(),
+      content: z.string().optional(),
+      description: z.string().optional(),
+      modalities: z.array(z.string()).default(() => []),
+      chips: z.array(z.string()).default(() => []),
       image: z.string(),
       button: z.object({
         enable: z.boolean(),
@@ -218,6 +257,8 @@ export const collections = {
   authors: authorsCollection,
   pages: pagesCollection,
   instagram: instagramCollection,
+  temoignages: temoignagesCollection,
+  partenariats: partenariatsCollection,
   about: aboutCollection,
   events: eventsCollection,
   contact: contactCollection,
