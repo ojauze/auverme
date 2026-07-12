@@ -7,7 +7,6 @@ import Header from "@/partials/Header.astro";
 import "@/styles/main.css";
 import { ClientRouter } from "astro:transitions";
 
-// types for frontmatters
 export interface Props {
   title?: string;
   meta_title?: string;
@@ -17,9 +16,42 @@ export interface Props {
   canonical?: string;
 }
 
-// destructure frontmatter
-const { title, meta_title, description, image, noindex, canonical } =
-  Astro.props;
+const { title, meta_title, description, image, noindex, canonical } = Astro.props;
+
+const pageTitle = plainify(meta_title ? meta_title : title ? title : config.site.title);
+const pageTitleFull = (meta_title || title) ? `${pageTitle} — ${config.site.title}` : pageTitle;
+const pageDescription = plainify(description ? description : config.metadata.meta_description);
+const pageImage = `${config.site.base_url}${image ? image : config.metadata.meta_image}`;
+const canonicalURL = canonical ?? `${config.site.base_url}${Astro.url.pathname}`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Auver'me Orthopédagogie",
+  "url": config.site.base_url,
+  "description": config.metadata.meta_description,
+  "email": "contact.auverme@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Royat",
+    "postalCode": "63130",
+    "addressRegion": "Puy-de-Dôme",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Royat" },
+    { "@type": "City", "name": "Clermont-Ferrand" },
+    { "@type": "Country", "name": "France" }
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Anne Jauze",
+    "jobTitle": "Orthopédagogue"
+  },
+  "sameAs": [
+    "https://www.instagram.com/auvermeorthopedagogie/"
+  ]
+};
 ---
 
 <!doctype html>
@@ -33,85 +65,48 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- responsive meta -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=5"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+    <!-- Google Fonts — preconnect then stylesheet (non render-blocking) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=Fredoka:wght@500;600&display=swap" />
 
     <!-- title -->
-    <title>
-      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
-      {(meta_title || title) ? ` — ${config.site.title}` : ""}
-    </title>
+    <title>{pageTitleFull}</title>
 
     <!-- canonical url -->
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- noindex robots -->
     {noindex && <meta name="robots" content="noindex,nofollow" />}
 
     <!-- meta-description -->
-    <meta
-      name="description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
-    />
+    <meta name="description" content={pageDescription} />
 
     <ClientRouter />
 
     <!-- author -->
     <meta name="author" content={config.metadata.meta_author} />
 
-    <!-- og-title -->
-    <meta
-      property="og:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
-      )}
-    />
-
-    <!-- og-description -->
-    <meta
-      property="og:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
-    />
+    <!-- og -->
+    <meta property="og:title" content={pageTitleFull} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
-    />
-
-    <!-- og-image -->
-    <meta
-      property="og:image"
-      content={`${config.site.base_url}${
-        image ? image : config.metadata.meta_image
-      }`}
-    />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={pageImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
 
     <!-- twitter -->
-    <meta
-      name="twitter:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
-      )}
-    />
-    <meta
-      name="twitter:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
-    />
-    <meta
-      name="twitter:image"
-      content={`${config.site.base_url}${
-        image ? image : config.metadata.meta_image
-      }`}
-    />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitleFull} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={pageImage} />
+
+    <!-- schema.org LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
   <body class="flex flex-col min-h-screen">
     <Header />
