@@ -1,0 +1,40 @@
+name: Sync Instagram Posts
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Lundi à 7h UTC
+  workflow_dispatch:     # Déclenchement manuel possible
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sync Instagram posts
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: python3 scripts/sync-instagram.py --limit 20
+
+      - name: Commit & push if changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/instagram/ public/images/instagram/
+          if git diff --cached --quiet; then
+            echo "Aucun nouveau post à synchroniser."
+          else
+            COUNT=$(git diff --cached --name-only | grep "src/content/instagram/" | wc -l | tr -d ' ')
+            git commit -m "feat(instagram): sync ${COUNT} nouveau(x) post(s) [bot]"
+            git push
+          fi
