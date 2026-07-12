@@ -107,6 +107,15 @@ const schema = {
 
     <!-- schema.org LocalBusiness -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK77YW9M71" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XK77YW9M71');
+    </script>
   </head>
   <body class="flex flex-col min-h-screen">
     <Header />
