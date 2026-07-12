@@ -43,21 +43,27 @@ def sanitize_description(text: str) -> str:
 
 def get_first_image_url(post: dict, token: str):
     media_type = post.get("media_type", "")
-    if media_type == "IMAGE" or media_type == "VIDEO":
+    if media_type == "IMAGE":
         return post.get("media_url")
+    if media_type == "VIDEO":
+        # thumbnail_url is a proper JPEG still frame
+        return post.get("thumbnail_url") or post.get("media_url")
     if media_type == "CAROUSEL_ALBUM":
         # Fetch first child
         media_id = post["id"]
         r = requests.get(
             f"{BASE_URL}/{media_id}/children",
-            params={"fields": "id,media_url,media_type", "access_token": token},
+            params={"fields": "id,media_url,thumbnail_url,media_type", "access_token": token},
             timeout=15,
         )
         r.raise_for_status()
         children = r.json().get("data", [])
         for child in children:
-            if child.get("media_type") in ("IMAGE", "VIDEO"):
+            ctype = child.get("media_type")
+            if ctype == "IMAGE":
                 return child.get("media_url")
+            if ctype == "VIDEO":
+                return child.get("thumbnail_url") or child.get("media_url")
     return None
 
 def download_image(url: str, dest: Path) -> bool:
@@ -113,7 +119,7 @@ def main():
 
     print(f"📥 Fetching up to {args.limit} posts for user {INSTAGRAM_USER_ID}…")
 
-    fields = "id,caption,media_url,timestamp,permalink,media_type"
+    fields = "id,caption,media_url,thumbnail_url,timestamp,permalink,media_type"
     r = requests.get(
         f"{BASE_URL}/me/media",
         params={"fields": fields, "access_token": token, "limit": args.limit},
