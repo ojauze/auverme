@@ -1,0 +1,227 @@
+# ─────────────────────────────────────────────
+# Sveltia CMS — Auver'me Orthopédagogie
+# Auth : GitHub OAuth via Cloudflare Worker
+# Remplace YOUR_WORKER_URL par l'URL de ton Worker sveltia-cms-auth
+# ─────────────────────────────────────────────
+
+backend:
+  name: github
+  repo: ojauze/auverme
+  branch: main
+  base_url: YOUR_WORKER_URL   # ex: https://sveltia-auth.ton-nom.workers.dev
+
+# Décommenter pour tester en local (npm run dev)
+# local_backend: true
+
+# Uploads — stockés dans public/images/uploads/
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+locale: fr
+
+# ─────────────────────────────────────────────
+# COLLECTIONS
+# ─────────────────────────────────────────────
+collections:
+
+  # ── Événements ──────────────────────────────
+  - name: events
+    label: "Événements"
+    label_singular: "Événement"
+    folder: src/content/events
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { label: "Titre", name: title, widget: string }
+      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Date de fin", name: end_date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, required: false }
+      - { label: "Heure", name: time, widget: string, required: false, hint: "ex : 10h00 – 12h00" }
+      - { label: "Lieu", name: location, widget: string, required: false }
+      - label: "Catégorie"
+        name: category
+        widget: select
+        required: false
+        options:
+          - { label: "Atelier", value: Atelier }
+          - { label: "Formation", value: Formation }
+          - { label: "Conférence", value: Conférence }
+          - { label: "Permanence", value: Permanence }
+      - { label: "Description courte", name: description, widget: text, required: false }
+      - { label: "Image", name: image, widget: image, required: false }
+      - { label: "Lien (inscription, etc.)", name: link, widget: string, required: false }
+      - { label: "Brouillon", name: draft, widget: boolean, default: false }
+
+  # ── Témoignages ─────────────────────────────
+  - name: temoignages
+    label: "Témoignages"
+    label_singular: "Témoignage"
+    folder: src/content/temoignages
+    create: true
+    slug: "{{order}}-{{slug}}"
+    summary: "{{attribution}}"
+    fields:
+      - label: "Citation"
+        name: quote
+        widget: markdown
+        hint: "Utilise **gras** pour mettre en valeur les mots-clés."
+        minimal: true
+        buttons: [bold, italic]
+      - { label: "Attribution (source)", name: attribution, widget: string, hint: "ex : Parent d'une élève de 6e" }
+      - label: "Couleur du badge"
+        name: color
+        widget: select
+        options:
+          - { label: "Primaire (vert)", value: primary }
+          - { label: "Secondaire (orange)", value: secondary }
+          - { label: "Sombre", value: dark }
+      - label: "Type de public"
+        name: type
+        widget: select
+        options:
+          - { label: "Famille / parent", value: famille }
+          - { label: "Professionnel", value: pro }
+      - { label: "Ordre d'affichage", name: order, widget: number, default: 99, value_type: int }
+      - { label: "Brouillon", name: draft, widget: boolean, default: false }
+
+  # ── Posts Instagram ──────────────────────────
+  - name: instagram
+    label: "Posts Instagram"
+    label_singular: "Post Instagram"
+    folder: src/content/instagram
+    create: true
+    slug: "{{slug}}"
+    summary: "{{date}} — {{title}}"
+    fields:
+      - { label: "Titre court", name: title, widget: string, required: false }
+      - { label: "Date de publication", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Image", name: image, widget: image, required: false }
+      - { label: "Lien vers le post", name: link, widget: string, required: false }
+      - { label: "Légende / description", name: description, widget: text, required: false }
+      - { label: "Brouillon", name: draft, widget: boolean, default: false }
+
+  # ── Partenariats ─────────────────────────────
+  - name: partenariats
+    label: "Partenariats"
+    label_singular: "Partenariat"
+    folder: src/content/partenariats
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre de la section", name: title, widget: string }
+      - { label: "Sous-titre (eyebrow)", name: eyebrow, widget: string, required: false, hint: "ex : Expérimentation" }
+      - { label: "Ordre d'affichage", name: order, widget: number, default: 99, value_type: int }
+      - { label: "Image principale", name: image, widget: image, required: false }
+      - { label: "Texte alternatif image", name: imageAlt, widget: string, required: false }
+      - { label: "Citation mise en avant", name: quote, widget: text, required: false }
+      - label: "Points clés"
+        name: points
+        widget: list
+        summary: "{{fields.label}}"
+        fields:
+          - { label: "Icône (nom react-icons fa6, ex: FaBook)", name: icon, widget: string }
+          - label: "Couleur"
+            name: color
+            widget: select
+            options:
+              - { label: "Primaire", value: primary }
+              - { label: "Vert", value: green }
+              - { label: "Orange", value: orange }
+          - { label: "Label", name: label, widget: string }
+      - label: "Logos partenaires"
+        name: logos
+        widget: list
+        summary: "{{fields.alt}}"
+        fields:
+          - { label: "Logo (image)", name: src, widget: image }
+          - { label: "Texte alternatif", name: alt, widget: string }
+      - { label: "Brouillon", name: draft, widget: boolean, default: false }
+      - { label: "Contenu (texte d'introduction)", name: body, widget: markdown }
+
+  # ── Pages (fichiers uniques) ─────────────────
+  - name: pages
+    label: "Pages"
+    files:
+
+      # Page d'accueil
+      - name: homepage
+        label: "Page d'accueil"
+        file: src/content/homepage/-index.md
+        fields:
+          - label: "Bannière"
+            name: banner
+            widget: object
+            fields:
+              - { label: "Titre principal (H1)", name: title, widget: string }
+              - { label: "Description", name: description, widget: text, required: false }
+              - label: "Modalités (pill du haut)"
+                name: modalities
+                widget: list
+                field: { label: "Modalité", name: item, widget: string }
+                hint: "ex : 🏠 En présentiel"
+              - label: "Chips thématiques"
+                name: chips
+                widget: list
+                field: { label: "Chip", name: item, widget: string }
+              - { label: "Image bannière", name: image, widget: image, required: false }
+              - label: "Bouton CTA"
+                name: button
+                widget: object
+                fields:
+                  - { label: "Actif", name: enable, widget: boolean }
+                  - { label: "Texte", name: label, widget: string }
+                  - { label: "Lien", name: link, widget: string }
+          - label: "Sections features"
+            name: features
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Titre", name: title, widget: string }
+              - { label: "Image", name: image, widget: image }
+              - { label: "Texte d'introduction", name: content, widget: text }
+              - label: "Points (bullet points)"
+                name: bulletpoints
+                widget: list
+                field: { label: "Point", name: item, widget: string }
+              - label: "Bouton"
+                name: button
+                widget: object
+                fields:
+                  - { label: "Actif", name: enable, widget: boolean }
+                  - { label: "Texte", name: label, widget: string }
+                  - { label: "Lien", name: link, widget: string }
+
+      # À propos
+      - name: about
+        label: "À propos"
+        file: src/content/about/-index.md
+        fields:
+          - { label: "Titre", name: title, widget: string }
+          - { label: "Meta title (SEO)", name: meta_title, widget: string, required: false }
+          - { label: "Description (SEO)", name: description, widget: text, required: false }
+          - { label: "Brouillon", name: draft, widget: boolean, default: false }
+          - label: "Sections"
+            name: sections
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Titre de section", name: title, widget: string }
+              - { label: "Image", name: image, widget: image }
+              - { label: "Texte", name: text, widget: markdown }
+
+      # CTA global
+      - name: cta
+        label: "Bandeau CTA (pied de page des pages)"
+        file: src/content/sections/call-to-action.md
+        fields:
+          - { label: "Actif", name: enable, widget: boolean }
+          - { label: "Titre", name: title, widget: string }
+          - { label: "Description", name: description, widget: text }
+          - { label: "Image", name: image, widget: image, required: false }
+          - label: "Bouton"
+            name: button
+            widget: object
+            fields:
+              - { label: "Actif", name: enable, widget: boolean }
+              - { label: "Texte", name: label, widget: string }
+              - { label: "Lien", name: link, widget: string }
