@@ -1,6 +1,6 @@
 ---
 title: "Questions fréquentes — Orthopédagogie"
-meta_title: "FAQ Orthopédagogie Royat — Questions fréquentes | Auver'me"
+meta_title: "FAQ — Questions sur l'orthopédagogie à Royat"
 description: "Toutes les réponses à vos questions sur l'orthopédagogie : définition, déroulement des séances, tarifs, crédit d'impôt, différences avec l'orthophoniste."
 draft: false
 ---

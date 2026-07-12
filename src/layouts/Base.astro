@@ -19,7 +19,7 @@ export interface Props {
 const { title, meta_title, description, image, noindex, canonical } = Astro.props;
 
 const pageTitle = plainify(meta_title ? meta_title : title ? title : config.site.title);
-const pageTitleFull = (meta_title || title) ? `${pageTitle} — ${config.site.title}` : pageTitle;
+const pageTitleFull = (meta_title || title) ? `${pageTitle} | Auver'me` : pageTitle;
 const pageDescription = plainify(description ? description : config.metadata.meta_description);
 const pageImage = `${config.site.base_url}${image ? image : config.metadata.meta_image}`;
 const canonicalURL = canonical ?? `${config.site.base_url}${Astro.url.pathname}`;

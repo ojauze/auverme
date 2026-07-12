@@ -1,6 +1,6 @@
 ---
 title: A propos
-meta_title: À propos — Anne Jauze, Orthopédagogue à Royat | Auver'me
+meta_title: "Anne Jauze, Orthopédagogue à Royat"
 description: "Anne Jauze, orthopédagogue à Royat (Clermont-Ferrand). Parcours, valeurs et approche — troubles dys, haut potentiel, TDAH, enfants et adultes."
 draft: false
 sections:

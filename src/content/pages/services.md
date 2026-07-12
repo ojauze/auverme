@@ -1,7 +1,7 @@
 ---
 title: "Accompagnements et services"
-meta_title: "Services orthopédagogie Royat — Bilan, accompagnement dys, HPI, TDAH | Auver'me"
-description: "Découvrez les accompagnements proposés par Anne Jauze, orthopédagogue à Royat : bilan orthopédagogique, troubles dys, haut potentiel (HPI), TDAH, adultes, seniors."
+meta_title: "Bilan et accompagnement — Dys, HPI, TDAH à Royat"
+description: "Bilan orthopédagogique, accompagnement dys, haut potentiel, TDAH, adultes et seniors. Anne Jauze, orthopédagogue à Royat."
 draft: false
 ---
 
