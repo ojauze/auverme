@@ -8,7 +8,7 @@ backend:
   name: github
   repo: ojauze/auverme
   branch: main
-  base_url: YOUR_WORKER_URL   # ex: https://sveltia-auth.ton-nom.workers.dev
+  base_url: https://auverme-cms-auth.auverme.workers.dev   # ex: https://sveltia-auth.ton-nom.workers.dev
 
 # Décommenter pour tester en local (npm run dev)
 # local_backend: true
