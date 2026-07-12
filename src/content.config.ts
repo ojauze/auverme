@@ -169,7 +169,7 @@ const homepageCollection = defineCollection({
       description: z.string().optional(),
       modalities: z.array(z.string()).default(() => []),
       chips: z.array(z.string()).default(() => []),
-      image: z.string(),
+      image: z.string().optional(),
       button: z.object({
         enable: z.boolean(),
         label: z.string(),
@@ -181,7 +181,7 @@ const homepageCollection = defineCollection({
         title: z.string(),
         image: z.string(),
         content: z.string(),
-        bulletpoints: z.array(z.string()),
+        bulletpoints: z.array(z.object({ text: z.string() })),
         button: z.object({
           enable: z.boolean(),
           label: z.string(),

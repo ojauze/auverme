@@ -182,7 +182,9 @@ collections:
               - label: "Points (bullet points)"
                 name: bulletpoints
                 widget: list
-                field: { label: "Point", name: item, widget: string }
+                summary: "{{fields.text}}"
+                fields:
+                  - { label: "Point", name: text, widget: string }
               - label: "Bouton"
                 name: button
                 widget: object
