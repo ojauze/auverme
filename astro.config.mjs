@@ -24,7 +24,12 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes('/construction'),
+      filter: (page) =>
+        !page.includes('/construction') &&
+        !page.includes('/authors') &&
+        !page.includes('/categories') &&
+        !page.includes('/tags') &&
+        !page.includes('/blog/page/'),
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
