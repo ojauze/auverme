@@ -1,7 +1,7 @@
 ---
 title: A propos
 meta_title: "Anne Jauze, Orthopédagogue à Royat"
-description: "Anne Jauze, orthopédagogue à Royat (Clermont-Ferrand). Parcours, valeurs et approche — troubles dys, haut potentiel, TDAH, enfants et adultes."
+description: "Anne Jauze, orthopédagogue à Royat (Clermont-Ferrand). Parcours, valeurs et approche — troubles dys, TDAH, enfants et adultes."
 draft: false
 sections:
   - title: "Apprendre autrement, accompagner autrement"
@@ -13,7 +13,7 @@ sections:
 
       C'est cette conviction qui m'a conduite vers l'orthopédagogie.
 
-  - title: "Une approche au croisement des sciences, de l'éducation et de l'humain"
+  - title: "Une approche au croisement des neurosciences, de l'éducation et de l'humain"
     image: /images/science.jpg
     text: |-
       Mon parcours d'ingénieure m'a apporté une approche analytique et structurée de la résolution de problèmes. Mon expérience de professeur de mathématiques m'a permis d'accompagner des centaines d'élèves aux profils variés et de mieux comprendre les obstacles auxquels ils peuvent être confrontés au quotidien.
@@ -42,7 +42,7 @@ sections:
   - title: "Ma démarche"
     image: /images/demarche.jpg
     text: |-
-      Je privilégie une approche bienveillante, personnalisée et fondée sur les connaissances issues des sciences cognitives.
+      Je privilégie une approche bienveillante, personnalisée et fondée sur les connaissances issues des neurosciences.
 
       Chaque accompagnement est unique. Ensemble, nous identifions les ressources déjà présentes, les leviers à développer et les stratégies les plus adaptées à vos objectifs.
       
