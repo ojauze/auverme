@@ -2,7 +2,7 @@ name: Sync Instagram Posts
 
 on:
   schedule:
-    - cron: "0 7 * * 1" # Lundi à 7h UTC
+    - cron: "0 7 * * *" # Tous les jours à 7h UTC
   workflow_dispatch:     # Déclenchement manuel possible
 
 permissions:
