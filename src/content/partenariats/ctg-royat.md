@@ -1,25 +1,25 @@
 ---
-title: "Expérimentation en orthopédagogie — CTG Chamalières–Orcines–Royat"
-eyebrow: "Expérimentation"
+title: Expérimentation en orthopédagogie — CTG Chamalières–Orcines–Royat
+eyebrow: Expérimentation
 order: 1
 image: /images/partenariat-ctg.jpg
-imageAlt: "Enfants travaillant avec des cartes de formes colorées"
-quote: "Une belle aventure collective au service des apprentissages, de l'autonomie et de la réussite des enfants."
+imageAlt: Enfants travaillant avec des cartes de formes colorées
+quote: Une belle aventure collective au service des apprentissages, de l'autonomie et de la réussite des enfants.
 points:
   - icon: FaBook
     color: primary
-    label: "Développer des stratégies d'apprentissage"
+    label: Développer des stratégies d'apprentissage
   - icon: FaLeaf
     color: green
-    label: "Renforcer l'autonomie"
+    label: Renforcer l'autonomie
   - icon: FaStar
     color: orange
-    label: "Soutenir la réussite des enfants"
+    label: Soutenir la réussite des enfants
 logos:
   - src: /images/logo-ctg.png
-    alt: "Convention Territoriale Globale Chamalières–Orcines–Royat"
+    alt: Convention Territoriale Globale Chamalières–Orcines–Royat
   - src: /images/logo-caf.png
-    alt: "Allocations Familiales"
+    alt: Allocations Familiales
 draft: false
 ---
 
@@ -34,12 +34,12 @@ Cette expérimentation s'est inscrite dans une démarche territoriale visant à 
 L'intervention visait à :
 
 - **Identifier les obstacles aux apprentissages** de chaque enfant (organisation, mémorisation, attention, compréhension…)
-- **Développer des strat��gies d'apprentissage** adaptées et transférables dans le quotidien scolaire
+- **Développer des stratégies d'apprentissage** adaptées et transférables dans le quotidien scolaire
 - **Renforcer la confiance en soi** et l'autonomie face aux tâches scolaires
 - **Soutenir les équipes éducatives** en partageant des clés de compréhension sur les profils d'apprenants
 
 ## Déroulement
 
-Les séances, menées en petits groupes et en individuel, ont combiné des approches issues des sciences cognitives avec des outils concrets : cartes mentales, stratégies de mémorisation, jeux p��dagogiques et exercices de métacognition adaptés à l'âge des enfants.
+Les séances, menées en petits groupes et en individuel, ont combiné des approches issues des sciences cognitives avec des outils concrets : cartes mentales, stratégies de mémorisation, jeux pédagogiques et exercices de métacognition adaptés à l'âge des enfants.
 
 Cette expérience partenariale a confirmé l'importance d'une orthopédagogie ancrée dans le territoire et en lien étroit avec les acteurs éducatifs locaux — enseignants, familles et structures périscolaires.
