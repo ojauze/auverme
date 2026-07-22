@@ -41,6 +41,14 @@
     {
       "name": "Contact",
       "url": "/contact"
+    },
+    {
+      "name": "Mentions légales",
+      "url": "/mentions-legales"
+    },
+    {
+      "name": "Confidentialité",
+      "url": "/politique-confidentialite"
     }
   ]
 }
