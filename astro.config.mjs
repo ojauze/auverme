@@ -15,6 +15,14 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
 
+  redirects: {
+    '/blog': '/',
+    '/authors': '/',
+    '/blog/comprendre-les-troubles-dys': '/',
+    '/blog/haut-potentiel-et-echec-scolaire': '/',
+    '/blog/credit-impot-orthopedagogie': '/',
+  },
+
   output: "static",
 
   image: { service: { entrypoint: "astro/assets/services/sharp" } },
