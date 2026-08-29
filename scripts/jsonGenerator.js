@@ -45,22 +45,12 @@ const getData = (folder, groupDepth) => {
 };
 
 try {
-  // create folder if it doesn't exist
   if (!fs.existsSync(JSON_FOLDER)) {
     fs.mkdirSync(JSON_FOLDER);
   }
-
-  // create json files
-  fs.writeFileSync(
-    `${JSON_FOLDER}/posts.json`,
-    JSON.stringify(getData(BLOG_FOLDER, 2)),
-  );
-
-  // merger json files for search
-  const postsPath = new URL(`../${JSON_FOLDER}/posts.json`, import.meta.url);
-  const posts = JSON.parse(fs.readFileSync(postsPath, "utf8"));
-  const search = [...posts];
-  fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
+  // Blog section removed — write empty files to keep any legacy imports happy
+  fs.writeFileSync(`${JSON_FOLDER}/posts.json`, "[]");
+  fs.writeFileSync(`${JSON_FOLDER}/search.json`, "[]");
 } catch (err) {
   console.error(err);
 }
