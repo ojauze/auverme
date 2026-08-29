@@ -19,9 +19,13 @@ export interface Props {
 
 const { title, meta_title, description, image, noindex, canonical } = Astro.props;
 
-const pageTitle = plainify(meta_title ? meta_title : title ? title : config.site.title);
+// plainify() round-trips through markdown, which leaves a trailing newline.
+// Collapse whitespace so it never lands inside <title> or a meta description.
+const clean = (s: string) => plainify(s).replace(/\s+/g, " ").trim();
+
+const pageTitle = clean(meta_title ? meta_title : title ? title : config.site.title);
 const pageTitleFull = (meta_title || title) ? `${pageTitle} | Auver'me` : pageTitle;
-const pageDescription = plainify(description ? description : config.metadata.meta_description);
+const pageDescription = clean(description ? description : config.metadata.meta_description);
 const pageImage = `${config.site.base_url}${image ? image : config.metadata.meta_image}`;
 const canonicalURL = canonical ?? `${config.site.base_url}${Astro.url.pathname}`;
 

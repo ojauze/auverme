@@ -3,7 +3,7 @@
     "title": "Auver'me Orthopédagogie",
     "base_url": "https://auverme-orthopedagogie.fr",
     "base_path": "/",
-    "trailing_slash": false,
+    "trailing_slash": true,
     "favicon": "/images/favicon.png",
     "logo": "/images/logo.png",
     "logo_darkmode": "/images/logo-darkmode.png",
@@ -37,7 +37,7 @@
   "navigation_button": {
     "enable": true,
     "label": "Prendre rendez-vous",
-    "link": "/contact"
+    "link": "/contact/"
   },
 
   "google_tag_manager": {

@@ -6,49 +6,49 @@
     },
     {
       "name": "À propos",
-      "url": "/about"
+      "url": "/about/"
     },
     {
       "name": "Actualités",
-      "url": "/actualites"
+      "url": "/actualites/"
     },
     {
       "name": "Témoignages",
-      "url": "/temoignages"
+      "url": "/temoignages/"
     },
     {
       "name": "Partenariats",
-      "url": "/partenariats"
+      "url": "/partenariats/"
     }
   ],
   "footer": [
     {
       "name": "À propos",
-      "url": "/about"
+      "url": "/about/"
     },
     {
       "name": "Actualités",
-      "url": "/actualites"
+      "url": "/actualites/"
     },
     {
       "name": "Témoignages",
-      "url": "/temoignages"
+      "url": "/temoignages/"
     },
     {
       "name": "Partenariats",
-      "url": "/partenariats"
+      "url": "/partenariats/"
     },
     {
       "name": "Contact",
-      "url": "/contact"
+      "url": "/contact/"
     },
     {
       "name": "Mentions légales",
-      "url": "/mentions-legales"
+      "url": "/mentions-legales/"
     },
     {
       "name": "Confidentialité",
-      "url": "/politique-confidentialite"
+      "url": "/politique-confidentialite/"
     }
   ]
 }

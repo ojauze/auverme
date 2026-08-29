@@ -15,7 +15,7 @@ banner:
   button:
     enable: true
     label: Prendre rendez-vous
-    link: /contact
+    link: /contact/
 features:
   - title: Une approche personnalisée pour tous les âges
     image: /images/anne-jauze.jpg
@@ -29,5 +29,5 @@ features:
     button:
       enable: true
       label: Prendre rendez-vous
-      link: /contact
+      link: /contact/
 ---

@@ -32,13 +32,17 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      // Exclude redirect stubs and pages that must not be indexed. A sitemap
+      // URL that redirects wastes crawl budget and sends a contradictory
+      // indexing signal, so /evenements (a stub pointing at /actualites) and
+      // the legacy /blog and /authors stubs are filtered out here.
       filter: (page) =>
         !page.includes('/construction') &&
         !page.includes('/mentions-legales') &&
-        !page.includes('/politique-confidentialite'),
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
+        !page.includes('/politique-confidentialite') &&
+        !page.includes('/evenements') &&
+        !page.includes('/blog') &&
+        !page.includes('/authors'),
     }),
     AutoImport({
       imports: [

@@ -89,4 +89,4 @@ Objectifs :
 
 Séances en présentiel à **Royat (63130)**, à domicile dans le Puy-de-Dôme, ou en **visioconférence**.
 
-[Prendre rendez-vous →](/contact)
+[Prendre rendez-vous →](/contact/)

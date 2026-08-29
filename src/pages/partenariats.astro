@@ -74,7 +74,7 @@ const pointColor: Record<string, string> = {
                   {p.points.map((pt) => (
                     <li class="flex items-center gap-4">
                       <span class={`flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center ${iconBg[pt.color] ?? iconBg.primary}`}>
-                        <DynamicIcon icon={pt.icon} className="w-5 h-5" client:load />
+                        <DynamicIcon icon={pt.icon} className="w-5 h-5" />
                       </span>
                       <span class={`font-semibold ${pointColor[pt.color] ?? pointColor.primary}`}>
                         {pt.label}
@@ -137,7 +137,7 @@ const pointColor: Record<string, string> = {
           <p class="mb-8 text-text-light dark:text-darkmode-text-light">
             Je suis ouverte à de nouvelles collaborations : établissements scolaires, associations, collectivités, professionnels de santé. Contactez-moi pour discuter d'un projet commun.
           </p>
-          <a href="/contact" class="btn btn-primary">Proposer un partenariat</a>
+          <a href="/contact/" class="btn btn-primary">Proposer un partenariat</a>
         </div>
       </div>
     </div>

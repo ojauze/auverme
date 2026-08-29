@@ -33,6 +33,10 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
           width={900}
           height={500}
           alt={title}
+          // The logo sits above the fold in both the header and the homepage
+          // hero, where it is the LCP element — it must not be lazy-loaded.
+          loading="eager"
+          fetchpriority="high"
           style={{
             height: logo_height.replace("px", "") + "px",
             width: "auto",
@@ -46,6 +50,7 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
             width={900}
             height={500}
             alt={title}
+            loading="eager"
             style={{
               height: logo_height.replace("px", "") + "px",
               width: "auto",

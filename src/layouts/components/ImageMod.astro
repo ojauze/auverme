@@ -9,6 +9,7 @@ interface Props {
   width: number;
   height: number;
   loading?: "eager" | "lazy" | null | undefined;
+  fetchpriority?: "high" | "low" | "auto";
   decoding?: "async" | "auto" | "sync" | null | undefined;
   format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
   fit?: "cover" | "contain" | "fill" | "none" | "scale-down";
@@ -23,6 +24,7 @@ let {
   width,
   height,
   loading,
+  fetchpriority,
   decoding,
   class: className,
   format,
@@ -53,6 +55,7 @@ const isValidPath = images[src] ? true : false;
       width={width}
       height={height}
       loading={loading}
+      fetchpriority={fetchpriority}
       fit={fit ? fit : "contain"}
       decoding={decoding}
       class={className}
