@@ -35,7 +35,7 @@ La première séance est un temps d'échange et d'observation. Nous parlons ense
 
 ## Les séances sont-elles remboursées par la Sécurité sociale ?
 
-Non, les séances d'orthopédagogie ne sont pas remboursées par l'Assurance maladie. Cependant, dans le cadre du **dispositif CESU (Chèque Emploi Service Universel)**, vous bénéficiez d'un **crédit d'impôt de 50 %** si vous êtes imposable. Le coût réel est donc divisé par deux.
+Non, les séances d'orthopédagogie ne sont pas remboursées par l'Assurance maladie. Cependant, si vous êtes imposable, vous bénéficiez d'un **crédit d'impôt de 50 %** sur les dépenses de soutien scolaire à domicile. Le coût réel est donc divisé par deux.
 
 Par exemple, une séance à 45 € revient à 22,50 € après crédit d'impôt.
 

@@ -85,7 +85,7 @@ Objectifs :
 | Enfant | 45 € | 400 € |
 | Adulte | 55 € | 500 € |
 
-**Crédit d'impôt CESU 50 %** applicable pour les foyers imposables — le coût réel est divisé par deux.
+**Crédit d'impôt 50 %** applicable pour les foyers imposables — le coût réel est divisé par deux.
 
 Séances en présentiel à **Royat (63130)**, à domicile dans le Puy-de-Dôme, ou en **visioconférence**.
 
