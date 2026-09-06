@@ -62,10 +62,9 @@ jobs:
             exit 1
           fi
 
-          # --body-file avoids putting the token on the command line.
-          printf '%s' "$NEW_TOKEN" > token.txt
-          gh secret set INSTAGRAM_ACCESS_TOKEN --body-file token.txt --repo "$REPO"
-          rm -f token.txt
+          # gh secret set reads the value from stdin when --body is omitted,
+          # which keeps the token out of argv and off the disk.
+          printf '%s' "$NEW_TOKEN" | gh secret set INSTAGRAM_ACCESS_TOKEN --repo "$REPO"
 
           echo "✅ Token renouvelé et secret mis à jour."
 
