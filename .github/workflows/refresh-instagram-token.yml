@@ -12,48 +12,70 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - name: Refresh long-lived token
+      # The refresh and the secret write happen in one step on purpose: a step
+      # output would carry the token across a step boundary, and any inline
+      # ${{ }} interpolation of it gets echoed verbatim into the run log.
+      - name: Refresh token and update secret
         id: refresh
+        env:
+          IG_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_SECRETS_WRITE }}
+          REPO: ${{ github.repository }}
         run: |
-          RESPONSE=$(curl -s "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${{ secrets.INSTAGRAM_ACCESS_TOKEN }}")
-          echo "response=$RESPONSE" >> $GITHUB_OUTPUT
+          set -euo pipefail
 
-          # Extraire le nouveau token et l'expiration
+          RESPONSE=$(curl -sS \
+            "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_TOKEN}")
+
           NEW_TOKEN=$(echo "$RESPONSE" | jq -r '.access_token // empty')
-          EXPIRES_IN=$(echo "$RESPONSE" | jq -r '.expires_in // 0')
 
           if [ -z "$NEW_TOKEN" ]; then
-            echo "::error::Refresh échoué — réponse : $RESPONSE"
+            # Print only the error message, never the raw response — it can
+            # echo back the token that was sent.
+            MSG=$(echo "$RESPONSE" | jq -r '.error.message // "réponse inattendue"')
+            echo "::error::Refresh échoué — $MSG"
+            case "$MSG" in
+              *"not authorized"*|*"Session has been invalidated"*)
+                echo "::error::L'application Instagram n'est plus autorisée. Il faut ré-autoriser le compte dans Meta for Developers puis régénérer un token — un refresh ne suffit pas."
+                ;;
+            esac
             exit 1
           fi
 
-          EXPIRES_DAYS=$((EXPIRES_IN / 86400))
-          echo "✅ Token renouvelé — expire dans ${EXPIRES_DAYS} jours."
-          echo "new_token=$NEW_TOKEN" >> $GITHUB_OUTPUT
-          echo "expires_days=$EXPIRES_DAYS" >> $GITHUB_OUTPUT
+          # Mask before the value can reach any log line.
+          echo "::add-mask::$NEW_TOKEN"
 
-      - name: Update GitHub Secret
-        env:
-          GH_TOKEN: ${{ secrets.PAT_SECRETS_WRITE }}
-        run: |
-          # Nécessite un Personal Access Token avec permission "secrets:write"
-          # Stocker ce PAT dans GitHub Secrets sous le nom PAT_SECRETS_WRITE.
-          # Si ce secret est absent, cette étape échoue mais le token reste valide.
-          if [ -z "$GH_TOKEN" ]; then
-            echo "::warning::PAT_SECRETS_WRITE absent — mise à jour du secret ignorée."
-            echo "::warning::Renouvelez manuellement le token dans GitHub Settings → Secrets."
-            exit 0
+          EXPIRES_IN=$(echo "$RESPONSE" | jq -r '.expires_in // 0')
+          echo "expires_days=$((EXPIRES_IN / 86400))" >> "$GITHUB_OUTPUT"
+
+          # Confirm the new token actually works before persisting it, so a
+          # revoked authorisation fails here rather than silently one day later.
+          CHECK=$(curl -sS -o /dev/null -w '%{http_code}' \
+            "https://graph.instagram.com/v21.0/me?fields=id&access_token=${NEW_TOKEN}")
+          if [ "$CHECK" != "200" ]; then
+            echo "::error::Le nouveau token est refusé par l'API (HTTP $CHECK) — secret non mis à jour."
+            exit 1
           fi
-          gh secret set INSTAGRAM_ACCESS_TOKEN \
-            --body "${{ steps.refresh.outputs.new_token }}" \
-            --repo "${{ github.repository }}"
-          echo "✅ Secret GitHub mis à jour."
+
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::error::PAT_SECRETS_WRITE absent — le secret n'a pas pu être mis à jour."
+            exit 1
+          fi
+
+          # --body-file avoids putting the token on the command line.
+          printf '%s' "$NEW_TOKEN" > token.txt
+          gh secret set INSTAGRAM_ACCESS_TOKEN --body-file token.txt --repo "$REPO"
+          rm -f token.txt
+
+          echo "✅ Token renouvelé et secret mis à jour."
 
       - name: Summary
+        if: always()
         run: |
-          echo "## Refresh Instagram Token" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Date** : $(date -u '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
-          echo "- **Expire dans** : ${{ steps.refresh.outputs.expires_days }} jours" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "> Si le secret n'a pas été mis à jour automatiquement (PAT absent), copier le nouveau token depuis les logs et le mettre à jour manuellement dans Settings → Secrets → INSTAGRAM_ACCESS_TOKEN." >> $GITHUB_STEP_SUMMARY
+          {
+            echo "## Refresh Instagram Token"
+            echo ""
+            echo "- **Date** : $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo "- **Résultat** : ${{ steps.refresh.outcome }}"
+            echo "- **Expire dans** : ${{ steps.refresh.outputs.expires_days || 'n/a' }} jours"
+          } >> "$GITHUB_STEP_SUMMARY"

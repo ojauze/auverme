@@ -125,7 +125,22 @@ def main():
         params={"fields": fields, "access_token": token, "limit": args.limit},
         timeout=15,
     )
-    r.raise_for_status()
+    if not r.ok:
+        # Surface the API's own message: a stack trace on raise_for_status()
+        # hides whether the token merely expired or the app was de-authorised,
+        # which need different fixes.
+        msg = r.json().get("error", {}).get("message", r.text[:200])
+        print(f"❌ Instagram API HTTP {r.status_code} — {msg}", file=sys.stderr)
+        if "not authorized" in msg or "Session has been invalidated" in msg:
+            print(
+                "   L'application n'est plus autorisée par le compte Instagram.\n"
+                "   Un refresh ne suffit pas : ré-autoriser l'app dans Meta for\n"
+                "   Developers, générer un nouveau token, puis mettre à jour le\n"
+                "   secret INSTAGRAM_ACCESS_TOKEN.",
+                file=sys.stderr,
+            )
+        sys.exit(1)
+
     posts = r.json().get("data", [])
     print(f"   Found {len(posts)} posts. {len(existing)} already synced.")
 
