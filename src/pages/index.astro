@@ -183,10 +183,40 @@ const { banner, features } = homepage.data;
   <!-- Tarifs -->
   <section class="section-sm bg-gradient">
     <div class="container">
-      <div class="row justify-center text-center mb-10">
-        <div class="lg:col-6">
+      <div class="row items-center justify-center gy-6 mb-10">
+        <!-- Colonne vide : contrepoids du logo, pour que le titre reste
+             centré sur la page et non sur l'espace qui lui reste. -->
+        <div class="hidden lg:block lg:col-2"></div>
+
+        <div class="lg:col-8 md:col-9 text-center">
           <h2 class="mb-4">Tarifs</h2>
           <p class="text-text-light dark:text-darkmode-text-light">Séances individuelles sans engagement, forfaits disponibles.</p>
+
+          <div class="mt-6 mx-auto max-w-xl rounded-xl border border-border bg-body px-5 py-4 dark:border-darkmode-border dark:bg-darkmode-body">
+            <p class="text-text dark:text-darkmode-text">
+              💡 <strong>Crédit d'impôt de 50 %</strong><sup>*</sup>
+            </p>
+            <p class="mt-1 text-sm text-text dark:text-darkmode-text">
+              Le coût réel de votre accompagnement peut ainsi être réduit de moitié.
+            </p>
+            <p class="mt-3 text-xs leading-relaxed text-text-light dark:text-darkmode-text-light">
+              * Applicable uniquement aux prestations d'accompagnement scolaire réalisées
+              à domicile, sous réserve des conditions d'éligibilité au dispositif
+              «&nbsp;Services à la personne&nbsp;».
+            </p>
+          </div>
+        </div>
+
+        <div class="lg:col-2 md:col-3 flex justify-center lg:justify-end">
+          <ImageMod
+            src="/images/services-a-la-personne.png"
+            alt="Dispositif Services à la personne"
+            width={320}
+            height={266}
+            format="webp"
+            loading="lazy"
+            class="w-32 md:w-36 h-auto"
+          />
         </div>
       </div>
 
@@ -234,15 +264,6 @@ const { banner, features } = homepage.data;
             <span class="text-2xl flex-shrink-0">📋</span>
             <p><strong>Offre sur mesure</strong> disponible pour les accompagnements intensifiés ou les médiations scolaires. <a href="/contact/" class="text-primary underline underline-offset-2">Contactez-moi</a> pour un devis personnalisé.</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Note crédit d'impôt -->
-      <div class="row justify-center mt-6">
-        <div class="lg:col-8 md:col-10 text-center">
-          <p class="text-sm text-text-light dark:text-darkmode-text-light">
-            💡 <strong>Crédit d'impôt 50 %</strong> applicable pour les foyers imposables — le coût réel est divisé par deux.
-          </p>
         </div>
       </div>
     </div>
