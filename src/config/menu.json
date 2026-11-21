@@ -5,8 +5,16 @@
       "url": "/"
     },
     {
+      "name": "Accompagnement",
+      "url": "/accompagnement/"
+    },
+    {
       "name": "À propos",
       "url": "/about/"
+    },
+    {
+      "name": "FAQ",
+      "url": "/faq/"
     },
     {
       "name": "Actualités",
@@ -23,8 +31,16 @@
   ],
   "footer": [
     {
+      "name": "Accompagnement",
+      "url": "/accompagnement/"
+    },
+    {
       "name": "À propos",
       "url": "/about/"
+    },
+    {
+      "name": "FAQ",
+      "url": "/faq/"
     },
     {
       "name": "Actualités",

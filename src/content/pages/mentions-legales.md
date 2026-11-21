@@ -29,11 +29,11 @@ L'ensemble des contenus présents sur ce site (textes, images, logos) sont la pr
 
 ## Données personnelles
 
-Les informations relatives à la collecte et au traitement des données personnelles sont détaillées dans notre [Politique de confidentialité](/politique-confidentialite).
+Les informations relatives à la collecte et au traitement des données personnelles sont détaillées dans notre [Politique de confidentialité](/politique-confidentialite/).
 
 ## Cookies
 
-Ce site utilise Google Analytics (GA4) à des fins de mesure d'audience. Consultez notre [Politique de confidentialité](/politique-confidentialite) pour en savoir plus.
+Ce site utilise Google Analytics (GA4) à des fins de mesure d'audience. Consultez notre [Politique de confidentialité](/politique-confidentialite/) pour en savoir plus.
 
 ## Loi applicable
 

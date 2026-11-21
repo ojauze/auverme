@@ -1,0 +1,153 @@
+---
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { plainify } from "@/lib/utils/textConverter";
+import CallToAction from "@/partials/CallToAction.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import { render } from "astro:content";
+
+// Route "rest" (et non [regular]) afin que les pages métier puissent vivre sous
+// /accompagnement/ : un paramètre simple ne capture pas les slashs, donc
+// src/content/pages/accompagnement/troubles-dys.md ne serait pas routé.
+export async function getStaticPaths() {
+  const pages = await getSinglePage("pages");
+
+  return pages.map((page) => ({
+    params: { regular: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { title, meta_title, description, image, service, faq, related } =
+  page.data;
+const { Content } = await render(page);
+const call_to_action = await getListPage("ctaSection", "call-to-action");
+
+const base = config.site.base_url;
+const pageUrl = `${base}${Astro.url.pathname}`;
+
+// Fil d'ariane structuré, qui double le fil visuel rendu par PageHeader.
+const segments = Astro.url.pathname.split("/").filter(Boolean);
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: `${base}/` },
+    ...segments.map((segment, i) => ({
+      "@type": "ListItem",
+      position: i + 2,
+      // Le dernier segment porte le titre réel de la page ; les segments
+      // intermédiaires n'ont que leur slug pour nom.
+      name:
+        i === segments.length - 1
+          ? title
+          : segment.replace(/-/g, " ").replace(/^./, (c) => c.toUpperCase()),
+      item: `${base}/${segments.slice(0, i + 1).join("/")}/`,
+    })),
+  ],
+};
+
+const graph: Record<string, unknown>[] = [breadcrumb];
+
+if (service) {
+  graph.push({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${pageUrl}#service`,
+    name: service.name,
+    serviceType: service.type ?? "Accompagnement orthopédagogique",
+    description: plainify(description ?? "")
+      .replace(/\s+/g, " ")
+      .trim(),
+    url: pageUrl,
+    // Rattache la prestation à l'établissement déclaré dans Base.astro.
+    provider: { "@id": `${base}/#orthopedagogue` },
+    areaServed: [
+      { "@type": "City", name: "Royat" },
+      { "@type": "City", name: "Clermont-Ferrand" },
+      { "@type": "Country", name: "FR" },
+    ],
+    availableChannel: [
+      { "@type": "ServiceChannel", name: "Cabinet à Royat (63130)" },
+      { "@type": "ServiceChannel", name: "À domicile dans le Puy-de-Dôme" },
+      { "@type": "ServiceChannel", name: "Visioconférence" },
+    ],
+    ...(service.audience && {
+      audience: { "@type": "Audience", audienceType: service.audience },
+    }),
+  });
+}
+
+if (faq?.length) {
+  graph.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    mainEntity: faq.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  });
+}
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  {
+    graph.map((node) => (
+      <script type="application/ld+json" set:html={JSON.stringify(node)} />
+    ))
+  }
+
+  <PageHeader title={title} />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          <div class="content">
+            <Content />
+          </div>
+
+          {
+            related?.length && (
+              <nav
+                aria-label="Pages liées"
+                class="mt-16 rounded-xl bg-light p-8 dark:bg-darkmode-light"
+              >
+                <h2 class="h4 mb-6">À lire aussi</h2>
+                <ul class="list-none space-y-4 pl-0">
+                  {related.map(({ label, url, text }) => (
+                    <li class="pl-0">
+                      <a
+                        href={url}
+                        class="text-primary font-semibold underline underline-offset-2 dark:text-darkmode-primary"
+                      >
+                        {label}
+                      </a>
+                      {text && (
+                        <span class="text-text-light dark:text-darkmode-text-light">
+                          {" "}
+                          — {text}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction call_to_action={call_to_action} />
+</Base>

@@ -1,6 +1,20 @@
 ---
 import { humanize } from "@/lib/utils/textConverter";
 
+// humanize() capitalise la première lettre et passe le reste en minuscules,
+// ce qui transforme "tdah" en "Tdah". Les sigles sont rétablis ici.
+const ACRONYMS: Record<string, string> = {
+  tdah: "TDAH",
+  hpi: "HPI",
+  faq: "FAQ",
+};
+
+const deacronymize = (label: string) =>
+  label
+    .split(" ")
+    .map((word) => ACRONYMS[word.toLowerCase()] ?? word)
+    .join(" ");
+
 const { className }: { className?: string } = Astro.props;
 
 const paths = Astro.url.pathname.split("/").filter((x) => x);
@@ -13,10 +27,15 @@ let parts = [
 ];
 
 paths.forEach((label: string, i: number) => {
-  const href = `/${paths.slice(0, i + 1).join("/")}`;
+  // Slash final obligatoire : le site est servi en trailingSlash "always",
+  // et un lien sans slash provoque une redirection 301 inutile.
+  const href = `/${paths.slice(0, i + 1).join("/")}/`;
   label !== "page" &&
     parts.push({
-      label: humanize(label.replace(".html", "").replace(/[-_]/g, " ")) || "",
+      label:
+        deacronymize(
+          humanize(label.replace(".html", "").replace(/[-_]/g, " ")),
+        ) || "",
       href,
       "aria-label": Astro.url.pathname === href ? "page" : undefined,
     });

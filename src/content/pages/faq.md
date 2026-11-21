@@ -17,6 +17,8 @@ L'**orthophoniste** est un professionnel de santé paramédical qui diagnostique
 
 L'**orthopédagogue** travaille sur les stratégies d'apprentissage et l'autonomie scolaire ou professionnelle. Il n'établit pas de diagnostic médical. Les deux approches sont souvent complémentaires : un enfant suivi en orthophonie peut également bénéficier d'un accompagnement orthopédagogique pour développer des méthodes de travail adaptées.
 
+👉 Pour savoir **qui consulter et dans quel ordre**, voir la page détaillée : [orthopédagogue ou orthophoniste ?](/orthopedagogue-ou-orthophoniste/)
+
 ## À partir de quel âge peut-on consulter ?
 
 L'orthopédagogie s'adresse à **tous les âges** :
@@ -69,6 +71,8 @@ Oui. Je travaille régulièrement avec des personnes présentant :
 - Un **TSA** (trouble du spectre autistique) à haut niveau de fonctionnement
 
 Ces profils nécessitent une approche sur mesure, qui s'appuie sur leurs points forts tout en travaillant les stratégies compensatoires.
+
+👉 Voir le détail de l'[accompagnement des troubles dys](/accompagnement/troubles-dys/) et de [l'accompagnement orthopédagogique](/accompagnement/) en général.
 
 ## Comment prendre rendez-vous ?
 

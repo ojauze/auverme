@@ -6,5 +6,5 @@ description: "Posez-moi vos questions, je vous réponds sous 48h. Séances à do
 button:
   enable: true
   label: "Me contacter"
-  link: "/contact"
+  link: "/contact/"
 ---

@@ -32,6 +32,7 @@ const canonicalURL = canonical ?? `${config.site.base_url}${Astro.url.pathname}`
 const schema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": `${config.site.base_url}/#orthopedagogue`,
   "name": "Auver'me Orthopédagogie",
   "url": config.site.base_url,
   "description": config.metadata.meta_description,
@@ -57,7 +58,7 @@ const schema = {
       "closes": "19:00"
     }
   ],
-  "priceRange": "45€–55€",
+  "priceRange": "50€–60€",
   "areaServed": [
     { "@type": "City", "name": "Royat" },
     { "@type": "City", "name": "Clermont-Ferrand" },

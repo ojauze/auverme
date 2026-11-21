@@ -21,6 +21,10 @@ export default defineConfig({
     '/blog/comprendre-les-troubles-dys': '/',
     '/blog/haut-potentiel-et-echec-scolaire': '/',
     '/blog/credit-impot-orthopedagogie': '/',
+    // Anciennes URLs explorées par Google. /services est reprise par le hub
+    // /accompagnement/ qui en reprend les sujets ; /a-propos n'a jamais existé.
+    '/services': '/accompagnement/',
+    '/a-propos': '/about/',
   },
 
   output: "static",

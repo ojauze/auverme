@@ -17,6 +17,22 @@ const pagesCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/pages" }),
   schema: z.object({
     ...commonFields,
+    // Pages métier : alimentent le JSON-LD Service et le maillage interne.
+    service: z
+      .object({
+        name: z.string(),
+        type: z.string().optional(),
+        audience: z.string().optional(),
+      })
+      .optional(),
+    // Alimente le JSON-LD FAQPage. Les réponses sont du texte brut.
+    faq: z
+      .array(z.object({ q: z.string(), a: z.string() }))
+      .optional(),
+    // Liens contextuels affichés en bas de page.
+    related: z
+      .array(z.object({ label: z.string(), url: z.string(), text: z.string().optional() }))
+      .optional(),
   }),
 });
 
