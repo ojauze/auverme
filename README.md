@@ -136,7 +136,10 @@ Le dépôt cible est `PREVIEW_FEEDBACK_REPO`, dans
 
 Mise en place, à faire une fois :
 
-1. Créer un dépôt **privé** `auverme-feedback`.
+1. Créer un dépôt **privé** `auverme-feedback`, **avec un commit initial** (cocher
+   « Add a README file »). Un dépôt entièrement vide n'a aucune branche de départ : BugDrop
+   ne peut alors pas créer `bugdrop-screenshots`, et les captures sont perdues en silence —
+   l'issue, elle, est bien créée.
 2. Installer l'application [BugDrop](https://github.com/marketplace/bugdrop-in-app-feedback-to-github-issues)
    en choisissant **« Only select repositories »** et en ne cochant que ce dépôt.
    Permissions demandées : Issues (lecture/écriture), Contents (lecture/écriture), Metadata (lecture).
