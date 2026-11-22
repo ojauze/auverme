@@ -11,16 +11,32 @@ import config from "./config.json";
  *     fournit AUCUNE variable contenant l'URL du déploiement.
  *   - Pages, plus ancien, injecte CF_PAGES=1 et CF_PAGES_URL.
  *
- * Les deux sont détectés. En l'absence d'URL connue, on peut la fournir à la
- * main via PREVIEW_SITE_URL (variable de build définie dans le tableau de bord).
+ * Les deux sont détectés. L'adresse du déploiement Workers connu est inscrite
+ * ci-dessous ; PREVIEW_SITE_URL reste prioritaire si on veut la surcharger.
  */
 export const IS_PREVIEW =
   process.env.WORKERS_CI === "1" || process.env.CF_PAGES === "1";
 
 const stripSlash = (url) => url.replace(/\/$/, "");
 
+/**
+ * Adresse du Worker de préversion (projet Cloudflare « auverme-preview »).
+ *
+ * Workers Builds n'expose aucune variable contenant l'URL du déploiement, à
+ * la différence de CF_PAGES_URL côté Pages. On la fige donc ici plutôt que
+ * d'imposer une variable à saisir dans le tableau de bord.
+ *
+ * Une valeur devenue fausse resterait sans danger : elle désignerait une
+ * autre préversion, jamais la production. Mettre "" pour revenir au mode
+ * sans aucune URL absolue.
+ */
+const KNOWN_PREVIEW_URL = "https://auverme-preview.auverme.workers.dev";
+
 const previewUrl = stripSlash(
-  process.env.PREVIEW_SITE_URL || process.env.CF_PAGES_URL || "",
+  process.env.PREVIEW_SITE_URL ||
+    process.env.CF_PAGES_URL ||
+    KNOWN_PREVIEW_URL ||
+    "",
 );
 
 /**
