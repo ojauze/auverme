@@ -5,13 +5,53 @@ import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
 import config from "./src/config/config.json";
+import { IS_PREVIEW, SITE_URL } from "./src/config/siteUrl.mjs";
+import { readFile, writeFile } from "node:fs/promises";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+/**
+ * Sur la préversion Cloudflare uniquement : ajoute un en-tête X-Robots-Tag en
+ * complément du <meta robots> posé par Base.astro, et fait pointer le sitemap
+ * de robots.txt vers la préversion plutôt que vers la production.
+ *
+ * robots.txt continue d'AUTORISER le crawl : un `Disallow: /` empêcherait
+ * Google de lire le noindex, et il pourrait indexer les URLs malgré tout.
+ */
+const previewNoindex = {
+  name: "preview-noindex",
+  hooks: {
+    "astro:build:done": async ({ dir, logger }) => {
+      if (!IS_PREVIEW) return;
+      const out = fileURLToPath(dir);
+
+      await writeFile(
+        join(out, "_headers"),
+        "/*\n  X-Robots-Tag: noindex, nofollow\n",
+        "utf8",
+      );
+
+      const robotsPath = join(out, "robots.txt");
+      const robots = await readFile(robotsPath, "utf8");
+      await writeFile(
+        robotsPath,
+        robots.replace(/^Sitemap: .*$/m, `Sitemap: ${SITE_URL}/sitemap-index.xml`),
+        "utf8",
+      );
+
+      logger.warn(`préversion non indexable — ${SITE_URL}`);
+    },
+  },
+};
 
 // Fonts loaded via CSS @import in main.css (avoids corporate SSL proxy blocking
 // the Google Fonts metadata API at build time).
 
 // https://astro.build/config
 export default defineConfig({
-  site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
+  // SITE_URL vaut l'URL Cloudflare pendant un build de préversion, afin que
+  // canonicals, og:url, JSON-LD et sitemap restent auto-référents.
+  site: SITE_URL ? SITE_URL : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
 
@@ -34,6 +74,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
+    previewNoindex,
     react(),
     sitemap({
       // Exclude redirect stubs and pages that must not be indexed. A sitemap

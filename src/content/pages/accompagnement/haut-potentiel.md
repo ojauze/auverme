@@ -1,7 +1,7 @@
 ---
 title: "Accompagnement du haut potentiel (HPI)"
-meta_title: "Haut potentiel (HPI) : accompagnement à Royat et Clermont-Ferrand"
-description: "Quand une intelligence vive s'accompagne d'ennui, de blocages ou d'échec scolaire : un accompagnement orthopédagogique pour apprendre à apprendre. Royat ou visio."
+meta_title: "Haut potentiel (HPI) : accompagnement à Royat"
+description: "Quand une intelligence vive s'accompagne d'ennui ou d'échec scolaire : un accompagnement pour apprendre à apprendre. Royat, domicile ou visio."
 draft: false
 service:
   name: "Accompagnement orthopédagogique du haut potentiel intellectuel"

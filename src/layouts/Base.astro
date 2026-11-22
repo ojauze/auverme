@@ -2,6 +2,7 @@
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import CookieBanner from "@/layouts/components/CookieBanner.astro";
 import config from "@/config/config.json";
+import { IS_PREVIEW, SITE_URL } from "@/config/siteUrl.mjs";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
@@ -26,15 +27,15 @@ const clean = (s: string) => plainify(s).replace(/\s+/g, " ").trim();
 const pageTitle = clean(meta_title ? meta_title : title ? title : config.site.title);
 const pageTitleFull = (meta_title || title) ? `${pageTitle} | Auver'me` : pageTitle;
 const pageDescription = clean(description ? description : config.metadata.meta_description);
-const pageImage = `${config.site.base_url}${image ? image : config.metadata.meta_image}`;
-const canonicalURL = canonical ?? `${config.site.base_url}${Astro.url.pathname}`;
+const pageImage = `${SITE_URL}${image ? image : config.metadata.meta_image}`;
+const canonicalURL = canonical ?? `${SITE_URL}${Astro.url.pathname}`;
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "@id": `${config.site.base_url}/#orthopedagogue`,
+  "@id": `${SITE_URL}/#orthopedagogue`,
   "name": "Auver'me Orthopédagogie",
-  "url": config.site.base_url,
+  "url": SITE_URL,
   "description": config.metadata.meta_description,
   "telephone": "+33672274017",
   "email": "contact.auverme@gmail.com",
@@ -100,7 +101,10 @@ const schema = {
     <link rel="canonical" href={canonicalURL} />
 
     <!-- noindex robots -->
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {/* La préversion Cloudflare n'est jamais indexable. */}
+    {(noindex || IS_PREVIEW) && (
+      <meta name="robots" content="noindex,nofollow" />
+    )}
 
     <!-- meta-description -->
     <meta name="description" content={pageDescription} />

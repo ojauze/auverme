@@ -1,7 +1,7 @@
 ---
 title: "Accompagnement des troubles dys"
-meta_title: "Troubles dys : accompagnement à Royat et Clermont-Ferrand"
-description: "Dyslexie, dysorthographie, dyscalculie, dyspraxie : un accompagnement orthopédagogique pour construire des stratégies qui tiennent. Royat, domicile ou visio."
+meta_title: "Troubles dys : accompagnement à Royat"
+description: "Dyslexie, dysorthographie, dyscalculie, dyspraxie : un accompagnement pour construire des stratégies qui tiennent. Royat, domicile ou visio."
 draft: false
 service:
   name: "Accompagnement orthopédagogique des troubles dys"

@@ -1,6 +1,6 @@
 ---
 title: "Orthopédagogue ou orthophoniste : qui consulter ?"
-meta_title: "Orthopédagogue ou orthophoniste : qui consulter pour mon enfant ?"
+meta_title: "Orthopédagogue ou orthophoniste : qui consulter ?"
 description: "Qui fait quoi, qui pose le diagnostic, dans quel ordre consulter. Le parcours expliqué simplement par une orthopédagogue à Royat (Clermont-Ferrand)."
 draft: false
 service:

@@ -1,7 +1,7 @@
 ---
 title: "L'accompagnement orthopédagogique"
-meta_title: "Accompagnement orthopédagogique à Royat — Dys, TDAH, HPI, adultes"
-description: "Comment se déroule un accompagnement orthopédagogique : comprendre, construire un plan, travailler les stratégies. À Royat, à domicile ou en visioconférence."
+meta_title: "Accompagnement orthopédagogique à Royat"
+description: "Comment se déroule un accompagnement orthopédagogique : comprendre, construire un plan, travailler les stratégies. Royat, domicile ou visio."
 draft: false
 service:
   name: "Accompagnement orthopédagogique"

@@ -1,7 +1,7 @@
 ---
 title: "Accompagnement TDAH"
-meta_title: "TDAH : accompagnement orthopédagogique à Royat (Clermont-Ferrand)"
-description: "Attention, organisation, impulsivité : un travail concret sur les fonctions exécutives, en complément du suivi médical. Royat, à domicile ou en visioconférence."
+meta_title: "TDAH : accompagnement orthopédagogique à Royat"
+description: "Attention, organisation, impulsivité : un travail sur les fonctions exécutives, en complément du suivi médical. Royat, domicile ou visio."
 draft: false
 service:
   name: "Accompagnement orthopédagogique du TDAH"

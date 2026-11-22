@@ -1,5 +1,5 @@
 ---
-import config from "@/config/config.json";
+import { SITE_URL } from "@/config/siteUrl.mjs";
 import Base from "@/layouts/Base.astro";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { plainify } from "@/lib/utils/textConverter";
@@ -25,7 +25,7 @@ const { title, meta_title, description, image, service, faq, related } =
 const { Content } = await render(page);
 const call_to_action = await getListPage("ctaSection", "call-to-action");
 
-const base = config.site.base_url;
+const base = SITE_URL;
 const pageUrl = `${base}${Astro.url.pathname}`;
 
 // Fil d'ariane structuré, qui double le fil visuel rendu par PageHeader.
@@ -115,6 +115,24 @@ if (faq?.length) {
           <div class="content">
             <Content />
           </div>
+
+          {
+            faq?.length && (
+              <section class="content mt-16">
+                <h2>Questions fréquentes</h2>
+                <dl>
+                  {faq.map(({ q, a }) => (
+                    <>
+                      <dt class="mt-6 font-semibold text-dark dark:text-darkmode-dark">
+                        {q}
+                      </dt>
+                      <dd class="mt-2 ml-0">{a}</dd>
+                    </>
+                  ))}
+                </dl>
+              </section>
+            )
+          }
 
           {
             related?.length && (
