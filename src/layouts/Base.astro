@@ -2,7 +2,12 @@
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import CookieBanner from "@/layouts/components/CookieBanner.astro";
 import config from "@/config/config.json";
-import { HAS_ABSOLUTE_URLS, IS_PREVIEW, SITE_URL } from "@/config/siteUrl.mjs";
+import {
+  HAS_ABSOLUTE_URLS,
+  IS_PREVIEW,
+  PREVIEW_FEEDBACK_REPO,
+  SITE_URL,
+} from "@/config/siteUrl.mjs";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
@@ -151,5 +156,25 @@ const schema = {
     <Footer />
     <CookieBanner />
     <TwSizeIndicator />
+
+    {/*
+      Widget de retour BugDrop — PRÉVERSION UNIQUEMENT.
+      Chaque remarque devient une issue dans un dépôt privé dédié.
+      `is:inline` empêche Astro de regrouper le script : BugDrop lit sa
+      configuration sur l'élément <script> en cours d'exécution, ce qui
+      interdit aussi async et defer.
+    */}
+    {IS_PREVIEW && PREVIEW_FEEDBACK_REPO && (
+      <script
+        is:inline
+        src="https://bugdrop.neonwatty.workers.dev/widget.js"
+        data-repo={PREVIEW_FEEDBACK_REPO}
+        data-label="Donner mon avis"
+        data-welcome="Une remarque sur cette page ? Décrivez-la ici."
+        data-position="bottom-right"
+        data-screenshot="optional"
+        data-show-issue-link="never"
+      />
+    )}
   </body>
 </html>

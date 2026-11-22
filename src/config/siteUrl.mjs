@@ -62,3 +62,16 @@ export const HAS_ABSOLUTE_URLS = SITE_URL !== "";
 export const BUILD_SITE_URL = SITE_URL || stripSlash(config.site.base_url);
 
 export default SITE_URL;
+
+/**
+ * Dépôt GitHub où BugDrop dépose les remarques laissées sur la préversion.
+ *
+ * Doit être un dépôt PRIVÉ et distinct du dépôt du site : les remarques y
+ * arrivent sous forme d'issues, et ojauze/auverme est public — les retours
+ * d'Anne sur sa propre pratique n'ont pas à l'être. L'application GitHub de
+ * BugDrop demande un accès en écriture sur le contenu du dépôt où elle est
+ * installée, donc la cantonner à ce dépôt la tient à l'écart du code du site.
+ *
+ * Chaîne vide = widget désactivé.
+ */
+export const PREVIEW_FEEDBACK_REPO = "ojauze/auverme-feedback";

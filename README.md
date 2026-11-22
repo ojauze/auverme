@@ -118,6 +118,44 @@ Google de lire le `noindex`, et il pourrait indexer les URLs malgré tout.
 La configuration du Worker est dans [`wrangler.jsonc`](wrangler.jsonc). Son champ `name` doit
 correspondre exactement au nom du Worker dans le tableau de bord Cloudflare, sinon le build échoue.
 
+### Recueillir les retours sur la préversion
+
+La préversion embarque [**BugDrop**](https://bugdrop.dev/) (MIT), un bouton flottant qui
+transforme chaque remarque en *issue GitHub*, avec capture d'écran annotable et contexte
+technique. Il est injecté par `Base.astro` **uniquement quand `WORKERS_CI` est défini** :
+il n'existe jamais en production.
+
+Le dépôt cible est `PREVIEW_FEEDBACK_REPO`, dans
+[`src/config/siteUrl.mjs`](src/config/siteUrl.mjs). Le mettre à `""` désactive le widget.
+
+> ⚠️ **Le dépôt de retours doit être privé et distinct de celui du site.**
+> `ojauze/auverme` est public : les remarques et les captures y seraient publiques et
+> indexables. L'application GitHub de BugDrop demande par ailleurs un accès en **écriture
+> sur tout le contenu** du dépôt où elle est installée, code source compris — la cantonner
+> à un dépôt dédié la tient à l'écart du site.
+
+Mise en place, à faire une fois :
+
+1. Créer un dépôt **privé** `auverme-feedback`.
+2. Installer l'application [BugDrop](https://github.com/marketplace/bugdrop-in-app-feedback-to-github-issues)
+   en choisissant **« Only select repositories »** et en ne cochant que ce dépôt.
+   Permissions demandées : Issues (lecture/écriture), Contents (lecture/écriture), Metadata (lecture).
+3. Vérifier sur la préversion qu'une remarque de test arrive bien en issue.
+
+Bon à savoir :
+
+- Les captures d'écran sont commitées sur une branche `bugdrop-screenshots`, créée automatiquement.
+- **Les libellés du formulaire restent en anglais** : BugDrop ne propose pas de locale française
+  (`data-locale` accepte de, en, nl, pl, zh-CN). Seuls le bouton et le message d'accueil sont
+  traduits, via `data-label` et `data-welcome`.
+- Aucun compte n'est requis pour laisser une remarque ; les champs nom et e-mail sont masqués
+  par défaut.
+- Le script est chargé sans numéro de version, donc il se met à jour tout seul. Pour figer une
+  version, remplacer `widget.js` par `widget.v<x.y.z>.js`.
+- La documentation de BugDrop ne dit rien de l'usage avec un dépôt **privé** : c'est à confirmer
+  au premier essai. En cas d'échec, le repli est un widget maison envoyant un e-mail via web3forms,
+  déjà configuré dans `src/config/config.json`.
+
 ### Workflows GitHub Actions
 
 | Fichier | Rôle |
