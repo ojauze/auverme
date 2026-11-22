@@ -1,5 +1,5 @@
 ---
-import { SITE_URL } from "@/config/siteUrl.mjs";
+import { HAS_ABSOLUTE_URLS, SITE_URL } from "@/config/siteUrl.mjs";
 import Base from "@/layouts/Base.astro";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { plainify } from "@/lib/utils/textConverter";
@@ -49,9 +49,11 @@ const breadcrumb = {
   ],
 };
 
-const graph: Record<string, unknown>[] = [breadcrumb];
+// Même règle que Base.astro : pas de données structurées sans URL absolue
+// fiable, sous peine de désigner la production depuis une préversion.
+const graph: Record<string, unknown>[] = HAS_ABSOLUTE_URLS ? [breadcrumb] : [];
 
-if (service) {
+if (service && HAS_ABSOLUTE_URLS) {
   graph.push({
     "@context": "https://schema.org",
     "@type": "Service",
@@ -80,7 +82,7 @@ if (service) {
   });
 }
 
-if (faq?.length) {
+if (faq?.length && HAS_ABSOLUTE_URLS) {
   graph.push({
     "@context": "https://schema.org",
     "@type": "FAQPage",

@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+
+  // Doit correspondre EXACTEMENT au nom du Worker dans le tableau de bord
+  // Cloudflare, sinon le build échoue.
+  "name": "auverme-preview",
+  "compatibility_date": "2026-11-22",
+
+  // Site entièrement statique : aucun script Worker, on ne sert que le contenu
+  // de dist/. `not_found_handling` renvoie le 404.astro généré par Astro plutôt
+  // que la page d'erreur générique de Cloudflare.
+  //
+  // Le fichier dist/_headers, écrit par l'intégration preview-noindex lors d'un
+  // build Cloudflare, ajoute X-Robots-Tag sur toutes les réponses.
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

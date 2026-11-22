@@ -2,7 +2,7 @@
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import CookieBanner from "@/layouts/components/CookieBanner.astro";
 import config from "@/config/config.json";
-import { IS_PREVIEW, SITE_URL } from "@/config/siteUrl.mjs";
+import { HAS_ABSOLUTE_URLS, IS_PREVIEW, SITE_URL } from "@/config/siteUrl.mjs";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
@@ -28,7 +28,12 @@ const pageTitle = clean(meta_title ? meta_title : title ? title : config.site.ti
 const pageTitleFull = (meta_title || title) ? `${pageTitle} | Auver'me` : pageTitle;
 const pageDescription = clean(description ? description : config.metadata.meta_description);
 const pageImage = `${SITE_URL}${image ? image : config.metadata.meta_image}`;
-const canonicalURL = canonical ?? `${SITE_URL}${Astro.url.pathname}`;
+// En préversion sans URL connue, aucune URL absolue n'est émise : une
+// canonique désignant la production, servie avec un noindex, risquerait de
+// faire déréférencer la production elle-même.
+const canonicalURL = HAS_ABSOLUTE_URLS
+  ? (canonical ?? `${SITE_URL}${Astro.url.pathname}`)
+  : null;
 
 const schema = {
   "@context": "https://schema.org",
@@ -98,7 +103,7 @@ const schema = {
     <title>{pageTitleFull}</title>
 
     <!-- canonical url -->
-    <link rel="canonical" href={canonicalURL} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
 
     <!-- noindex robots -->
     {/* La préversion Cloudflare n'est jamais indexable. */}
@@ -118,8 +123,8 @@ const schema = {
     <meta property="og:title" content={pageTitleFull} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={pageImage} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+    {HAS_ABSOLUTE_URLS && <meta property="og:image" content={pageImage} />}
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="fr_FR" />
@@ -128,10 +133,14 @@ const schema = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitleFull} />
     <meta name="twitter:description" content={pageDescription} />
-    <meta name="twitter:image" content={pageImage} />
+    {HAS_ABSOLUTE_URLS && <meta name="twitter:image" content={pageImage} />}
 
     <!-- schema.org LocalBusiness -->
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    {/* Données structurées omises en préversion : elles exigent des URLs
+        absolues, et la page est de toute façon en noindex. */}
+    {HAS_ABSOLUTE_URLS && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
 
   </head>
   <body class="flex flex-col min-h-screen">
