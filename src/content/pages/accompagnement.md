@@ -69,7 +69,7 @@ Selon les situations, l'accompagnement peut intervenir en prévention d'une diff
 
 L'orthopédagogie peut accompagner les apprentissages à différents moments de la vie, avec ou sans trouble identifié.
 
-**Enfants dès le CP et adolescents.** Difficultés d'apprentissage, de mémorisation, d'attention, d'organisation ou de méthodologie, perte de confiance, besoins particuliers liés notamment aux [troubles dys](/accompagnement/troubles-dys/), au [TDAH](/accompagnement/tdah/) ou au [haut potentiel](/accompagnement/haut-potentiel/).
+**Enfants dès le CP et adolescents.** Difficultés d'apprentissage, de mémorisation, d'attention, d'organisation ou de méthodologie, perte de confiance, besoins particuliers liés notamment aux [troubles des apprentissages](/accompagnement/troubles-dys/), au [TDAH](/accompagnement/tdah/) ou au [haut potentiel](/accompagnement/haut-potentiel/).
 
 **Étudiants et adultes.** Reprise d'études, formation, préparation d'examens ou de concours, reconversion, organisation, mémorisation et recherche de stratégies d'apprentissage plus adaptées.
 

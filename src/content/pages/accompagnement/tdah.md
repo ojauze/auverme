@@ -17,7 +17,7 @@ faq:
   - q: "Accompagnez-vous les adultes avec un TDAH ?"
     a: "Oui. Beaucoup d'adultes sont diagnostiqués tardivement, parfois après leur enfant. L'accompagnement porte alors sur l'organisation professionnelle, la gestion du temps et des priorités, et la charge mentale."
 related:
-  - label: "Accompagnement des troubles dys"
+  - label: "Troubles des apprentissages (dys)"
     url: "/accompagnement/troubles-dys/"
     text: "souvent associés au trouble de l'attention"
   - label: "Accompagnement du haut potentiel"
@@ -67,7 +67,7 @@ Un détail qui change tout dans le regard porté sur l'enfant : ces difficultés
 
 ## Et le lien avec les autres profils
 
-Le TDAH est rarement seul. Il coexiste fréquemment avec un [trouble dys](/accompagnement/troubles-dys/), et il est parfois confondu avec un [haut potentiel](/accompagnement/haut-potentiel/) — un enfant qui s'ennuie et un enfant qui ne parvient pas à se fixer peuvent se ressembler beaucoup vus de la classe. Les deux peuvent aussi coexister.
+Le TDAH est rarement seul. Il coexiste fréquemment avec un [trouble des apprentissages](/accompagnement/troubles-dys/), et il est parfois confondu avec un [haut potentiel](/accompagnement/haut-potentiel/) — un enfant qui s'ennuie et un enfant qui ne parvient pas à se fixer peuvent se ressembler beaucoup vus de la classe. Les deux peuvent aussi coexister.
 
 C'est une raison de plus de ne pas chercher d'étiquette avant d'observer : mon travail commence par comprendre comment cette personne-là s'y prend, pas par confirmer une hypothèse.
 

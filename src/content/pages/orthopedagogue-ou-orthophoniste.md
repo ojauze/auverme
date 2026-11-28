@@ -71,7 +71,7 @@ Cette étape n'est pas une formalité : sans prescription, le bilan orthophoniqu
 
 ### 3. Le bilan orthophonique pose le diagnostic
 
-Si la lecture, l'écriture ou le langage sont en cause, **c'est l'orthophoniste qu'il faut voir, et personne d'autre**. Lui seul peut nommer un trouble dys. Attention aux délais : dans le Puy-de-Dôme comme ailleurs, plusieurs mois d'attente sont courants. Inscrivez-vous tôt, quitte à annuler.
+Si la lecture, l'écriture ou le langage sont en cause, **c'est l'orthophoniste qu'il faut voir, et personne d'autre**. Lui seul peut poser ce diagnostic. Attention aux délais : dans le Puy-de-Dôme comme ailleurs, plusieurs mois d'attente sont courants. Inscrivez-vous tôt, quitte à annuler.
 
 Pour le TDAH, le haut potentiel ou un bilan cognitif complet, l'évaluation relève du psychologue, du neuropsychologue ou du médecin — pas de l'orthopédagogue.
 

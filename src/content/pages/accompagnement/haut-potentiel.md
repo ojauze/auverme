@@ -20,9 +20,9 @@ related:
   - label: "Accompagnement TDAH"
     url: "/accompagnement/tdah/"
     text: "un profil parfois confondu, parfois associé"
-  - label: "Accompagnement des troubles dys"
+  - label: "Troubles des apprentissages (dys)"
     url: "/accompagnement/troubles-dys/"
-    text: "haut potentiel et trouble dys peuvent coexister"
+    text: "haut potentiel et trouble des apprentissages peuvent coexister"
   - label: "L'accompagnement orthopédagogique"
     url: "/accompagnement/"
     text: "le déroulé et les modalités"
@@ -67,7 +67,7 @@ S'y ajoutent souvent :
 
 ## HPI, TDAH, dys : ne pas confondre, ne pas opposer
 
-Un enfant qui s'ennuie et un enfant qui ne parvient pas à fixer son attention peuvent se ressembler beaucoup vus du fond de la classe. Un haut potentiel peut masquer un [trouble dys](/accompagnement/troubles-dys/) pendant des années, l'intelligence compensant la difficulté jusqu'à ce qu'elle ne suffise plus. Et un haut potentiel peut parfaitement s'accompagner d'un [TDAH](/accompagnement/tdah/) — on parle alors de profil complexe, et c'est fréquent.
+Un enfant qui s'ennuie et un enfant qui ne parvient pas à fixer son attention peuvent se ressembler beaucoup vus du fond de la classe. Un haut potentiel peut masquer un [trouble des apprentissages](/accompagnement/troubles-dys/) pendant des années, l'intelligence compensant la difficulté jusqu'à ce qu'elle ne suffise plus. Et un haut potentiel peut parfaitement s'accompagner d'un [TDAH](/accompagnement/tdah/) — on parle alors de profil complexe, et c'est fréquent.
 
 C'est pourquoi je commence par observer comment la personne s'y prend, plutôt que par vérifier une hypothèse.
 

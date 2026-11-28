@@ -63,7 +63,7 @@ Un bilan intermédiaire est effectué régulièrement pour ajuster l'accompagnem
 
 Oui. Je travaille régulièrement avec des personnes présentant :
 
-- Des **troubles dys** (dyslexie, dysorthographie, dyscalculie, dyspraxie…)
+- Des **troubles spécifiques des apprentissages**, couramment appelés troubles dys (dyslexie, dysorthographie, dyscalculie), ainsi que le **trouble développemental de la coordination** (dyspraxie)
 - Un **haut potentiel intellectuel (HPI)** ou un profil zèbre
 - Un **TDAH** (trouble de l'attention avec ou sans hyperactivité)
 - Un **TSA** (trouble du spectre autistique) à haut niveau de fonctionnement
