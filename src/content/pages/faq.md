@@ -17,6 +17,8 @@ L'**orthophoniste** est un professionnel de santé paramédical qui diagnostique
 
 L'**orthopédagogue** travaille sur les stratégies d'apprentissage et l'autonomie scolaire ou professionnelle. Il n'établit pas de diagnostic médical. Les deux approches sont souvent complémentaires : un enfant suivi en orthophonie peut également bénéficier d'un accompagnement orthopédagogique pour développer des méthodes de travail adaptées.
 
+👉 Pour savoir **qui consulter et dans quel ordre**, voir la page détaillée : [orthopédagogue ou orthophoniste ?](/orthopedagogue-ou-orthophoniste/)
+
 ## À partir de quel âge peut-on consulter ?
 
 L'orthopédagogie s'adresse à **tous les âges** :
@@ -38,8 +40,6 @@ La première séance est un temps d'échange et d'observation. Nous parlons ense
 Non, les séances d'orthopédagogie ne sont pas remboursées par l'Assurance maladie.
 
 En revanche, les séances réalisées **à votre domicile** relèvent du soutien scolaire à domicile et ouvrent droit à un **crédit d'impôt de 50 %** des sommes versées, dans la limite de 12 000 € de dépenses par an. Les séances au cabinet et en visioconférence n'y ouvrent pas droit.
-
-Par exemple, une séance à domicile à 50 € revient à 25 € une fois le crédit d'impôt déduit. Comme il s'agit d'un crédit d'impôt et non d'une réduction, il vous est versé même si vous n'êtes pas imposable. Le détail du dispositif est expliqué sur [impots.gouv.fr](https://www.impots.gouv.fr/particulier/emploi-domicile).
 
 Certaines mutuelles remboursent également tout ou partie des séances — renseignez-vous auprès de votre organisme complémentaire.
 
@@ -69,6 +69,8 @@ Oui. Je travaille régulièrement avec des personnes présentant :
 - Un **TSA** (trouble du spectre autistique) à haut niveau de fonctionnement
 
 Ces profils nécessitent une approche sur mesure, qui s'appuie sur leurs points forts tout en travaillant les stratégies compensatoires.
+
+👉 Voir le détail de l'[accompagnement des troubles dys](/accompagnement/troubles-dys/) et de [l'accompagnement orthopédagogique](/accompagnement/) en général.
 
 ## Comment prendre rendez-vous ?
 
