@@ -25,12 +25,17 @@ const { banner, features } = homepage.data;
   <section class="section pt-14">
     <div class="container">
       <div class="row justify-center">
-        <div class="lg:col-8 md:col-10 mb-8 text-center">
+        <div class="lg:col-10 md:col-10 mb-8 text-center">
 
           <!-- Logo -->
-          <div class="flex justify-center mb-6">
+          <div class="flex justify-center mb-3">
             <Logo />
           </div>
+
+          <!-- Nom de la praticienne — volontairement discret, sous le logo -->
+          <p class="mb-7 text-sm font-light tracking-wide text-text-light dark:text-darkmode-text-light">
+            Anne Hanane JAUZE — Orthopédagogue
+          </p>
 
           <!-- Badge modalités — pill clair -->
           {banner.modalities.length > 0 && (
@@ -47,7 +52,9 @@ const { banner, features } = homepage.data;
           )}
 
           <!-- Titre principal -->
-          <h1 class="mb-8">{banner.title}</h1>
+          {/* text-balance répartit les lignes au lieu de laisser un mot seul ;
+              max-w-4xl élargit le titre au-delà du conteneur du hero. */}
+          <h1 class="mb-8 mx-auto max-w-4xl text-balance">{banner.title}</h1>
 
           <!-- Chips thématiques -->
           {banner.chips.length > 0 && (
@@ -260,14 +267,14 @@ const { banner, features } = homepage.data;
             <div class="flex justify-center gap-8">
               <div>
                 <p class="text-xs font-semibold uppercase tracking-wide text-text-light dark:text-darkmode-text-light mb-1">Enfant</p>
-                <p class="text-4xl font-bold text-primary">400 €</p>
+                <p class="text-4xl font-bold text-primary">450 €</p>
               </div>
               <div>
                 <p class="text-xs font-semibold uppercase tracking-wide text-text-light dark:text-darkmode-text-light mb-1">Adulte</p>
-                <p class="text-4xl font-bold text-primary">500 €</p>
+                <p class="text-4xl font-bold text-primary">550 €</p>
               </div>
             </div>
-            <p class="text-sm text-text-light dark:text-darkmode-text-light mt-auto">Économisez 100&nbsp;€ · Engagement sur 10 séances</p>
+            <p class="text-sm text-text-light dark:text-darkmode-text-light mt-auto">Économisez 50&nbsp;€ · Engagement sur 10 séances</p>
           </div>
         </div>
 

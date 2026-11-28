@@ -1,7 +1,7 @@
 ---
 banner:
-  title: "Orthopédagogue — comprendre, accompagner et réussir"
-  description: "L’orthopédagogie accompagne chacun dans le développement de ses stratégies d’apprentissage, de ses capacités d’adaptation et de son autonomie, à tout âge de la vie."
+  title: "Orthopédagogue — Comprendre, accompagner, progresser"
+  description: "L’orthopédagogie aide chacun à mieux comprendre son fonctionnement, à développer des stratégies adaptées et à gagner en autonomie, à tout âge de la vie."
   modalities:
     - "🏠 En présentiel"
     - "💻 À distance"
