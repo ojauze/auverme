@@ -41,8 +41,6 @@ Non, les séances d'orthopédagogie ne sont pas remboursées par l'Assurance mal
 
 En revanche, les séances réalisées **à votre domicile** relèvent du soutien scolaire à domicile et ouvrent droit à un **crédit d'impôt de 50 %** des sommes versées, dans la limite de 12 000 € de dépenses par an. Les séances au cabinet et en visioconférence n'y ouvrent pas droit.
 
-Par exemple, une séance à domicile à 50 € revient à 25 € une fois le crédit d'impôt déduit. Comme il s'agit d'un crédit d'impôt et non d'une réduction, il vous est versé même si vous n'êtes pas imposable. Le détail du dispositif est expliqué sur [impots.gouv.fr](https://www.impots.gouv.fr/particulier/emploi-domicile).
-
 Certaines mutuelles remboursent également tout ou partie des séances — renseignez-vous auprès de votre organisme complémentaire.
 
 ## Où se déroulent les séances ?
