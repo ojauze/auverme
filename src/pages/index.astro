@@ -15,6 +15,11 @@ const call_to_action = await getListPage("ctaSection", "call-to-action");
 const testimonial = await getListPage("testimonialSection", "testimonial");
 
 const { banner, features } = homepage.data;
+
+// Le titre de la bannière se scinde sur le tiret cadratin : la partie gauche
+// occupe la première ligne, la droite la seconde, qui ne doit jamais se couper.
+const [titreHaut, ...reste] = banner.title.split("—");
+const titreBas = reste.join("—").trim();
 ---
 
 <Base
@@ -52,9 +57,18 @@ const { banner, features } = homepage.data;
           )}
 
           <!-- Titre principal -->
-          {/* text-balance répartit les lignes au lieu de laisser un mot seul ;
-              max-w-4xl élargit le titre au-delà du conteneur du hero. */}
-          <h1 class="mb-8 mx-auto max-w-4xl text-balance">{banner.title}</h1>
+          {/*
+            La seconde ligne est en whitespace-nowrap : elle doit tenir d'un
+            seul tenant quelle que soit la largeur. La taille suit donc la
+            fenêtre (4.6vw) plutôt qu'un palier fixe, bornée pour rester
+            lisible sur petit écran et ne pas devenir démesurée sur grand.
+          */}
+          <h1 class="mb-8 text-[clamp(1.1rem,4.6vw,3rem)] leading-tight">
+            <span class="block">{titreHaut.trim()}</span>
+            {titreBas && (
+              <span class="block whitespace-nowrap">{titreBas}</span>
+            )}
+          </h1>
 
           <!-- Chips thématiques -->
           {banner.chips.length > 0 && (
